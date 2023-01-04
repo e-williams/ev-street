@@ -3,20 +3,22 @@ name: General Issue Template
 about: for general Issue additions
 title: ''
 labels: ''
-assignees: e-williams
+assignees: ''
 
 ---
 
 ## Story
 
-Describe the ticket's purpose (general what and why)
-
+Describe the ticket's purpose (general what and why) <br>
+(delete above instruction before submission)
 
 ## Acceptance Criteria
 
-List what needs to be done to move the issue (ticket) to "Done" status (specific what items)
+List what needs to be done to move the issue (ticket) to "Done" status (specific what items) <br>
+(delete above instruction before submission)
 
 
 ## Resources
 
-List any helpful resources such as website content
+List any helpful resources such as website content <br>
+(delete above instruction before submission)
