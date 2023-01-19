@@ -1,0 +1,34 @@
+#searchWrapper {
+  margin: 0 12px;
+  font-weight: lighter;
+  font-size: .9rem;
+}
+#filterFlexbox {
+  display: flex;
+}
+#flexColumn1 {
+  flex: 0 0 140px;
+}
+.greenLi {
+  color: rgb(2, 231, 2);
+}
+.checkbox {
+  width: 11px;
+  height: 11px;
+}
+li {
+  list-style-type: none;
+  font-size: .8rem;
+}
+#basePriceLabel {
+  margin-left: 3px;
+  color: rgb(2, 231, 2);
+}
+#basePriceSelect {
+  margin: 0 0 2px 3px;
+}
+.filterHeadings {
+  margin: 9px 0 2px 3px;
+  font-weight: normal;
+  color: rgb(2, 231, 2);
+}

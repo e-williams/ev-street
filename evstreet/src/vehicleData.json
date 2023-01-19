@@ -1,0 +1,15 @@
+[ {
+  "id": 0,
+  "make": "TESLA",
+  "model": "Model 3",
+  "base_price": "$43,990",
+  "body_style": "5-door sedan"
+  },
+  {
+  "id": 1,
+  "make": "Kia",
+  "model": "EV6",
+  "base_price": "$48,700",
+  "body_style": "5-door crossover"
+  }
+]

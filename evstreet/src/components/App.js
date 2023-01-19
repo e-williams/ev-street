@@ -1,15 +1,16 @@
-import logo from "../assets/images/logo.svg";
-import "../assets/styles/App.css";
+import '../assets/styles/App.css';
+import Header from './Header';
+import Footer from './Footer';
+import SearchPageContainer from './SearchPageContainer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <h1>Hello</h1>
+    <div>
+      <Header />
+      <SearchPageContainer />
+      <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
