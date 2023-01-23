@@ -1,6 +1,11 @@
 #searchPageWrapper {
   margin: 18px 0 0 0;
 }
+.searchPageHeadings {
+  font-weight: normal;
+  text-align: center;
+  margin-top: 10px;
+}
 #searchPageFlexbox {
   display: flex;
   margin-top: 38px;
@@ -15,9 +20,9 @@
 #flexItemResults {
   flex: 0 0 880px;
 }
-.headings {
-  font-weight: normal;
+#resultsWrapper {
   text-align: center;
+}
+#resultsHeading {
   margin-top: 10px;
 }
-

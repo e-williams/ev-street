@@ -3,10 +3,13 @@
   font-weight: lighter;
   font-size: .9rem;
 }
-#filterFlexbox {
+.selectbox {
+  margin-top: 10px;
+}
+.filterFlexbox {
   display: flex;
 }
-#flexColumn1 {
+.flexColumn1 {
   flex: 0 0 140px;
 }
 .greenLi {
@@ -19,13 +22,6 @@
 li {
   list-style-type: none;
   font-size: .8rem;
-}
-#basePriceLabel {
-  margin-left: 3px;
-  color: rgb(2, 231, 2);
-}
-#basePriceSelect {
-  margin: 0 0 2px 3px;
 }
 .filterHeadings {
   margin: 9px 0 2px 3px;
