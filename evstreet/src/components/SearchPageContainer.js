@@ -14,6 +14,8 @@ function SearchPageContainer() {
   // Function responsible for finding all the vehicles that match the filters
   const findVehiclesMatchingFilters = useMemo(() => {
     console.log("The filters have changed:::: ", vehicleFilters);
+    // TODO: write the logic that iterates over the vehicles, and filters, and
+    // returns all the vehicles that match the filter.
     return [];
   }, [vehicleFilters]);
 
