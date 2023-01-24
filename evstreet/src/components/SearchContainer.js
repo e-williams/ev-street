@@ -4,12 +4,12 @@ import MaxPriceFilter from './filters/MaxPriceFilter';
 import SelectAllFilter from './filters/SelectAllFilter';
 
 
-function SearchContainer({vehicleSpecsData}) {
+function SearchContainer({handle4DoorSedan, handle5DoorSedan}) {
   return (
     <form id='searchWrapper'>
       <SelectAllFilter />
       <MaxPriceFilter />
-      <BodyStyleFilter vehicleSpecsData={vehicleSpecsData} />
+      <BodyStyleFilter handle4DoorSedan={handle4DoorSedan} handle5DoorSedan={handle5DoorSedan} />
     </form>
   )
 }
