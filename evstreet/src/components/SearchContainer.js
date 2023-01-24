@@ -1,17 +1,16 @@
-import '../assets/styles/SearchContainer.css';
-import BodyStyleFilter from './filters/BodyStyleFilter';
-import MaxPriceFilter from './filters/MaxPriceFilter';
-import SelectAllFilter from './filters/SelectAllFilter';
+import "../assets/styles/SearchContainer.css";
+import BodyStyleFilter from "./filters/BodyStyleFilter";
+import MaxPriceFilter from "./filters/MaxPriceFilter";
+import SelectAllFilter from "./filters/SelectAllFilter";
 
-
-function SearchContainer({handle4DoorSedan, handle5DoorSedan}) {
+function SearchContainer({ handleNewFilterSelection }) {
   return (
-    <form id='searchWrapper'>
+    <form id="searchWrapper">
       <SelectAllFilter />
       <MaxPriceFilter />
-      <BodyStyleFilter handle4DoorSedan={handle4DoorSedan} handle5DoorSedan={handle5DoorSedan} />
+      <BodyStyleFilter handleNewFilterSelection={handleNewFilterSelection} />
     </form>
-  )
+  );
 }
 
-export default SearchContainer
+export default SearchContainer;
