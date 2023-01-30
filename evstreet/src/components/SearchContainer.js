@@ -10,7 +10,7 @@ function SearchContainer({ handleNewFilterSelection }) {
       <MaxPriceFilter />
       <BodyStyleFilter handleNewFilterSelection={handleNewFilterSelection} />
     </form>
-  );
+  )
 }
 
-export default SearchContainer;
+export default SearchContainer

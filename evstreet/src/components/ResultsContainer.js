@@ -1,12 +1,12 @@
 import '../assets/styles/ResultsContainer.css'
 
-function ResultsContainer({vehicleSpecs}) {
+function ResultsContainer({ filteredVehicleSpecs }) {
   return (
     <div id='output'>
-      <p>{vehicleSpecs.make}</p>
-      <p>{vehicleSpecs.model}</p>
-      <p>{vehicleSpecs.base_price}</p>
-      <p>{vehicleSpecs.body_style}</p>
+      <p>{filteredVehicleSpecs.make}</p>
+      <p>{filteredVehicleSpecs.model}</p>
+      <p>{filteredVehicleSpecs.base_price}</p>
+      <p>{filteredVehicleSpecs.body_style}</p>
       <br/>
     </div>
   )
