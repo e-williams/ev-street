@@ -135,7 +135,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default BodyStyleFilter;

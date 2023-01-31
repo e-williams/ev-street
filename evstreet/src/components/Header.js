@@ -7,6 +7,6 @@ const Header = () => (
           <img src={evLogo} alt='EVstreet logo' />
       </figure>
     </header>
-)
+);
 
 export default Header

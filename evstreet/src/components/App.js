@@ -10,7 +10,7 @@ function App() {
       <SearchPageContainer />
       <Footer />
     </div>
-  )
+  );
 }
 
 export default App

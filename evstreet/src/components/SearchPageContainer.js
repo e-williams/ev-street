@@ -4,8 +4,6 @@ import vehicleData from "../vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 
-console.log(vehicleData);
-
 function SearchPageContainer() {
   const [vehicleFilters, setVehicleFilters] = useState([]);
   
@@ -14,15 +12,37 @@ function SearchPageContainer() {
     // useMemo produces a memoized constant and the function receives a
     // dependency array [vehicleFilters], so the produced memoized CONSTANT will
     // only be recalculated if the value of vehicleFilters changes.
-    console.log("The filters have changed:: ", vehicleFilters);
+    console.log("The filters have changed::: ", vehicleFilters);
     // Return an array of elements in vehicleData that includes an element
     // in vehicleFilters
-    return (
-      vehicleData.filter(vehicleSpecs => 
-        vehicleFilters.includes(vehicleSpecs.body_style) // find universal value!!!!!!!!
-      )
-    )
-  }, [vehicleFilters])
+
+    // Parse vehicleData: convert objects within container array to arrays
+    // of data values so can iterate over them and match values with filters
+    var vehicleDataValues = vehicleData.map(objectData =>
+      Object.values(objectData)
+    );
+    console.log('vehicleDataValues after parsing::', vehicleDataValues);
+
+    const handleVehicleFilterComparison = () => {
+      const filteredData = [];
+      for(let i = 0; i < vehicleDataValues.length; i++) {
+        for(let j = 0; j < vehicleDataValues[i].length; j++) {
+          if (vehicleFilters[j] == vehicleDataValues[i]) {
+            filteredData.splice(0, 0, vehicleDataValues[i]);
+          }
+        }
+      }
+      return filteredData;
+    }
+
+    console.log('filteredData is::', filteredData);
+    console.log(
+      'handleVehicleFilterComparison::', handleVehicleFilterComparison()
+    );
+    
+    return handleVehicleFilterComparison;
+
+  }, [vehicleFilters]);
 
   console.log('vehicles matching filters::', findVehiclesMatchingFilters);
   
@@ -43,18 +63,18 @@ function SearchPageContainer() {
       // Event.target = target property of HTML Event interface - returns
       // the element where the event occured.
       // value of <inpute> attribute id is added to vehicleFilters
-      // can use spread syntax ... to add/remove array elements
+      // can use spread syntax ... to add array elements
     }
     else {
       console.log('value of checked after unchecking is::', e.target.checked);
-      var filterIndex = vehicleFilters.indexOf(e.target.id);
+      let filterIndex = vehicleFilters.indexOf(e.target.id);
       console.log('filter index is::', filterIndex);
       setVehicleFilters(vehicleFilters.splice(filterIndex, 1));
       console.log('vehicleFilters after unchecking::', vehicleFilters);
     }
   } // [] is defined with useCallback for output
 
-
+  // OLD CODE:
   // output array of data for each filter condition
   // Get all the cars that have 4 doors
   /*
@@ -68,8 +88,9 @@ function SearchPageContainer() {
     vehicleSpecsData.filter(
       (vehicleSpec) => vehicleSpec.body_style == "5-door sedan"
     );
+  
+  const totalFiltersData = handle4DoorSedan().concat(handle5DoorSedan());
   */
-  //const totalFiltersData = handle4DoorSedan().concat(handle5DoorSedan());
 
   return (
     <div id="searchPageWrapper">
@@ -97,12 +118,11 @@ function SearchPageContainer() {
                 filteredVehicleSpecs={filteredVehicleSpecs}
               />
             ))}
-            {/* map used to produce ResultsContainer fore each over JSON object
-                iteration of vehicleSpecs over JSON object list.
+            {/* map used to produce ResultsContainer for each over JSON object
+                iteration of filteredVehicleSpecs over JSON object list.
                 Each child element in a mapped list needs a unique key prop.
-                vehicleSpecsData = variable defined by const,
-                vehicleSpecs = map iterator (parameter)
-                3rd vehicleSpecs = property assigned to iterator */}
+                filteredVehicleSpecs = map iterator (parameter)
+                3rd filteredVehicleSpecs = property assigned to iterator */}
           </div>
         </section>
       </div>

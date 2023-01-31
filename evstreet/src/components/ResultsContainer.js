@@ -9,7 +9,7 @@ function ResultsContainer({ filteredVehicleSpecs }) {
       <p>{filteredVehicleSpecs.body_style}</p>
       <br/>
     </div>
-  )
+  );
 }
 
 export default ResultsContainer

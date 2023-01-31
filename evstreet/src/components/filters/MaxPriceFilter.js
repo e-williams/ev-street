@@ -12,7 +12,7 @@ function MaxPriceFilter() {
           <option value='unlimited'>unlimited</option>
         </select>
     </div>
-  )
+  );
 }
 
 export default MaxPriceFilter
