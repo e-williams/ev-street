@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useCallback, useState, useMemo } from "react";
 import "../assets/styles/SearchPageContainer.css";
 import vehicleData from "../vehicleData.json";
 import SearchContainer from "./SearchContainer";
@@ -6,9 +6,10 @@ import ResultsContainer from "./ResultsContainer";
 
 function SearchPageContainer() {
   const [vehicleFilters, setVehicleFilters] = useState([]);
-  
+  console.log({ vehicleData });
+
   // Function that finds all the vehicles that match the filters
-  const findVehiclesMatchingFilters = useMemo(() => {
+  const findVehiclesIdMatchingFilters = useMemo(() => {
     // useMemo produces a memoized constant and the function receives a
     // dependency array [vehicleFilters], so the produced memoized CONSTANT will
     // only be recalculated if the value of vehicleFilters changes.
@@ -18,61 +19,64 @@ function SearchPageContainer() {
 
     // Parse vehicleData: convert objects within container array to arrays
     // of data values so can iterate over them and match values with filters
-    var vehicleDataValues = vehicleData.map(objectData =>
+    const vehicleDataValues = vehicleData.map((objectData) =>
       Object.values(objectData)
     );
-    console.log('vehicleDataValues after parsing::', vehicleDataValues);
 
-    const handleVehicleFilterComparison = () => {
-      const filteredData = [];
-      for(let i = 0; i < vehicleDataValues.length; i++) {
-        for(let j = 0; j < vehicleDataValues[i].length; j++) {
-          if (vehicleFilters[j] == vehicleDataValues[i]) {
-            filteredData.splice(0, 0, vehicleDataValues[i]);
+    console.log("vehicleDataValues after parsing::", vehicleDataValues);
+
+    const getVehicleIds = () => {
+      const vehicleIdsMatchingFilters = [];
+
+      vehicleDataValues.forEach((vehicle) => {
+        vehicleFilters.forEach((filter) => {
+          if (vehicle.includes(filter)) {
+            vehicleIdsMatchingFilters.push(vehicle[0]);
           }
-        }
-      }
-      return filteredData;
-    }
+        });
+      });
 
-    console.log('filteredData is::', filteredData);
-    console.log(
-      'handleVehicleFilterComparison::', handleVehicleFilterComparison()
-    );
-    
-    return handleVehicleFilterComparison;
+      console.log("filteredData is::", vehicleIdsMatchingFilters);
 
+      return vehicleIdsMatchingFilters;
+    };
+
+    return getVehicleIds();
   }, [vehicleFilters]);
 
-  console.log('vehicles matching filters::', findVehiclesMatchingFilters);
-  
   // Function that creates an array of all checked filters
-  const handleNewFilterSelection = (e) => {
-    // useCallback: upon subsequent renders, if the dependencies haven't
-    // changed, returns the stored FUNCTION; otherwise returns (not calls)
-    // re-rendered function.
-    // e is parameter name taking on HTML Event() interface
-    console.log(
-      `The user has checked:: ${e.target.checked}, the checkbox ${e.target.id}`
-    );
-    // If a checkbox is checked
-    if (e.target.checked) { // if checked = true
-      console.log('value of checked after checking is::', e.target.checked);
-      setVehicleFilters([...vehicleFilters, e.target.id]);
-      // checked is <input> attribute = boolean value
-      // Event.target = target property of HTML Event interface - returns
-      // the element where the event occured.
-      // value of <inpute> attribute id is added to vehicleFilters
-      // can use spread syntax ... to add array elements
-    }
-    else {
-      console.log('value of checked after unchecking is::', e.target.checked);
-      let filterIndex = vehicleFilters.indexOf(e.target.id);
-      console.log('filter index is::', filterIndex);
-      setVehicleFilters(vehicleFilters.splice(filterIndex, 1));
-      console.log('vehicleFilters after unchecking::', vehicleFilters);
-    }
-  } // [] is defined with useCallback for output
+  const handleNewFilterSelection = useCallback(
+    (e) => {
+      // useCallback: upon subsequent renders, if the dependencies haven't
+      // changed, returns the stored FUNCTION; otherwise returns (not calls)
+      // re-rendered function.
+      // e is parameter name taking on HTML Event() interface
+      // If a checkbox is checked
+      if (e.target.checked) {
+        // if checked = true
+        setVehicleFilters([...vehicleFilters, e.target.id]);
+        // checked is <input> attribute = boolean value
+        // Event.target = target property of HTML Event interface - returns
+        // the element where the event occured.
+        // value of <inpute> attribute id is added to vehicleFilters
+        // can use spread syntax ... to add array elements
+      } else {
+        console.log("value of checked after unchecking is::", e.target.checked);
+        // ['5-door sedan', '4-door sedan']
+        console.log({ vehicleFilters });
+        let filterIndex = vehicleFilters.indexOf(e.target.id);
+        console.log("filter index is::", filterIndex);
+        console.log({ vehicleFilters }); // ['4-door sedan']
+
+        const copyVehicleFilters = [...vehicleFilters];
+
+        copyVehicleFilters.splice(filterIndex, 1);
+
+        setVehicleFilters(copyVehicleFilters);
+      }
+    },
+    [vehicleFilters]
+  ); // [] is defined with useCallback for output
 
   // OLD CODE:
   // output array of data for each filter condition
@@ -110,12 +114,15 @@ function SearchPageContainer() {
             <h2 id="resultsHeading">SEARCH RESULTS WILL GO HERE</h2>
             <p>
               Below is some selected output simply to show JSON data & logic
-              implementation:</p>
+              implementation:
+            </p>
 
-            {findVehiclesMatchingFilters.map(filteredVehicleSpecs => (
+            {findVehiclesIdMatchingFilters.map((vehicleId) => (
               <ResultsContainer
-                key={filteredVehicleSpecs.id}
-                filteredVehicleSpecs={filteredVehicleSpecs}
+                key={vehicleId}
+                filteredVehicleSpecs={vehicleData.find(
+                  (vehicle) => vehicle.id === vehicleId
+                )}
               />
             ))}
             {/* map used to produce ResultsContainer for each over JSON object
@@ -130,4 +137,4 @@ function SearchPageContainer() {
   );
 }
 
-export default SearchPageContainer
+export default SearchPageContainer;
