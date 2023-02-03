@@ -1,0 +1,28 @@
+#searchPageWrapper {
+  margin: 18px 0 0 0;
+}
+.searchPageHeadings {
+  font-weight: normal;
+  text-align: center;
+  margin-top: 10px;
+}
+#searchPageFlexbox {
+  display: flex;
+  margin-top: 38px;
+}
+#flexItemSearch {
+  flex: 0 0 340px; /* flex-grow, flex-shrink, flex-basis (width) */
+  margin: 0;
+  background-color: #536d90;
+  color: white;
+  border-radius: 0 14px 0 0;
+}
+#flexItemResults {
+  flex: 0 0 880px;
+}
+#resultsWrapper {
+  text-align: center;
+}
+#resultsHeading {
+  margin-top: 10px;
+}

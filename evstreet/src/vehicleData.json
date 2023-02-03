@@ -1,0 +1,23 @@
+[
+  {
+  "id": 0,
+  "make": "TESLA",
+  "model": "Model 3",
+  "base_price": "$43,990",
+  "body_style": "5-door sedan"
+  },
+  {
+  "id": 1,
+  "make": "Kia",
+  "model": "EV6",
+  "base_price": "$48,700",
+  "body_style": "5-door crossover"
+  },
+  {
+  "id": 2,
+  "make": "Audi",
+  "model": "e-tron GT",
+  "base_price": "$104,900",
+  "body_style": "4-door sedan"
+  }
+]

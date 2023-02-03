@@ -1,0 +1,11 @@
+#footerWrapper {
+  height: 60px;
+  background-color: #ffd78d;
+  color:rgb(80, 80, 80);
+  padding-top: 20px;
+}
+#footerWrapper h4 {
+  display: inline;
+  padding: 0 0 0 30px;
+  font-weight: normal;
+}
