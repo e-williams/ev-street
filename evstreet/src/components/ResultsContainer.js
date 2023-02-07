@@ -13,4 +13,4 @@ function ResultsContainer({ filteredVehicleSpecs }) {
   );
 }
 
-export default ResultsContainer;
+export default ResultsContainer

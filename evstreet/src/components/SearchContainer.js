@@ -1,14 +1,19 @@
 import "../assets/styles/SearchContainer.css";
 import BodyStyleFilter from "./filters/BodyStyleFilter";
 import MaxPriceFilter from "./filters/MaxPriceFilter";
-import SelectAllFilter from "./filters/SelectAllFilter";
 
-function SearchContainer({ handleNewFilterSelection }) {
+function SearchContainer({
+  handleCheckboxFilterSelection,
+  findVehicleIdsMatchingSelectboxMaxPrice  }) {
   return (
     <form id="searchWrapper">
-      <SelectAllFilter />
-      <MaxPriceFilter />
-      <BodyStyleFilter handleNewFilterSelection={handleNewFilterSelection} />
+      <MaxPriceFilter
+        findVehicleIdsMatchingSelectboxMaxPrice=
+          {findVehicleIdsMatchingSelectboxMaxPrice}
+      />
+      <BodyStyleFilter
+        handleCheckboxFilterSelection={handleCheckboxFilterSelection}
+      />
     </form>
   );
 }
