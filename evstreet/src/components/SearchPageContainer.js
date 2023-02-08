@@ -66,7 +66,6 @@ function SearchPageContainer() {
     // e is parameter name taking on HTML Event() interface.
 
     // If a checkbox is checked:
-
     if (e.target.checked) { // if checked === true
       setVehicleCheckboxFilters([...vehicleCheckboxFilters, e.target.id]);
       // checked is <input> attribute = boolean value.
@@ -76,8 +75,8 @@ function SearchPageContainer() {
       // Spread syntax ... to add element id value to new array state; not
       // an array pointing to vehicleFilters memory.
     }
-    // If a checkbox is unchecked:
 
+    // If a checkbox is unchecked:
     else if (e.target.checked === false) {
       console.log("value of checked after unchecking is::", e.target.checked);
       const filterIndex = vehicleCheckboxFilters.indexOf(e.target.id);
@@ -115,7 +114,6 @@ function SearchPageContainer() {
     const getSelectboxFilter = () => {
       // Get string value of selected Max Price filter and convert to integer.
       const maxPriceSelection = e.target.value;
-      // Convert string to integer:
       const selectboxMaxPriceSelection = parseInt(maxPriceSelection);
       console.log({selectboxMaxPriceSelection});
       return selectboxMaxPriceSelection;
