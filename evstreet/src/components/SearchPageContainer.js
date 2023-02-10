@@ -135,7 +135,7 @@ function SearchPageContainer() {
     return Array.from(uniqueIds);
       // Array.from() creates shallow copy of Array instance from an iterable.
   }
-
+/*
   // Function to handle display of all vehicles if no filters selected:
   const handleResultsRender = () => {
     if (vehicleCheckboxFilters.length === 0 && selectedPrice === 0) {
@@ -172,7 +172,7 @@ function SearchPageContainer() {
   if (combinedVehicleIdsAllFilters().length === 0) {
     inputRef.current.style.visibility = "visible";
   }
-
+*/
   return (
     <div id="searchPageWrapper">
       <h3 className="searchPageHeadings">
