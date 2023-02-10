@@ -6,7 +6,7 @@ import ResultsContainer from "./ResultsContainer";
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
-  console.log({ vehicleData }); // [{...}, {...}]
+  const [selectedPrice, setSelectedPrice] = useState(0);
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(() => {
     console.log("The filters have changed::: ", vehicleCheckboxFilters);
@@ -27,13 +27,15 @@ function SearchPageContainer() {
     const vehicleDataValues = vehicleData.map((objectData) =>
       Object.values(objectData)
     );
-    console.log("vehicleDataValues for checkbox after parsing::",
-      vehicleDataValues);
-      // Produces an array containing arrays of data values (from the objects)
-      // for each vehicle. [[0, "TESLA", ...], [1, "Kia", ...]]
+    console.log(
+      "vehicleDataValues for checkbox after parsing::",
+      vehicleDataValues
+    );
+    // Produces an array containing arrays of data values (from the objects)
+    // for each vehicle. [[0, "TESLA", ...], [1, "Kia", ...]]
 
-      // Get only vehicle IDs matching filters so can use IDs to match original
-      // vehicle object data to pass to ResultsContainer for better output.
+    // Get only vehicle IDs matching filters so can use IDs to match original
+    // vehicle object data to pass to ResultsContainer for better output.
 
     const getVehicleIdsForCheckbox = () => {
       const vehicleIdsMatchingCheckboxFilters = [];
@@ -46,53 +48,57 @@ function SearchPageContainer() {
           }
         });
       });
-      console.log("VehicleIdsMatchingCheckboxFilters are::", vehicleIdsMatchingCheckboxFilters);
+      console.log(
+        "VehicleIdsMatchingCheckboxFilters are::",
+        vehicleIdsMatchingCheckboxFilters
+      );
 
       return vehicleIdsMatchingCheckboxFilters; // [0, 2]
-    }
+    };
 
     return getVehicleIdsForCheckbox(); // [0, 2]
-      //us () for returned function value rather than function istelf
-  }, [vehicleCheckboxFilters] ); // dependency array
-  
-  
-  const handleCheckboxFilterSelection = useCallback((e) => {
-    // Function that creates an array of all selected filters and as output,
-    // changes the state of vehicleFilters.
-    // Function is re-invoked whenever a user clicks on a filter.
-    // useCallback: upon subsequent renders, if the dependencies haven't
-    // changed, returns the stored FUNCTION; otherwise returns (not invokes)
-    // re-rendered function.
-    // e is parameter name taking on HTML Event() interface.
+    //us () for returned function value rather than function istelf
+  }, [vehicleCheckboxFilters]); // dependency array
 
-    // If a checkbox is checked:
-    if (e.target.checked) { // if checked === true
-      setVehicleCheckboxFilters([...vehicleCheckboxFilters, e.target.id]);
-      // checked is <input> attribute = boolean value.
-      // Event.target = target property of HTML Event interface - returns
-      // the element where the event occured.
-      // VALUE of <input> attribute id is added to vehicleFilters.
-      // Spread syntax ... to add element id value to new array state; not
-      // an array pointing to vehicleFilters memory.
-    }
+  const handleCheckboxFilterSelection = useCallback(
+    (e) => {
+      // Function that creates an array of all selected filters and as output,
+      // changes the state of vehicleFilters.
+      // Function is re-invoked whenever a user clicks on a filter.
+      // useCallback: upon subsequent renders, if the dependencies haven't
+      // changed, returns the stored FUNCTION; otherwise returns (not invokes)
+      // re-rendered function.
+      // e is parameter name taking on HTML Event() interface.
 
-    // If a checkbox is unchecked:
-    else if (e.target.checked === false) {
-      console.log("value of checked after unchecking is::", e.target.checked);
-      const filterIndex = vehicleCheckboxFilters.indexOf(e.target.id);
-      console.log({filterIndex});
-      const copyVehicleCheckboxFilters = [...vehicleCheckboxFilters];
+      // If a checkbox is checked:
+
+      if (e.target.checked) {
+        // if checked === true
+        setVehicleCheckboxFilters([...vehicleCheckboxFilters, e.target.id]);
+        // checked is <input> attribute = boolean value.
+        // Event.target = target property of HTML Event interface - returns
+        // the element where the event occured.
+        // VALUE of <input> attribute id is added to vehicleFilters.
+        // Spread syntax ... to add element id value to new array state; not
+        // an array pointing to vehicleFilters memory.
+      }
+      // If a checkbox is unchecked:
+      else if (e.target.checked === false) {
+        console.log("value of checked after unchecking is::", e.target.checked);
+        const filterIndex = vehicleCheckboxFilters.indexOf(e.target.id);
+        console.log({ filterIndex });
+        const copyVehicleCheckboxFilters = [...vehicleCheckboxFilters];
         // So array state is new and not pointing to vehicleFilters memory.
-      copyVehicleCheckboxFilters.splice(filterIndex, 1);
+        copyVehicleCheckboxFilters.splice(filterIndex, 1);
         // Deletes 1 element at position filterIndex.
-      setVehicleCheckboxFilters(copyVehicleCheckboxFilters);
+        setVehicleCheckboxFilters(copyVehicleCheckboxFilters);
         // ["Model 3", "Kia", ...]
-    }
+      }
+    },
+    [vehicleCheckboxFilters]
+  ); // dependency array
 
-  }, [vehicleCheckboxFilters] ); // dependency array
-
-
-  const findVehicleIdsMatchingSelectboxMaxPrice = useCallback((e) => {
+  const findVehicleIdsMatchingSelectboxMaxPrice = useMemo(() => {
     // Function finds all the vehicle IDs that match vehicles with a price
     // that is <= to the filter selection price.
     // Parse vehicleData to convert objects to arrays of data values.
@@ -114,6 +120,7 @@ function SearchPageContainer() {
     const getSelectboxFilter = () => {
       // Get string value of selected Max Price filter and convert to integer.
       const maxPriceSelection = e.target.value;
+      // Convert string to integer:
       const selectboxMaxPriceSelection = parseInt(maxPriceSelection);
       console.log({selectboxMaxPriceSelection});
       return selectboxMaxPriceSelection;
@@ -124,67 +131,35 @@ function SearchPageContainer() {
       // Create array of vehicle prices <= Max Price selection and then
       // find IDs of vehicles with a matching price.
 
-      // Create array of only vehicle price values:
-      const vehiclePriceValues = [];
-      vehicleDataValues.forEach((vehicle) => {
-        vehicle.forEach((dataValueElement) => {
-          if (dataValueElement[0] === '$') {
-            const dataValueElementMinusDollarSign =
-              dataValueElement.substring(1);
-            vehiclePriceValues.push(dataValueElementMinusDollarSign);
-          }
-        });
-      });
-      console.log({vehiclePriceValues});
-      
-      // Create array of vehicle prices <= Max Price selection:
-      const vehiclePricesMatchingSelectboxMaxPrice = [];
-      const selectboxMaxPriceSelection = getSelectboxFilter();
-      // vehiclePriceIntValues [43990, 48700, 104900]
-      // selectboxMaxPriceIntFilter 70000
-      vehiclePriceValues.forEach((vehiclePrice) => {
-        if (parseInt(vehiclePrice) <= selectboxMaxPriceSelection) {
-          vehiclePricesMatchingSelectboxMaxPrice.push(vehiclePrice);
-        }
-      })
-      console.log({vehiclePricesMatchingSelectboxMaxPrice});
-      
-      // Create array of IDs for vehicles with prices <= values in
-      // selectboxMaxPriceSelection.
-      // vehicleDataValues [[0, "TESLA", "$43990", ...], [1, "Kia", ...]]
-      const vehicleIdsMatchingSelectboxMaxPrice = [];
-      vehicleDataValues.forEach((vehicle) => {
-        if (vehiclePricesMatchingSelectboxMaxPrice.includes(
-          vehicle[3].substring(1))) { // substring() removes '$'
-          vehicleIdsMatchingSelectboxMaxPrice.push(vehicle[0]);
-        }
-      });
-      console.log({vehicleIdsMatchingSelectboxMaxPrice});
+    // Create array of only vehicle price values:
+    const vehicleIdsMatchingPrices = [];
 
-      return vehicleIdsMatchingSelectboxMaxPrice;
-    }
+    vehicleData.forEach((vehicle) => {
+      // destructuring:
+      // vehicleData.forEach(({base_price}) => {
+      // const {base_price} = vehicle
+      // const price = vehicle.base_price
+      const vehiclePrice = vehicle.base_price;
+      // We are able to obtain the vehicle price
+      if (vehiclePrice <= selectedPrice) {
+        vehicleIdsMatchingPrices.push(vehicle.id);
+      }
+    });
 
-    return getVehicleIdsMatchingSelectboxMaxPrice();
-  }, [] );
+    return vehicleIdsMatchingPrices;
+  }, [selectedPrice]);
 
+  // Merging 2 arrays
   const combinedVehicleIdsAllFilters = () => {
-    
-    const combinedVehicleIds = [];
-    const vehicleIdsMatchingSelectboxMaxPrice =
-      findVehicleIdsMatchingSelectboxMaxPrice();
+    const duplicateIds = [
+      ...findVehicleIdsMatchingCheckboxFilters,
+      ...findVehicleIdsMatchingSelectboxMaxPrice,
+    ];
 
-    findVehicleIdsMatchingCheckboxFilters.forEach((id) => {
-      combinedVehicleIds.push(id);
-    });
-    vehicleIdsMatchingSelectboxMaxPrice.forEach((id) => {
-      combinedVehicleIds.push(id);
-    });
-    console.log({combinedVehicleIds});
-    
-    return combinedVehicleIds;
-  }
-  const vehicleIdsAllFilters = combinedVehicleIdsAllFilters();
+    const uniqueIds = new Set(duplicateIds);
 
+    return Array.from(uniqueIds);
+  };
 
   /*
   const handleSelectboxFilterSelection = useCallback((e) => {
@@ -247,37 +222,37 @@ function SearchPageContainer() {
           <h2 className="searchPageHeadings">FILTERS</h2>
           <SearchContainer
             handleCheckboxFilterSelection={handleCheckboxFilterSelection}
-            findVehicleIdsMatchingSelectboxMaxPrice=
-              {findVehicleIdsMatchingSelectboxMaxPrice}
+            setSelectedPrice={setSelectedPrice}
           />
         </section>
         <section id="flexItemResults">
           <div id="resultsWrapper">
             <h2 id="resultsHeading">SEARCH RESULTS WILL GO HERE</h2>
-            <p>
-              Below is some selected sample output:
-            </p>
+            <p>Below is some selected sample output:</p>
 
             {/* Output all vehicles if no filters are selected. */}
+            {/* How can you show either all the vehicles or just the vehicles that match the filters */}
+            {/* What happenes if there are no matches with any vehicles? */}
 
+            {/* If there are filters then don't show this, otherwise, show filter results */}
             {vehicleCheckboxFilters.length === 0 && // condition
               vehicleData.map((vehicleSpecs) => (
                 <ResultsContainer
                   key={vehicleSpecs.id}
                   filteredVehicleSpecs={vehicleSpecs}
                 />
-              ))
-            }
+              ))}
 
             {/* Output vehicles that match selected filters. */}
-            
-            {vehicleIdsAllFilters.map((vehicleId) => (
-                <ResultsContainer
-                  key={vehicleId}
-                  filteredVehicleSpecs={vehicleData.find(
-                    (vehicle) => vehicle.id === vehicleId
-                  )}
-                />
+            <b>------ FILTER RESULTS ---- </b>
+
+            {combinedVehicleIdsAllFilters().map((vehicleId) => (
+              <ResultsContainer
+                key={vehicleId}
+                filteredVehicleSpecs={vehicleData.find(
+                  (vehicle) => vehicle.id === vehicleId
+                )}
+              />
             ))}
 
             {/* map used to produce ResultsContainer for each iteration of
@@ -293,4 +268,4 @@ function SearchPageContainer() {
   );
 }
 
-export default SearchPageContainer
+export default SearchPageContainer;
