@@ -1,4 +1,4 @@
-function BodyStyleFilter({ handleNewFilterSelection }) {
+function BodyStyleFilter({ handleCheckboxFilterSelection }) {
   return (
     <div>
       <h4 className="filterHeadings">Body Style:</h4>
@@ -9,7 +9,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox" 
               className="checkbox"
               id="mini/subcompact"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             mini/subcompact
           </li>
@@ -18,7 +18,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="2-door sports car"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             2-door sports car
           </li>
@@ -27,7 +27,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="3-door sports car"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             3-door sports car
           </li>
@@ -36,7 +36,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="2-door sedan"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             2-door sedan
           </li>
@@ -45,7 +45,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="3-door sedan"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             3-door sedan
           </li>
@@ -54,7 +54,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="4-door sedan"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             4-door sedan
           </li>
@@ -63,7 +63,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="5-door sedan"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             5-door sedan
           </li>
@@ -74,7 +74,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="wagon"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             wagon
           </li>
@@ -83,7 +83,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="3-door crossover"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             3-door crossover
           </li>
@@ -92,7 +92,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="5-door crossover"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             5-door crossover
           </li>
@@ -101,7 +101,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="3-door SUV"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             3-door SUV
           </li>
@@ -110,7 +110,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="5-door SUV"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             5-door SUV
           </li>
@@ -119,7 +119,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="minivan/van"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             minivan/van
           </li>
@@ -128,7 +128,7 @@ function BodyStyleFilter({ handleNewFilterSelection }) {
               type="checkbox"
               className="checkbox"
               id="truck"
-              onChange={handleNewFilterSelection}
+              onChange={handleCheckboxFilterSelection}
             />
             truck
           </li>
