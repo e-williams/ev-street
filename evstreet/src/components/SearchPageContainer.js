@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import "../assets/styles/SearchPageContainer.css";
 import vehicleData from "../vehicleData.json";
 import SearchContainer from "./SearchContainer";
@@ -8,7 +8,7 @@ function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState(0);
     // [state value variable, function to change state] = 0 initial state
-  const inputRef = useRef("hidden");
+  // const inputRef = useRef("hidden");
 
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
@@ -121,7 +121,7 @@ function SearchPageContainer() {
   );
 
   // Merging 2 arrays
-  const combinedVehicleIdsAllFilters = () => {
+  const vehicleIdsAllFilters = () => {
     const duplicateIds = [
       ...findVehicleIdsMatchingCheckboxFilters,
       ...findVehicleIdsMatchingSelectboxMaxPrice,
@@ -135,10 +135,12 @@ function SearchPageContainer() {
     return Array.from(uniqueIds);
       // Array.from() creates shallow copy of Array instance from an iterable.
   }
-/*
-  // Function to handle display of all vehicles if no filters selected:
+
+  // Function to handle display of all vehicles if no filters selected.
+  // 
   const handleResultsRender = () => {
-    if (vehicleCheckboxFilters.length === 0 && selectedPrice === 0) {
+    if (vehicleCheckboxFilters.length === 0 &&
+         (selectedPrice === 0 || selectedPrice === "unlimited")) {
       return (
         vehicleData.map((vehicleSpecs) => (
           <ResultsContainer
@@ -147,10 +149,9 @@ function SearchPageContainer() {
           />
         ))
       );
-    }
-    else {
+    } else if (vehicleIdsAllFilters().length > 0) {
       return (
-        combinedVehicleIdsAllFilters().map((vehicleId) => (
+        vehicleIdsAllFilters().map((vehicleId) => (
           <ResultsContainer
             key={vehicleId}
             filteredVehicleSpecs={vehicleData.find(
@@ -158,21 +159,25 @@ function SearchPageContainer() {
             )}
           />
         ))
-        // map used to produce ResultsContainer for each iteration of
-        // vehicleId over JSON object list. Each child element in a mapped list
-        // needs a unique key prop. filteredVehicleSpecs is property assigned
-        // to output of find(), which returns the 1st element in vehicleData
-        // that meets the condition, in this case the object for a vehicle
-        // containing keys and values.
+          // map used to produce ResultsContainer for each iteration of
+          // vehicleId over JSON object list. Each child element in a mapped
+          // list needs a unique key prop.
+          // filteredVehicleSpecs is property assigned to output of find(),
+          // which returns the 1st element in vehicleData that meets the
+          // condition, in this case the object for a vehicle containing keys
+          // and values.
+      );
+    } else {
+      return (
+        <div id="noResultsMessage">
+          NO VEHICLES MATCH THE SELECTED FILTERS.<br />
+          PLEASE REDUCE THE NUMBER OF SELECTIONS.
+        </div>
       );
     }
   }
 
-  // If no vehicles match any filters, display message:
-  if (combinedVehicleIdsAllFilters().length === 0) {
-    inputRef.current.style.visibility = "visible";
-  }
-*/
+
   return (
     <div id="searchPageWrapper">
       <h3 className="searchPageHeadings">
@@ -181,11 +186,9 @@ function SearchPageContainer() {
       </h3>
       <div id="searchPageFlexbox">
         <section id="flexItemSearch">
-          <h2 className="searchPageHeadings">FILTERS</h2>
-          <div id="noResultsMessage" ref={ inputRef } >
-            ! No vehicles match the selected filters. Please reduce the number
-            of selections.
-          </div>
+          <h2 className="searchPageHeadings">
+            FILTERS
+          </h2>
 
           <SearchContainer
             handleCheckboxFilterSelection={handleCheckboxFilterSelection}
@@ -195,8 +198,6 @@ function SearchPageContainer() {
         </section>
         <section id="flexItemResults">
           <div id="resultsWrapper">
-            <h2 id="resultsHeading">SEARCH RESULTS WILL GO HERE</h2>
-            <p>Below is some selected sample output:</p>
 
             {handleResultsRender()}
 

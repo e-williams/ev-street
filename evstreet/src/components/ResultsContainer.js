@@ -1,19 +1,58 @@
+import React from 'react';
+import { Paper, Grid, ButtonBase, Typography } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import "../assets/styles/ResultsContainer.css";
+import model_3 from "../assets/images/vehicles/tesla/Model-3-Main_23_thumbnail.png"
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
   const priceToDollars = () =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",
       currency: "USD",
+      minimumFractionDigits: 0,
     }).format(filteredVehicleSpecs.base_price);
+  
+  const Img = styled('img')({
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    borderBottomLeftRadius: 5,
+  });
 
   return (
     <div id="output">
-      <p>{filteredVehicleSpecs.make}</p>
-      <p>{filteredVehicleSpecs.model}</p>
-      <p>{priceToDollars()}</p>
-      <p>{filteredVehicleSpecs.body_style}</p>
-      <br />
+      <Paper sx={{ 
+        backgroundColor: "#f2f2f2",
+        flexGrow: 1,
+        mb: 2 }}>
+        <Grid container columnSpacing={2}>
+          <Grid item>
+            <Typography sx={{
+              textAlign: "center",
+              lineHeight: 1.5,
+              pt: .4,
+              backgroundColor: "rgb(175, 227, 175)",
+              borderTopLeftRadius: 5 }}>
+              {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
+            </Typography>
+            <ButtonBase 
+              sx={{ width: 210, height: 140 }}>
+              <Img alt="Tesla Model 3" src={model_3} />
+            </ButtonBase>
+          </Grid>
+          <Grid item>
+            <Typography
+              sx={{ mt: 2.9, fontSize: 14, color: "rgb(98, 98, 98)" }}>
+              Base Price: {priceToDollars()}
+            </Typography>
+            <Typography
+              sx={{ fontSize: 14, color: "rgb(98, 98, 98)" }}>
+              Body Style: {filteredVehicleSpecs.body_style}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
     </div>
   );
 }
