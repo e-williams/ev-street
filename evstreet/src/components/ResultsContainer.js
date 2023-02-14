@@ -20,6 +20,15 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     borderBottomLeftRadius: 5,
   });
 
+  const Test = styled(Typography)({
+    fontSize: "40px",
+  });
+
+  const WrapperLabel = styled("h1")({
+    backgroundColor: "red",
+    fontSize: "10px",
+  });
+
   console.log(filteredVehicleSpecs.model);
 
   console.log("DOT:::", map_vehicle_to_image.EV6);
@@ -35,9 +44,10 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
           mb: 2,
         }}
       >
+        <WrapperLabel>This is a Label</WrapperLabel>
         <Grid container columnSpacing={2}>
           <Grid item>
-            <Typography
+            <Test
               sx={{
                 textAlign: "center",
                 lineHeight: 1.5,
@@ -47,7 +57,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
               }}
             >
               {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
-            </Typography>
+            </Test>
             <ButtonBase sx={{ width: 210, height: 140 }}>
               <Img
                 alt="Tesla Model 3"
@@ -56,14 +66,12 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             </ButtonBase>
           </Grid>
           <Grid item>
-            <Typography
-              sx={{ mt: 2.9, fontSize: 14, color: "rgb(98, 98, 98)" }}
-            >
+            <Test sx={{ fontSize: "10px", mt: 2.9, color: "rgb(98, 98, 98)" }}>
               Base Price: {priceToDollars()}
-            </Typography>
-            <Typography sx={{ fontSize: 14, color: "rgb(98, 98, 98)" }}>
+            </Test>
+            <Test sx={{ color: "rgb(98, 98, 98)" }}>
               Body Style: {filteredVehicleSpecs.body_style}
-            </Typography>
+            </Test>
           </Grid>
         </Grid>
       </Paper>
