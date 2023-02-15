@@ -10,7 +10,7 @@
   flex: 0 0 140px;
 }
 .greenLi {
-  color: rgb(2, 231, 2);
+  color: #02e702;
 }
 .checkbox {
   width: 11px;
@@ -23,5 +23,5 @@ li {
 .filterHeadings {
   margin: 9px 0 2px 3px;
   font-weight: normal;
-  color: rgb(2, 231, 2);
+  color: #02e702;
 }

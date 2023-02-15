@@ -1,7 +1,6 @@
 import React from "react";
 import { Paper, Grid, ButtonBase, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import "../assets/styles/ResultsContainer.css";
 import map_vehicle_to_image from "./images";
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
@@ -12,7 +11,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       minimumFractionDigits: 0,
     }).format(filteredVehicleSpecs.base_price);
 
-  const Img = styled("img")({
+  const ImgCompnt = styled("img")({
     margin: "auto",
     display: "block",
     maxWidth: "100%",
@@ -20,20 +19,10 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     borderBottomLeftRadius: 5,
   });
 
-  const Test = styled(Typography)({
-    fontSize: "40px",
+  const TypoCompnt = styled(Typography)({
+    // pass Typography argument into styled() to apply styles to the component
+    fontSize: 13.5,
   });
-
-  const WrapperLabel = styled("h1")({
-    backgroundColor: "red",
-    fontSize: "10px",
-  });
-
-  console.log(filteredVehicleSpecs.model);
-
-  console.log("DOT:::", map_vehicle_to_image.EV6);
-
-  console.log("[]::::", map_vehicle_to_image[filteredVehicleSpecs.model]);
 
   return (
     <div id="output">
@@ -44,34 +33,37 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
           mb: 2,
         }}
       >
-        <WrapperLabel>This is a Label</WrapperLabel>
         <Grid container columnSpacing={2}>
           <Grid item>
-            <Test
+            <Typography
               sx={{
                 textAlign: "center",
                 lineHeight: 1.5,
                 pt: 0.4,
-                backgroundColor: "rgb(175, 227, 175)",
+                backgroundColor: "#afe3af",
                 borderTopLeftRadius: 5,
               }}
             >
               {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
-            </Test>
+            </Typography>
             <ButtonBase sx={{ width: 210, height: 140 }}>
-              <Img
+              <ImgCompnt
                 alt="Tesla Model 3"
                 src={map_vehicle_to_image[filteredVehicleSpecs.model]}
+                  // So, [filteredVehicleSpecs.model] is used to access
+                  // map_vehicle_to_image object properties to obtain images
+                  // imported to images.js, b/c React won't handle relative
+                  // image reference in src attribute.
               />
             </ButtonBase>
           </Grid>
           <Grid item>
-            <Test sx={{ fontSize: "10px", mt: 2.9, color: "rgb(98, 98, 98)" }}>
-              Base Price: {priceToDollars()}
-            </Test>
-            <Test sx={{ color: "rgb(98, 98, 98)" }}>
+            <TypoCompnt sx={{ mt: 2.9, color: "#626262" }}>
+              Base Price: { priceToDollars() }
+            </TypoCompnt>
+            <TypoCompnt sx={{ color: "#626262" }}>
               Body Style: {filteredVehicleSpecs.body_style}
-            </Test>
+            </TypoCompnt>
           </Grid>
         </Grid>
       </Paper>
