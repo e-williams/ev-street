@@ -1,3 +1,4 @@
+import React from 'react';
 import "../../assets/styles/MaxPriceFilter.css";
 
 function MaxPriceFilter({ setSelectedPrice }) {
