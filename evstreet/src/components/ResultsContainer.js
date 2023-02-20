@@ -11,7 +11,15 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       minimumFractionDigits: 0,
     }).format(filteredVehicleSpecs.base_price);
 
-  const ImgCompnt = styled("img")({
+  const ListingHeader = styled(Typography)({
+    textAlign: "center",
+    lineHeight: 1.5,
+    pt: 0.4,
+    backgroundColor: "#afe3af",
+    borderTopLeftRadius: 5,
+  })
+
+  const ListingImg = styled("img")({
     margin: "auto",
     display: "block",
     maxWidth: "100%",
@@ -19,14 +27,16 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     borderBottomLeftRadius: 5,
   });
 
-  const TypoCompnt = styled(Typography)({
+  const ListingSpecs = styled(Typography)({
     // pass Typography argument into styled() to apply styles to the component
     fontSize: 13.5,
+    color: "#626262",
   });
 
   return (
     <div id="output">
       <Paper
+        elevation={2}
         sx={{
           backgroundColor: "#f2f2f2",
           flexGrow: 1,
@@ -35,19 +45,11 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       >
         <Grid container columnSpacing={2}>
           <Grid item>
-            <Typography
-              sx={{
-                textAlign: "center",
-                lineHeight: 1.5,
-                pt: 0.4,
-                backgroundColor: "#afe3af",
-                borderTopLeftRadius: 5,
-              }}
-            >
+            <ListingHeader>
               {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
-            </Typography>
+            </ListingHeader>
             <ButtonBase sx={{ width: 210, height: 140 }}>
-              <ImgCompnt
+              <ListingImg
                 alt="Tesla Model 3"
                 src={map_vehicle_to_image[filteredVehicleSpecs.model]}
                   // So, [filteredVehicleSpecs.model] is used to access
@@ -58,12 +60,12 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             </ButtonBase>
           </Grid>
           <Grid item>
-            <TypoCompnt sx={{ mt: 2.9, color: "#626262" }}>
+            <ListingSpecs sx={{ mt: 2.9 }}>
               Base Price: { priceToDollars() }
-            </TypoCompnt>
-            <TypoCompnt sx={{ color: "#626262" }}>
+            </ListingSpecs>
+            <ListingSpecs>
               Body Style: {filteredVehicleSpecs.body_style}
-            </TypoCompnt>
+            </ListingSpecs>
           </Grid>
         </Grid>
       </Paper>

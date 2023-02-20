@@ -8,12 +8,12 @@ function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState(0);
     // [state value variable, function to change state] = 0 initial state
-  // const inputRef = useRef("hidden");
-
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
     () => {
-      console.log("The filters have changed::: ", vehicleCheckboxFilters);
+      console.log({vehicleData});
+      console.log("The checkbox filters have changed::: ",
+        vehicleCheckboxFilters);
       // Function that finds all vehicle IDs that match the selected filters.
       // Array of selected filters is initially empty until user input. Then,
       // vehicleCheckboxFilters is updated and this function is re-invoked, due
@@ -23,21 +23,17 @@ function SearchPageContainer() {
 
       // Need to match data values in vehicleData to elements in vehicleFilters.
       // Parse vehicleData: convert objects within container array to arrays of
-      // data values so can iterate over them and match values with filters,
-      // using Array.prototype.includes() for example.
+      // data values so can iterate over them and match values with filters.
 
       const vehicleDataValues = vehicleData.map((objectData) =>
         Object.values(objectData)
       );
-      console.log(
-        "vehicleDataValues for checkbox after parsing::",
-        vehicleDataValues
-      );
+      console.log("vehicleDataValues after parsing::", vehicleDataValues);
       // Produces an array of vehicle data arrays.
       // [[0, "TESLA", ...], [1, "Kia", ...]]
 
       // Get only vehicle IDs matching filters so can use IDs to match original
-      // vehicle object data to pass to ResultsContainer for better output.
+      // vehicle object data to pass to ResultsContainer for output.
 
       const getVehicleIdsForCheckbox = () => {
         const vehicleIdsMatchingFilters = [];
@@ -51,8 +47,7 @@ function SearchPageContainer() {
           });
         });
         console.log(
-          "VehicleIdsMatchingCheckboxFilters are::",
-          vehicleIdsMatchingFilters
+          "VehicleIdsMatchingCheckboxFilters are::", vehicleIdsMatchingFilters
         );
 
         return vehicleIdsMatchingFilters; // [0, 2]
@@ -60,7 +55,7 @@ function SearchPageContainer() {
 
       return getVehicleIdsForCheckbox(); // [0, 2]
         // () to return function returned value.
-    }, [vehicleCheckboxFilters]
+    }, [vehicleCheckboxFilters] // dependency array
   );
 
   const handleCheckboxFilterSelection = useCallback(
@@ -77,11 +72,13 @@ function SearchPageContainer() {
       if (e.target.checked) { // if checked = true
         setVehicleCheckboxFilters([...vehicleCheckboxFilters, e.target.id]);
         // checked is <input> attribute = boolean value.
-        // Event.target = target property of HTML Event interface - returns
-        // the element where the event occured.
+        // Event.target.id = target property of HTML Event interface - returns
+        // the element's value where the event occured.
         // VALUE of <input> attribute id is added to vehicleFilters.
         // Spread syntax ... to add element id value to new array state; not
         // an array pointing to vehicleFilters memory.
+        // * console.log({vehicleCheckboxFilters}) would produce an empty array
+        // here because this useCallback function is only stored until called.
       }
       // If a checkbox is unchecked:
       else if (e.target.checked === false) {
@@ -93,9 +90,11 @@ function SearchPageContainer() {
         copyVehicleCheckboxFilters.splice(filterIndex, 1);
           // Deletes 1 element at position filterIndex.
         setVehicleCheckboxFilters(copyVehicleCheckboxFilters);
-          // ["Model 3", "Kia", ...]
+          // ["4-door sedan", "5-door crossover", ...]
       }
-    }, [vehicleCheckboxFilters] // dependency array
+      console.log(e.target.id);
+
+    }, [vehicleCheckboxFilters]
   );
 
   const findVehicleIdsMatchingSelectboxMaxPrice = useMemo((
@@ -104,17 +103,21 @@ function SearchPageContainer() {
       // that is <= filter selection of max price.
 
       const vehicleIdsMatchingPrice = [];
-
-      vehicleData.forEach((vehicle) => {
-        // destructured form:
-        // vehicleData.forEach(({base_price}) => {
-        const vehiclePrice = vehicle.base_price;
-
-        if (vehiclePrice <= selectedPrice) {
+      
+      vehicleData.forEach(({base_price, id}) => {
+        // destructured vehicleData.base_price = parameter
+        if (base_price <= selectedPrice) {
           // selectedPrice is state value
-          vehicleIdsMatchingPrice.push(vehicle.id);
+          vehicleIdsMatchingPrice.push(id);
         }
       });
+      // structured form:
+      //   vehicleData.forEach((vehicle) => {
+      //     const vehiclePrice = vehicle.base_price;
+      //     if (vehiclePrice <= selectedPrice) {
+      //       vehicleIdsMatchingPrice.push(vehicle.id);
+      //     }
+      //   });
 
       return vehicleIdsMatchingPrice;
     }, [selectedPrice]
@@ -137,8 +140,8 @@ function SearchPageContainer() {
   }
 
   // Function to handle display of all vehicles if no filters selected.
-  // 
   const handleResultsRender = () => {
+
     if (vehicleCheckboxFilters.length === 0 &&
          (selectedPrice === 0 || selectedPrice === "unlimited")) {
       return (
@@ -170,7 +173,7 @@ function SearchPageContainer() {
     } else {
       return (
         <div id="noResultsMessage">
-          NO VEHICLES MATCH THE SELECTED FILTERS.<br />
+          NO VEHICLES MATCH THE SELECTED FILTERS.<br/>
           PLEASE REDUCE THE NUMBER OF SELECTIONS.
         </div>
       );
