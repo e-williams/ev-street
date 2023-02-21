@@ -3,6 +3,8 @@ import "../assets/styles/SearchPageContainer.css";
 import vehicleData from "../vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
+import { styled } from "@mui/material/styles";
+import { Grid, Typography } from "@mui/material";
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
@@ -180,30 +182,55 @@ function SearchPageContainer() {
     }
   }
 
+  const SearchPageWrapper = styled(Grid)({
+    fontFamily: 'Verdana, Tahoma, sans-serif',
+
+    color: 'white',
+  })
+
+  const FilterWrapper = styled(Grid)({
+    backgroundColor: '#536d90',
+  })
+
+  const FilterHeading = styled(Typography)({
+    textAlign: 'center',
+    color: 'white',
+  })
+
 
   return (
+    /*
+    <SearchPageWrapper container columnSpacing={4}>
+      <FilterWrapper item>
+        <FilterHeading variant='h6'>
+          FILTERS
+        </FilterHeading>
+          <SearchContainer
+            handleCheckboxFilterSelection={handleCheckboxFilterSelection}
+            setSelectedPrice={setSelectedPrice}
+          />
+      </FilterWrapper>
+      <Grid item>
+        {handleResultsRender()}
+      </Grid>
+    </SearchPageWrapper>
+    */
+
+    
     <div id="searchPageWrapper">
-      <h3 className="searchPageHeadings">
-        Select your preferred electric vehicle specifications in the FILTERS
-        column below:
-      </h3>
       <div id="searchPageFlexbox">
         <section id="flexItemSearch">
           <h2 className="searchPageHeadings">
             FILTERS
           </h2>
-
           <SearchContainer
             handleCheckboxFilterSelection={handleCheckboxFilterSelection}
             setSelectedPrice={setSelectedPrice}
           />
-
         </section>
         <section id="flexItemResults">
           <div id="resultsWrapper">
-
             {handleResultsRender()}
-
           </div>
         </section>
       </div>
