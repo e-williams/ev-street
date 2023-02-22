@@ -5,7 +5,6 @@
 }
 #searchPageFlexbox {
   display: flex;
-  /*margin-top: 38px;*/
 }
 #flexItemSearch {
   flex: 0 0 340px; /* flex-grow, flex-shrink, flex-basis (width) */

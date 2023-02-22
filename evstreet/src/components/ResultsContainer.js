@@ -22,7 +22,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     textAlign: 'center',
     lineHeight: 1.5,
     pt: 0.4,
-    backgroundColor: '#afe3af',
+    backgroundColor: '#94dca4',
     borderTopLeftRadius: 5,
   });
 
