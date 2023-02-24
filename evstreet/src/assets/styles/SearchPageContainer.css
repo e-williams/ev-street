@@ -1,14 +1,11 @@
-#searchPageWrapper {
-  margin: 18px 0 0 0;
-}
 .searchPageHeadings {
   font-weight: normal;
   text-align: center;
-  margin: 10px 0 12px 0;
+  margin: 20px 0 12px 0;
 }
 #searchPageFlexbox {
   display: flex;
-  margin-top: 38px;
+  /*margin-top: 38px;*/
 }
 #flexItemSearch {
   flex: 0 0 340px; /* flex-grow, flex-shrink, flex-basis (width) */
@@ -16,14 +13,13 @@
   padding-bottom: 14px;
   background-color: #536d90;
   color: white;
-  border-radius: 0 12px 0 0;
 }
 #flexItemResults {
   flex: 0 0 880px;
 }
 #resultsWrapper {
   text-align: left;
-  margin: 0 0 0 40px;
+  margin: 20px 0 0 40px;
 }
 #noResultsMessage {
 font-size: 1.5rem;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "../assets/styles/SearchContainer.css";
 import BodyStyleFilter from "./filters/BodyStyleFilter";
 import MaxPriceFilter from "./filters/MaxPriceFilter";
