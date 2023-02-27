@@ -1,17 +1,39 @@
 import React from "react";
 import "../assets/styles/SearchContainer.css";
-import BodyStyleFilter from "./filters/BodyStyleFilter";
 import MaxPriceFilter from "./filters/MaxPriceFilter";
+import BodyStyleFilter from "./filters/BodyStyleFilter";
+import { styled } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
 
-function SearchContainer({ handleCheckboxFilterSelection, setSelectedPrice }) {
+function SearchContainer({
+  checked,
+  setChecked,
+  setCheckboxEvent,
+  handleCheckboxFilterSelection,
+  selectedPrice,
+  setSelectedPrice}) {
+  
+  const FilterTitle = styled(Typography)({
+    textAlign: 'center',
+    color: '#7e7e7e',
+  });
 
   return (
-    <form id="searchWrapper">
-      <MaxPriceFilter setSelectedPrice={setSelectedPrice} />
+    <Box>
+      <FilterTitle variant='h6'>
+        FILTERS
+      </FilterTitle>
+      <MaxPriceFilter
+        selectedPrice={selectedPrice}
+        setSelectedPrice={setSelectedPrice}
+      />
       <BodyStyleFilter
+        checked={checked}
+        setChecked={setChecked}
+        setCheckboxEvent={setCheckboxEvent}
         handleCheckboxFilterSelection={handleCheckboxFilterSelection}
       />
-    </form>
+    </Box>
   );
 }
 

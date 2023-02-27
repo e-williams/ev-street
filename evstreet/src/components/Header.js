@@ -1,18 +1,18 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { Grid, Typography } from "@mui/material";
-import evLogo from "../assets/images/evLogoSignXXSm.png";
+import evLogo from "../assets/images/evLogoSignXXXSm.png";
 
 function Header () {
 
   const HeaderWrapper = styled(Grid)({
     backgroundColor: 'black',
-    fontFamily: 'Gill Sans, sans-serif',
+    fontFamily: 'Verdana, Tahoma, sans-serif',
   })
 
   const LogoWrapper = styled(Grid)({
-    paddingTop: 22,
-    paddingLeft: 22,
+    paddingTop: 16,
+    paddingLeft: 16,
   });
 
   const Img = styled('img')({
@@ -23,18 +23,21 @@ function Header () {
 
   const LogoTypo = styled(Typography)({
     textAlign: 'center',
-    //color: '#eeeeee',
     color: '#2db34a',
-    fontSize: 14,
+    fontSize: 12,
     letterSpacing: 1.6,
   });
 
   const FilterMessage = styled(Typography)({
-    fontFamily: 'Verdana, Tahoma, sans-serif',
-    letterSpacing: .9,
-    color: '#90a4ae',
-    fontSize: 16,
-    paddingBottom: 8,
+    color: '#9e9e9e',
+    fontSize: 15,
+    letterSpacing: 1.2,
+    paddingBottom: 6,
+  })
+
+  const MessageWrapper = styled(Grid)({
+    textAlign: 'center',
+    width: '100%',
   })
 
   return (
@@ -47,14 +50,14 @@ function Header () {
           </LogoTypo>
         </Grid>
       </LogoWrapper>
-      <Grid item sx={{ textAlign: 'center', width: '100%' }}>
+      <MessageWrapper item>
         <FilterMessage>
           Select your preferred electric vehicle specifications in the FILTERS
           column:
         </FilterMessage>
-      </Grid>
+      </MessageWrapper>
     </HeaderWrapper>
   )
 }
 
-export default Header
+export default Header;

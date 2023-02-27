@@ -4,12 +4,21 @@ import vehicleData from "../vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
-import { Grid, Typography } from "@mui/material";
+import { Paper, Grid, Typography, Container } from "@mui/material";
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
-  const [selectedPrice, setSelectedPrice] = useState(0);
-    // [state value variable, function to change state] = 0 initial state
+  const [selectedPrice, setSelectedPrice] = useState('');
+  const [checked, setChecked] = useState(false);
+  const [checkboxEvent, setCheckboxEvent] = useState('');
+    // [state value variable, function to change state]
+
+  const typeCheckboxEvent = typeof(checkboxEvent.checked);
+  console.log({typeCheckboxEvent});
+  console.log('checkbox event checked value is::', checkboxEvent.checked);
+  console.log('checkbox event is::', checkboxEvent);
+  console.log('checkbox event id is::', checkboxEvent.id);
+  console.log('selected price is::', selectedPrice);
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
     () => {
@@ -60,6 +69,33 @@ function SearchPageContainer() {
     }, [vehicleCheckboxFilters] // dependency array
   );
 
+
+  const handleCheckboxFilterSelection = useCallback(
+    () => {
+      // If a checkbox is checked:
+      if (checkboxEvent.checked) { // if checked = true
+        var stringCheckboxId = JSON.stringify(checkboxEvent.id);
+        setVehicleCheckboxFilters([...vehicleCheckboxFilters,
+          stringCheckboxId]);
+      }      
+      // If a checkbox is unchecked:
+      else if (checkboxEvent.checked === false) {
+        console.log("value of checked after unchecking is::",
+          checkboxEvent.checked);
+        const filterIndex = vehicleCheckboxFilters.indexOf(checkboxEvent.id);
+        console.log({ filterIndex });
+        const copyVehicleCheckboxFilters = [...vehicleCheckboxFilters];
+          // So array state is new and not pointing to vehicleFilters memory.
+        copyVehicleCheckboxFilters.splice(filterIndex, 1);
+          // Deletes 1 element at position filterIndex.
+        setVehicleCheckboxFilters(copyVehicleCheckboxFilters);
+          // ["4-door sedan", "5-door crossover", ...]
+      }
+      console.log("Event Target id value is::", checkboxEvent.id);
+    
+    }, [vehicleCheckboxFilters]
+  );
+/*
   const handleCheckboxFilterSelection = useCallback(
     (e) => {
       // Function that creates an array of all selected filters and as output,
@@ -75,7 +111,7 @@ function SearchPageContainer() {
         setVehicleCheckboxFilters([...vehicleCheckboxFilters, e.target.id]);
         // checked is <input> attribute = boolean value.
         // Event.target.id = target property of HTML Event interface - returns
-        // the element's value where the event occured.
+        // the element's id value where the event occured.
         // VALUE of <input> attribute id is added to vehicleFilters.
         // Spread syntax ... to add element id value to new array state; not
         // an array pointing to vehicleFilters memory.
@@ -98,9 +134,9 @@ function SearchPageContainer() {
 
     }, [vehicleCheckboxFilters]
   );
-
-  const findVehicleIdsMatchingSelectboxMaxPrice = useMemo((
-    ) => {
+*/
+  const findVehicleIdsMatchingSelectboxMaxPrice = useMemo(
+    () => {
       // Function finds all the vehicle IDs that match vehicles with a price
       // that is <= filter selection of max price.
 
@@ -145,7 +181,7 @@ function SearchPageContainer() {
   const handleResultsRender = () => {
 
     if (vehicleCheckboxFilters.length === 0 &&
-         (selectedPrice === 0 || selectedPrice === "unlimited")) {
+         (selectedPrice === '' || selectedPrice === "unlimited")) {
       return (
         vehicleData.map((vehicleSpecs) => (
           <ResultsContainer
@@ -173,50 +209,63 @@ function SearchPageContainer() {
           // and values.
       );
     } else {
+
+      const NoResultsMessage= styled(Paper)({
+        fontSize: 18,
+        color: '#536d90',
+        backgroundColor: '#f9f9f9',
+        lineHeight: 3,
+        marginTop: 26,
+        padding: 14,
+        borderRadius: 4,
+      });
+
       return (
-        <div id="noResultsMessage">
+        <NoResultsMessage elevation={2}>
           NO VEHICLES MATCH THE SELECTED FILTERS.<br/>
           PLEASE REDUCE THE NUMBER OF SELECTIONS.
-        </div>
+        </NoResultsMessage>
       );
     }
   }
 
   const SearchPageWrapper = styled(Grid)({
     fontFamily: 'Verdana, Tahoma, sans-serif',
+    marginTop: 14,
+    marginLeft: 0,
+  });
 
-    color: 'white',
-  })
-
-  const FilterWrapper = styled(Grid)({
-    backgroundColor: '#536d90',
-  })
-
-  const FilterHeading = styled(Typography)({
-    textAlign: 'center',
-    color: 'white',
-  })
-
+  const FilterWrapper = styled(Container)({
+    marginTop: 8,
+    padding: 8,
+    border: 1.8,
+    borderStyle: 'solid',
+    borderColor: '#3be15f',
+    borderRadius: 10,
+  });
 
   return (
-    /*
-    <SearchPageWrapper container columnSpacing={4}>
-      <FilterWrapper item>
-        <FilterHeading variant='h6'>
-          FILTERS
-        </FilterHeading>
+    
+    <SearchPageWrapper container columnSpacing={3}>
+      <Grid item>
+        <FilterWrapper >
           <SearchContainer
+            checked={checked}
+            setChecked={setChecked}
+            setCheckboxEvent={setCheckboxEvent}
             handleCheckboxFilterSelection={handleCheckboxFilterSelection}
+            selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}
           />
-      </FilterWrapper>
-      <Grid item>
+        </FilterWrapper>
+      </Grid>
+      <Grid item sx={{ mt: 1 }}>
         {handleResultsRender()}
       </Grid>
     </SearchPageWrapper>
-    */
-
     
+
+    /*
     <div id="searchPageWrapper">
       <div id="searchPageFlexbox">
         <section id="flexItemSearch">
@@ -235,6 +284,7 @@ function SearchPageContainer() {
         </section>
       </div>
     </div>
+    */
   );
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import '../assets/styles/App.css';
 import Header from './Header';
-import Footer from './Footer';
 import SearchPageContainer from './SearchPageContainer';
+import Footer from './Footer';
 
 function App() {
   return (
