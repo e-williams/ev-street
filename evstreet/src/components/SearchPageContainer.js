@@ -4,7 +4,7 @@ import vehicleData from "../vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
-import { Paper, Grid, Typography, Container } from "@mui/material";
+import { Paper, Grid, Container } from "@mui/material";
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
@@ -68,8 +68,7 @@ function SearchPageContainer() {
         // () to return function returned value.
     }, [vehicleCheckboxFilters] // dependency array
   );
-
-
+ // new code to go with MUI impementation:
   const handleCheckboxFilterSelection = useCallback(
     () => {
       // If a checkbox is checked:
@@ -77,7 +76,7 @@ function SearchPageContainer() {
         var stringCheckboxId = JSON.stringify(checkboxEvent.id);
         setVehicleCheckboxFilters([...vehicleCheckboxFilters,
           stringCheckboxId]);
-      }      
+      }
       // If a checkbox is unchecked:
       else if (checkboxEvent.checked === false) {
         console.log("value of checked after unchecking is::",
@@ -95,6 +94,41 @@ function SearchPageContainer() {
     
     }, [vehicleCheckboxFilters]
   );
+
+
+// STRATEGY FOR FILTER REFACTORING
+// Create array of checkbox filters - already done
+// Get selectbox max price - already done
+
+// As already done, output all vehicles from vehicleData if checkbox filter
+// array is 0 and if (selected price is 0 or selected price is 'unlimited').
+
+// Create array of vehicle IDs matching selected price - arleady done.
+    // Output those vehicles if checkbox array is empty and if selected price
+    // does not equal 0 or 'unlimited'.
+
+// Create array of vehicle IDs matching checkbox filters - already done.
+    // Output those vehicles if selected price equals 0 or 'unlimited' and if
+    // array of IDs matching checkbox filters > 0.
+
+// Create array of vehicle IDs matching selected price that only includes
+// vehicles with a body_style that equals any of the checkbox filter array
+// elements.
+    // Output those vehicles if checkbox filter array > 0 and if
+    // selected price does not equal 0 or 'unlimited' (else statement).
+
+// ??? What about situation where selected max price is $40,000 and there is a
+// matching 3-door sedan for $30,000 and there is a checked checkbox filter
+// vehicle 4-door sedan for $35,000 so the checkbox vehicle would NOT be
+// included in output!
+
+// Instead of last group of steps above:
+// Create an array of checkbox filters vehicle IDs matching selected price.
+// Create an array of max price vehicle IDs matching checkbox filters.
+// Combine the two arrays eliminiating duplicate IDs.
+    // Instead of output steps 2 and 3 above, output vehicle data for combined
+    // array in else statement to first output step above.
+
 /*
   const handleCheckboxFilterSelection = useCallback(
     (e) => {
@@ -134,7 +168,7 @@ function SearchPageContainer() {
 
     }, [vehicleCheckboxFilters]
   );
-*/
+  */
   const findVehicleIdsMatchingSelectboxMaxPrice = useMemo(
     () => {
       // Function finds all the vehicle IDs that match vehicles with a price
@@ -245,7 +279,8 @@ function SearchPageContainer() {
   });
 
   return (
-    
+
+    // new code for MUI implementation
     <SearchPageWrapper container columnSpacing={3}>
       <Grid item>
         <FilterWrapper >
@@ -263,7 +298,6 @@ function SearchPageContainer() {
         {handleResultsRender()}
       </Grid>
     </SearchPageWrapper>
-    
 
     /*
     <div id="searchPageWrapper">
