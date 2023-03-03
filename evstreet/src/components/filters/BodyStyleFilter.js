@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import {
-  Checkbox,
   Box,
   Grid,
   Typography,
   FormGroup,
-  FormControlLabel,
 } from "@mui/material";
 
 import CustomCheckbox from "../Checkbox";
@@ -15,30 +13,52 @@ function BodyStyleFilter({
   vehicleCheckboxFilters,
   setVehicleCheckboxFilters,
 }) {
-  const [checked, setChecked] = useState(vehicleCheckboxFilters);
 
-  const [isChecked, setIsChecked] = useState(false);
-  const labelColor = isChecked ? "#2db34a" : "#7e7e7e";
+  const [checkedFilters, setCheckedFilters] = useState(vehicleCheckboxFilters);
+    // checkedFilters and setCheckedFilters is essentially a chain to
+    // vehicleCheckboxFilters and setVehicleCheckboxFilters, done so the
+    // component is handling its own logic and state, in this case, the
+    // checkedFilters array, and passing it to vehicleCheckboxFilters in
+    // useEffect() below.
 
   useEffect(() => {
-    // update handleCheckboxFilterSelection to receive an array with all the
-    // Checkboxes ids that were selected.
-    setVehicleCheckboxFilters(checked);
-  }, [checked, setVehicleCheckboxFilters]);
+    // update vehicleCheckboxFilters to receive an array with all the
+    // Checkbox ids that were selected.
+    setVehicleCheckboxFilters(checkedFilters);
+  }, [checkedFilters]);
 
   const handleChange = useCallback(
     (event) => {
       console.log("HANDLE CHANGE::::");
       if (event.target.checked) {
-        setChecked([...checked, event.target.id]);
+          // if checkbox checked, filter added to checkedFilters array
+        setCheckedFilters([...checkedFilters, event.target.id]);
+          // ['4-door seand']
       } else {
-        setChecked(checked.filter((check) => check !== event.target.id));
+        setCheckedFilters(checkedFilters.filter((check) => check !== event.target.id));
+          // filters the checkedFilters array according to condition that each
+          // element in the array is not equal to the filter name.
       }
-
-      setIsChecked(event.target.checked);
     },
-    [checked]
+    [checkedFilters]
   );
+
+  const hasBeenChecked = useCallback((id) => checkedFilters.includes(id),
+    [checkedFilters]);
+  // Passed down to Checkbox.js as prop.
+  // useCalback returns the stored function upon subsequent renders or the new
+  // function if the dependency has changed.
+  // includes() returns a boolean value - true if vehicleCheckboxFilters
+  // includes the body_style name.
+  // * The main purpose of this function is to keep the checked state of every
+  // checkbox element in sync with all the currently selected filters.
+  // First, onChange triggers addition of filter to checkedFilters array.
+  // When checkedFilters changes, useEffect updates vehicleCheckboxFilters.
+  // Also when checkedFilters changes, hasBeenChecked() is updated to check if
+  // checkedFilters array includes the filter value of each checkbox, and is
+  // run upon re-render, which happens with a change in state.
+
+  console.log({checkedFilters});
 
   const FlexColumn2 = styled(Grid)({
     marginLeft: 10,
@@ -49,13 +69,6 @@ function BodyStyleFilter({
     marginTop: 10,
     color: "black",
   });
-
-  const CheckboxLabels = styled(Typography)({
-    fontSize: 13,
-    color: labelColor,
-  });
-
-  const hasBeenChecked = useCallback((id) => checked.includes(id), [checked]);
 
   return (
     <Box>
@@ -78,141 +91,64 @@ function BodyStyleFilter({
               id="3-door sports car"
               onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="2-door sedan"
-                  checked={hasBeenChecked("2-door sedan")}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>2-door sedan</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="2-door sedan"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="3-door sedan"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>3-door sedan</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="3-door sedan"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="4-door sedan"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>4-door sedan</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="4-door sedan"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="5-door sedan"
-                  checked={hasBeenChecked("5-door sedan")}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>5-door sedan</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="5-door sedan"
+              onChange={handleChange}
             />
           </FormGroup>
         </Grid>
         <FlexColumn2 item>
           <FormGroup sx={{ fontSize: 2 }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="wagon"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>wagon</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="wagon"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="3-door crossover"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>3-door crossover</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="3-door crossover"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="5-door crossover"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>5-door crossover</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="5-door crossover"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="3-door SUV"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>3-door SUV</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="3-door SUV"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="5-door SUV"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>5-door SUV</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="5-door SUV"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="minivan/van"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>minivan/van</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="minivan/van"
+              onChange={handleChange}
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  size="small"
-                  color="success"
-                  id="truck"
-                  checked={checked}
-                  onChange={handleChange}
-                />
-              }
-              label={<CheckboxLabels>truck</CheckboxLabels>}
+            <CustomCheckbox
+              hasBeenChecked={hasBeenChecked}
+              id="truck"
+              onChange={handleChange}
             />
           </FormGroup>
         </FlexColumn2>

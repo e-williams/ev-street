@@ -6,8 +6,6 @@ import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 
 function SearchContainer({
-  checked,
-  setChecked,
   setVehicleCheckboxFilters,
   vehicleCheckboxFilters,
   selectedPrice,
@@ -26,8 +24,6 @@ function SearchContainer({
         setSelectedPrice={setSelectedPrice}
       />
       <BodyStyleFilter
-        checked={checked}
-        setChecked={setChecked}
         vehicleCheckboxFilters={vehicleCheckboxFilters}
         setVehicleCheckboxFilters={setVehicleCheckboxFilters}
       />

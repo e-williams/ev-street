@@ -8,14 +8,12 @@ import { Paper, Grid, Container } from "@mui/material";
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
+    // [state value variable, function to change state]
   const [selectedPrice, setSelectedPrice] = useState("");
 
   console.log({ vehicleCheckboxFilters });
 
-  const [checked, setChecked] = useState(false);
-
   const [checkboxEvent, setCheckboxEvent] = useState("");
-  // [state value variable, function to change state]
 
   const typeCheckboxEvent = typeof checkboxEvent.checked;
   console.log({ typeCheckboxEvent });
@@ -72,7 +70,8 @@ function SearchPageContainer() {
       };
 
       return getVehicleIdsForCheckbox(); // [0, 2]
-      // () to return function returned value.
+      // () used to invoke function and get returned value, rather than
+      // just referencing the variable that stores the function.
     },
     [vehicleCheckboxFilters] // dependency array
   );
@@ -225,7 +224,6 @@ function SearchPageContainer() {
         color: "#536d90",
         backgroundColor: "#f9f9f9",
         lineHeight: 3,
-        marginTop: 26,
         padding: 14,
         borderRadius: 4,
       });
@@ -261,8 +259,8 @@ function SearchPageContainer() {
       <Grid item>
         <FilterWrapper>
           <SearchContainer
-            checked={checked}
-            setChecked={setChecked}
+            //checked={checked}
+            //setChecked={setChecked}
             setCheckboxEvent={setCheckboxEvent}
             setVehicleCheckboxFilters={setVehicleCheckboxFilters}
             vehicleCheckboxFilters={vehicleCheckboxFilters}
