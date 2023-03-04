@@ -15,13 +15,6 @@ function SearchPageContainer() {
 
   const [checkboxEvent, setCheckboxEvent] = useState("");
 
-  const typeCheckboxEvent = typeof checkboxEvent.checked;
-  console.log({ typeCheckboxEvent });
-  console.log("checkbox event checked value is::", checkboxEvent.checked);
-  console.log("checkbox event is::", checkboxEvent);
-  console.log("checkbox event id is::", checkboxEvent.id);
-  console.log("selected price is::", selectedPrice);
-
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
     () => {
       console.log({ vehicleData });
