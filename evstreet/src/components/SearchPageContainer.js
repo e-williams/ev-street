@@ -1,21 +1,27 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo } from "react";
 import "../assets/styles/SearchPageContainer.css";
 import vehicleData from "../vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
-import { Grid, Typography } from "@mui/material";
+import { Paper, Grid, Container } from "@mui/material";
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
-  const [selectedPrice, setSelectedPrice] = useState(0);
-    // [state value variable, function to change state] = 0 initial state
+    // [state value variable, function to change state]
+  const [selectedPrice, setSelectedPrice] = useState("");
+
+  console.log({ vehicleCheckboxFilters });
+
+  const [checkboxEvent, setCheckboxEvent] = useState("");
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
     () => {
-      console.log({vehicleData});
-      console.log("The checkbox filters have changed::: ",
-        vehicleCheckboxFilters);
+      console.log({ vehicleData });
+      console.log(
+        "The checkbox filters have changed::: ",
+        vehicleCheckboxFilters
+      );
       // Function that finds all vehicle IDs that match the selected filters.
       // Array of selected filters is initially empty until user input. Then,
       // vehicleCheckboxFilters is updated and this function is re-invoked, due
@@ -44,22 +50,60 @@ function SearchPageContainer() {
           vehicleCheckboxFilters.forEach((filter) => {
             if (vehicle.includes(filter)) {
               vehicleIdsMatchingFilters.push(vehicle[0]);
-                // vehicle[0] selects "id" value
+              // vehicle[0] selects "id" value
             }
           });
         });
         console.log(
-          "VehicleIdsMatchingCheckboxFilters are::", vehicleIdsMatchingFilters
+          "VehicleIdsMatchingCheckboxFilters are::",
+          vehicleIdsMatchingFilters
         );
 
         return vehicleIdsMatchingFilters; // [0, 2]
-      }
+      };
 
       return getVehicleIdsForCheckbox(); // [0, 2]
-        // () to return function returned value.
-    }, [vehicleCheckboxFilters] // dependency array
+      // () used to invoke function and get returned value, rather than
+      // just referencing the variable that stores the function.
+    },
+    [vehicleCheckboxFilters] // dependency array
   );
 
+  // STRATEGY FOR FILTER REFACTORING
+  // Create array of checkbox filters - already done
+  // Get selectbox max price - already done
+
+  // As already done, output all vehicles from vehicleData if checkbox filter
+  // array is 0 and if (selected price is 0 or selected price is 'unlimited').
+
+  // Create array of vehicle IDs matching selected price - arleady done.
+  // Output those vehicles if checkbox array is empty and if selected price
+  // doesn't equal 0 or 'unlimited'.
+
+  // Create array of vehicle IDs matching checkbox filters - already done.
+  // Output those vehicles if selected price equals 0 or 'unlimited' and if
+  // array of IDs matching checkbox filters > 0.
+
+  // Create an array of checkbox filters vehicle IDs matching selected price.
+  // Create an array of max price vehicle IDs matching checkbox filters.
+  // Combine the two arrays eliminiating duplicate IDs (set).
+  // Output vehicle data for combined array in else statement to first output
+  // step above - if checkbox array is > 0 and selected price doesn't equal
+  // 0 or 'unlimited'.
+
+  // Original Plan (not going to work):
+  // Create array of vehicle IDs matching selected price that only includes
+  // vehicles with a body_style that equals any of the checkbox filter array
+  // elements.
+  // Output those vehicles if checkbox filter array > 0 and if
+  // selected price does not equal 0 or 'unlimited' (else statement).
+
+  // ??? What about situation where selected max price is $40,000 and there is a
+  // matching 3-door sedan for $30,000 and there is a checked checkbox filter
+  // vehicle 4-door sedan for $35,000 so the checkbox vehicle would NOT be
+  // included in output!
+
+  /*
   const handleCheckboxFilterSelection = useCallback(
     (e) => {
       // Function that creates an array of all selected filters and as output,
@@ -75,7 +119,7 @@ function SearchPageContainer() {
         setVehicleCheckboxFilters([...vehicleCheckboxFilters, e.target.id]);
         // checked is <input> attribute = boolean value.
         // Event.target.id = target property of HTML Event interface - returns
-        // the element's value where the event occured.
+        // the element's id value where the event occured.
         // VALUE of <input> attribute id is added to vehicleFilters.
         // Spread syntax ... to add element id value to new array state; not
         // an array pointing to vehicleFilters memory.
@@ -98,32 +142,30 @@ function SearchPageContainer() {
 
     }, [vehicleCheckboxFilters]
   );
+  */
+  const findVehicleIdsMatchingSelectboxMaxPrice = useMemo(() => {
+    // Function finds all the vehicle IDs that match vehicles with a price
+    // that is <= filter selection of max price.
 
-  const findVehicleIdsMatchingSelectboxMaxPrice = useMemo((
-    ) => {
-      // Function finds all the vehicle IDs that match vehicles with a price
-      // that is <= filter selection of max price.
+    const vehicleIdsMatchingPrice = [];
 
-      const vehicleIdsMatchingPrice = [];
-      
-      vehicleData.forEach(({base_price, id}) => {
-        // destructured vehicleData.base_price = parameter
-        if (base_price <= selectedPrice) {
-          // selectedPrice is state value
-          vehicleIdsMatchingPrice.push(id);
-        }
-      });
-      // structured form:
-      //   vehicleData.forEach((vehicle) => {
-      //     const vehiclePrice = vehicle.base_price;
-      //     if (vehiclePrice <= selectedPrice) {
-      //       vehicleIdsMatchingPrice.push(vehicle.id);
-      //     }
-      //   });
+    vehicleData.forEach(({ base_price, id }) => {
+      // destructured vehicleData.base_price = parameter
+      if (base_price <= selectedPrice) {
+        // selectedPrice is state value
+        vehicleIdsMatchingPrice.push(id);
+      }
+    });
+    // structured form:
+    //   vehicleData.forEach((vehicle) => {
+    //     const vehiclePrice = vehicle.base_price;
+    //     if (vehiclePrice <= selectedPrice) {
+    //       vehicleIdsMatchingPrice.push(vehicle.id);
+    //     }
+    //   });
 
-      return vehicleIdsMatchingPrice;
-    }, [selectedPrice]
-  );
+    return vehicleIdsMatchingPrice;
+  }, [selectedPrice]);
 
   // Merging 2 arrays
   const vehicleIdsAllFilters = () => {
@@ -131,92 +173,101 @@ function SearchPageContainer() {
       ...findVehicleIdsMatchingCheckboxFilters,
       ...findVehicleIdsMatchingSelectboxMaxPrice,
     ];
-      // spread syntax used to combine arrays. Combination contains possible
-      // duplicate IDs of same vehicles matching checkboxes & selectboxes.
+    // spread syntax used to combine arrays. Combination contains possible
+    // duplicate IDs of same vehicles matching checkboxes & selectboxes.
 
     const uniqueIds = new Set(duplicateIds); // new to create a new set
-      // Set eliminates duplicate IDs. A value in a set can occur only once.
+    // Set eliminates duplicate IDs. A value in a set can occur only once.
 
     return Array.from(uniqueIds);
-      // Array.from() creates shallow copy of Array instance from an iterable.
-  }
+    // Array.from() creates shallow copy of Array instance from an iterable.
+  };
 
   // Function to handle display of all vehicles if no filters selected.
   const handleResultsRender = () => {
-
-    if (vehicleCheckboxFilters.length === 0 &&
-         (selectedPrice === 0 || selectedPrice === "unlimited")) {
-      return (
-        vehicleData.map((vehicleSpecs) => (
-          <ResultsContainer
-            key={vehicleSpecs.id}
-            filteredVehicleSpecs={vehicleSpecs}
-          />
-        ))
-      );
+    if (
+      vehicleCheckboxFilters.length === 0 &&
+      (selectedPrice === "" || selectedPrice === "unlimited")
+    ) {
+      return vehicleData.map((vehicleSpecs) => (
+        <ResultsContainer
+          key={vehicleSpecs.id}
+          filteredVehicleSpecs={vehicleSpecs}
+        />
+      ));
     } else if (vehicleIdsAllFilters().length > 0) {
-      return (
-        vehicleIdsAllFilters().map((vehicleId) => (
-          <ResultsContainer
-            key={vehicleId}
-            filteredVehicleSpecs={vehicleData.find(
-              (vehicle) => vehicle.id === vehicleId
-            )}
-          />
-        ))
-          // map used to produce ResultsContainer for each iteration of
-          // vehicleId over JSON object list. Each child element in a mapped
-          // list needs a unique key prop.
-          // filteredVehicleSpecs is property assigned to output of find(),
-          // which returns the 1st element in vehicleData that meets the
-          // condition, in this case the object for a vehicle containing keys
-          // and values.
-      );
+      return vehicleIdsAllFilters().map((vehicleId) => (
+        <ResultsContainer
+          key={vehicleId}
+          filteredVehicleSpecs={vehicleData.find(
+            (vehicle) => vehicle.id === vehicleId
+          )}
+        />
+      ));
+      // map used to produce ResultsContainer for each iteration of
+      // vehicleId over JSON object list. Each child element in a mapped
+      // list needs a unique key prop.
+      // filteredVehicleSpecs is property assigned to output of find(),
+      // which returns the 1st element in vehicleData that meets the
+      // condition, in this case the object for a vehicle containing keys
+      // and values.
     } else {
+      const NoResultsMessage = styled(Paper)({
+        fontSize: 18,
+        color: "#536d90",
+        backgroundColor: "#f9f9f9",
+        lineHeight: 3,
+        padding: 14,
+        borderRadius: 4,
+      });
+
       return (
-        <div id="noResultsMessage">
-          NO VEHICLES MATCH THE SELECTED FILTERS.<br/>
+        <NoResultsMessage elevation={2}>
+          NO VEHICLES MATCH THE SELECTED FILTERS.
+          <br />
           PLEASE REDUCE THE NUMBER OF SELECTIONS.
-        </div>
+        </NoResultsMessage>
       );
     }
-  }
+  };
 
   const SearchPageWrapper = styled(Grid)({
-    fontFamily: 'Verdana, Tahoma, sans-serif',
+    fontFamily: "Verdana, Tahoma, sans-serif",
+    marginTop: 14,
+    marginLeft: 0,
+  });
 
-    color: 'white',
-  })
-
-  const FilterWrapper = styled(Grid)({
-    backgroundColor: '#536d90',
-  })
-
-  const FilterHeading = styled(Typography)({
-    textAlign: 'center',
-    color: 'white',
-  })
-
+  const FilterWrapper = styled(Container)({
+    marginTop: 8,
+    padding: 8,
+    border: 1.8,
+    borderStyle: "solid",
+    borderColor: "#3be15f",
+    borderRadius: 10,
+  });
 
   return (
-    /*
-    <SearchPageWrapper container columnSpacing={4}>
-      <FilterWrapper item>
-        <FilterHeading variant='h6'>
-          FILTERS
-        </FilterHeading>
+    // new code for MUI implementation
+    <SearchPageWrapper container columnSpacing={3}>
+      <Grid item>
+        <FilterWrapper>
           <SearchContainer
-            handleCheckboxFilterSelection={handleCheckboxFilterSelection}
+            //checked={checked}
+            //setChecked={setChecked}
+            setCheckboxEvent={setCheckboxEvent}
+            setVehicleCheckboxFilters={setVehicleCheckboxFilters}
+            vehicleCheckboxFilters={vehicleCheckboxFilters}
+            selectedPrice={selectedPrice}
             setSelectedPrice={setSelectedPrice}
           />
-      </FilterWrapper>
-      <Grid item>
+        </FilterWrapper>
+      </Grid>
+      <Grid item sx={{ mt: 1 }}>
         {handleResultsRender()}
       </Grid>
     </SearchPageWrapper>
-    */
 
-    
+    /*
     <div id="searchPageWrapper">
       <div id="searchPageFlexbox">
         <section id="flexItemSearch">
@@ -235,6 +286,7 @@ function SearchPageContainer() {
         </section>
       </div>
     </div>
+    */
   );
 }
 

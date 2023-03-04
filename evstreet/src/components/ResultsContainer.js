@@ -2,27 +2,28 @@ import React from "@testing-library/user-event";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, ButtonBase, Typography } from "@mui/material";
 import map_vehicle_to_image from "./images";
-import { red } from "@mui/material/colors";
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
-  const priceToDollars = () =>
+  const priceToDollars = () => (
     new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,
-    }).format(filteredVehicleSpecs.base_price);
+    }).format(filteredVehicleSpecs.base_price)
+  );
 
   const ResultsWrapper = styled(Paper)({
-    backgroundColor: '#f2f2f2',
-    marginBottom: 14,
     fontFamily: 'Verdana, Tahoma, sans-serif',
-  })
+    backgroundColor: '#f9f9f9',
+    paddingRight: 14,
+    marginBottom: 14,
+  });
 
   const ListingHeader = styled(Typography)({
     textAlign: 'center',
     lineHeight: 1.5,
     pt: 0.4,
-    backgroundColor: '#afe3af',
+    backgroundColor: '#bfffce',
     borderTopLeftRadius: 5,
   });
 
