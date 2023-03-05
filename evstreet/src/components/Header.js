@@ -7,7 +7,6 @@ function Header () {
 
   const HeaderWrapper = styled(Grid)({
     backgroundColor: 'black',
-    fontFamily: 'Verdana, Tahoma, sans-serif',
   })
 
   const LogoWrapper = styled(Grid)({
@@ -25,12 +24,16 @@ function Header () {
     textAlign: 'center',
     color: '#2db34a',
     fontSize: 12,
-    letterSpacing: 1.6,
+    fontFamily: 'Roboto, sans-serif',
+    letterSpacing: 1.4,
+    fontWeight: '700',
+    fontStyle: 'italic',
   });
 
   const FilterMessage = styled(Typography)({
     color: '#9e9e9e',
     fontSize: 15,
+    fontFamily: 'Ubuntu, sans-serif',
     letterSpacing: 1.2,
     paddingBottom: 6,
   })

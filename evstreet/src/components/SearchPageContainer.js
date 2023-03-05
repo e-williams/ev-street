@@ -69,39 +69,26 @@ function SearchPageContainer() {
     [vehicleCheckboxFilters] // dependency array
   );
 
-  // STRATEGY FOR FILTER REFACTORING
-  // Create array of checkbox filters - already done
-  // Get selectbox max price - already done
+  // STRATEGY FOR FILTER REFACTORING:
+  
+  // We have array of checkbox filters.
+  // We have selected max price.
 
-  // As already done, output all vehicles from vehicleData if checkbox filter
-  // array is 0 and if (selected price is 0 or selected price is 'unlimited').
+  // Output all vehicles from vehicleData if checkbox filter
+  // array length is 0 and if selected price is '' or 'unlimited'.
 
-  // Create array of vehicle IDs matching selected price - arleady done.
-  // Output those vehicles if checkbox array is empty and if selected price
-  // doesn't equal 0 or 'unlimited'.
+  // We have array of vehicle IDs matching checkbox filters.
+  // Output those vehicles if checkbox filter array length > 0 and if
+  // selected price equals '' or 'unlimited'
 
-  // Create array of vehicle IDs matching checkbox filters - already done.
-  // Output those vehicles if selected price equals 0 or 'unlimited' and if
-  // array of IDs matching checkbox filters > 0.
+  // We have array of vehicle IDs matching selected price.
+  // Output those vehicles if checkbox filter array length is 0 and if selected
+  // price doesn't equal '' or 'unlimited'.
 
-  // Create an array of checkbox filters vehicle IDs matching selected price.
-  // Create an array of max price vehicle IDs matching checkbox filters.
-  // Combine the two arrays eliminiating duplicate IDs (set).
-  // Output vehicle data for combined array in else statement to first output
-  // step above - if checkbox array is > 0 and selected price doesn't equal
-  // 0 or 'unlimited'.
-
-  // Original Plan (not going to work):
-  // Create array of vehicle IDs matching selected price that only includes
-  // vehicles with a body_style that equals any of the checkbox filter array
-  // elements.
-  // Output those vehicles if checkbox filter array > 0 and if
-  // selected price does not equal 0 or 'unlimited' (else statement).
-
-  // ??? What about situation where selected max price is $40,000 and there is a
-  // matching 3-door sedan for $30,000 and there is a checked checkbox filter
-  // vehicle 4-door sedan for $35,000 so the checkbox vehicle would NOT be
-  // included in output!
+  // Create array of vehicle IDs matching both checkbox filters and selected
+  // price.
+  // Output those vehicles if checkbox filter array length > 0 and if selectd
+  // price doesn't equal '' or 'unlimited'.
 
   /*
   const handleCheckboxFilterSelection = useCallback(
@@ -232,7 +219,7 @@ function SearchPageContainer() {
   };
 
   const SearchPageWrapper = styled(Grid)({
-    fontFamily: "Verdana, Tahoma, sans-serif",
+    fontFamily: 'Roboto, sans-serif',
     marginTop: 14,
     marginLeft: 0,
   });
