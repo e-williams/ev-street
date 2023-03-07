@@ -1,7 +1,7 @@
-import React from "react";
-import { styled } from "@mui/material/styles";
-import { Grid, Typography } from "@mui/material";
-import evLogo from "../assets/images/evLogoSignXXXSm.png";
+import React from 'react';
+import { styled } from '@mui/material/styles';
+import { Grid, Typography } from '@mui/material';
+import evLogo from '../assets/images/evLogoSignXXXSm.png';
 
 function Header () {
 
@@ -24,7 +24,7 @@ function Header () {
     textAlign: 'center',
     color: '#2db34a',
     fontSize: 12,
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Roboto, Verdana, sans-serif',
     letterSpacing: 1.4,
     fontWeight: '700',
     fontStyle: 'italic',
@@ -33,7 +33,7 @@ function Header () {
   const FilterMessage = styled(Typography)({
     color: '#9e9e9e',
     fontSize: 15,
-    fontFamily: 'Ubuntu, sans-serif',
+    fontFamily: 'Ubuntu, Verdana, sans-serif',
     letterSpacing: 1.2,
     paddingBottom: 6,
   })

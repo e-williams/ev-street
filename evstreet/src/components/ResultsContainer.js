@@ -1,7 +1,7 @@
-import React from "@testing-library/user-event";
-import { styled } from "@mui/material/styles";
-import { Paper, Grid, ButtonBase, Typography } from "@mui/material";
-import map_vehicle_to_image from "./images";
+import React from '@testing-library/user-event';
+import { styled } from '@mui/material/styles';
+import { Paper, Grid, ButtonBase, Typography } from '@mui/material';
+import map_vehicle_to_image from './images';
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
   const priceToDollars = () => (
@@ -13,7 +13,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
   );
 
   const ResultsWrapper = styled(Paper)({
-    fontFamily: 'Verdana, Tahoma, sans-serif',
     backgroundColor: '#f9f9f9',
     paddingRight: 14,
     marginBottom: 14,
