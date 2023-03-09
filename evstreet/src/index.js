@@ -1,25 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./assets/styles/index.css";
 import App from "./components/App";
+import AboutUs from "./components/AboutUs/AboutUs";
+import NotFound from "./components/NotFound";
+import PreviewVehicle from "./components/PreviewVehicle";
+import ResultsContainer from "./components/ResultsContainer";
+import SearchPageContainer from "./components/SearchPageContainer";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <p>Oops, page not found.</p>,
+    errorElement: <NotFound />,
     children: [
-      { path: "/", element: <p>All the vehicles go here.</p> },
+      { path: "/", element: <SearchPageContainer /> },
       {
         path: "vehicle/:vehicleId",
-        element: <p>Vehicle </p>,
+        element: <p>Vehicle</p>,
       },
     ],
   },
   {
     path: "/about",
-    element: <p>About us Page</p>,
+    element: <AboutUs />,
+  },
+  {
+    path: "/vehicle/:vehicleId",
+    element: <PreviewVehicle />,
   },
 ]);
 
