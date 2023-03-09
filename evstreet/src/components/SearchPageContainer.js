@@ -21,18 +21,7 @@ function SearchPageContainer() {
       // function is re-invoked, due to the change in the dependency array.
 
       // Need to match data values in vehicleData to elements in
-      // vehicleCheckboxFilters:
-/*
-      // Parse vehicleData: convert objects within container array to arrays of
-      // data values so can iterate over them and match values with filters.
-
-      const vehicleDataValues = vehicleData.map((objectData) =>
-        Object.values(objectData)
-      );
-
-      console.log('vehicleDataValues after parsing::', vehicleDataValues);
-*/      // [[0, 'TESLA', ...], [1, 'Kia', ...]]
-
+      // vehicleCheckboxFilters.
       // Get only vehicle IDs matching filters so can use IDs to match original
       // vehicle object data to pass to ResultsContainer for output.
 
@@ -45,16 +34,6 @@ function SearchPageContainer() {
           }
         });
       });
-      /*
-      vehicleDataValues.forEach((vehicle) => {
-        vehicleCheckboxFilters.forEach((filter) => {
-          if (vehicle.includes(filter)) {
-            vehicleIdsMatchingCheckboxFilters.push(vehicle[0]);
-            // vehicle[0] selects 'id' value
-          }
-        });
-      });
-      */
       console.log({vehicleIdsMatchingCheckboxFilters});
 
       return vehicleIdsMatchingCheckboxFilters; // [0, 2]
@@ -198,7 +177,7 @@ function SearchPageContainer() {
 
   // Function to handle display of all vehicles if no filters selected.
   const handleResultsRender = () => {
-
+    
     // IF NO FILTERS SELECTED:
     if (
       (vehicleCheckboxFilters.length === 0) &&
