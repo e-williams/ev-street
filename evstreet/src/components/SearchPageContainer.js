@@ -100,82 +100,6 @@ function SearchPageContainer() {
     [vehicleCheckboxFilters, selectedPrice]
   );
 
-  // THIS IS AN ALTERNATIVE PROCESSING METHOD TO POSSIBLY IMPROVE OPTIMIZATAION
-  const findVehicleIdsMatchingAllFilters = useMemo(
-    () => {
-      // Function adds vehicle IDs to an array for various user input conditions.
-      const vehicleIdsMatchingAllFilters = [];
-
-      // IF ONLY CHECKBOXES SELECTED:
-      if ( (vehicleCheckboxFilters.length > 0) && (selectedPrice === '') ) {
-        vehicleData.forEach(({ body_style, id }) => {
-          vehicleCheckboxFilters.forEach((filter) => {
-            if (body_style === filter) {
-              vehicleIdsMatchingAllFilters.push(id);
-              console.log('vehicle Ids all filters after checkbox selection',
-                vehicleIdsMatchingAllFilters);
-            }
-          });
-        });
-      }
-      // IF ONLY MAX PRICE SELECTED:
-      else if (
-        (vehicleCheckboxFilters.length === 0) && (selectedPrice !== '')
-        ) {
-          vehicleData.forEach(({ base_price, id }) => {
-            // destructured vehicleData.base_price = parameter
-            if (
-              (base_price <= selectedPrice) || (selectedPrice === 'unlimited')
-              ) {
-              vehicleIdsMatchingAllFilters.push(id);
-              console.log('vehicle Ids all filters after max price selection',
-                vehicleIdsMatchingAllFilters);
-            }
-          });
-      }
-      // IF MULTIPLE FILTER TYPES SELECTED:
-      else if (
-        (vehicleCheckboxFilters.length > 0) && (selectedPrice !== '')
-        ) {
-          vehicleData.forEach(({ body_style, base_price, id }) => {
-            vehicleCheckboxFilters.forEach((filter) => {
-              if (
-                (body_style === filter) &&
-                (
-                  (base_price <= selectedPrice) ||
-                  (selectedPrice === 'unlimited')
-                )
-                ) {
-                  vehicleIdsMatchingAllFilters.push(id);
-                  console.log('vehicle Ids all filters after selection of multiple filter types', vehicleIdsMatchingAllFilters);
-              }
-            });
-          });
-        return vehicleIdsMatchingAllFilters;
-      }
-    },
-    [vehicleCheckboxFilters, selectedPrice]
-  );
-
-  /* // Saving this function for now in case needed.
-  // Merge all arrays of vehicle IDs from all filters for results output
-  const vehicleIdsAllFiltersCombined = () => {
-    const duplicateIds = [
-      ...findVehicleIdsMatchingCheckboxFilters,
-      ...findVehicleIdsMatchingSelectboxMaxPrice,
-    ];
-    // spread syntax used to combine arrays. Combination contains possible
-    // duplicate IDs of same vehicles matching checkboxes & selectboxes.
-
-    const uniqueIds = new Set(duplicateIds); // new to create a new set
-    // Set eliminates duplicate IDs. A value in a set can occur only once.
-
-    return Array.from(uniqueIds);
-    // Array.from() creates shallow copy of Array instance from an iterable.
-  };
-  */
-
-  // Function to handle display of all vehicles if no filters selected.
   const handleResultsRender = () => {
     
     // IF NO FILTERS SELECTED:
@@ -275,43 +199,6 @@ function SearchPageContainer() {
           </NoResultsMessage>
         );
     }
-    /*
-    // ALTERNATE METHOD OF RESULTS OUTPUT USING findVehicleIdsMatchingAllFilters
-
-    // IF NO FILTERS SELECTED
-    if ((vehicleCheckboxFilters.length === 0) && (selectedPrice === '')) {
-        return vehicleData.map((vehicleSpecs) => (
-          <ResultsContainer
-            key={vehicleSpecs.id}
-            filteredVehicleSpecs={vehicleSpecs}
-          />
-        ));
-    }
-    // IF ANY FILTER SELECTED
-    else if (
-      (
-        (vehicleCheckboxFilters.length > 0) &&
-        (selectedPrice === '')
-      ) ||
-      (
-        (vehicleCheckboxFilters.length === 0) &&
-        (selectedPrice !== '')
-      ) ||
-      (
-        (vehicleCheckboxFilters.length > 0) &&
-        (selectedPrice !== '')
-      )
-      ) {
-        return findVehicleIdsMatchingAllFilters.map((vehicleId) => (
-          <ResultsContainer
-            key={vehicleId}
-            filteredVehicleSpecs={vehicleData.find(
-              (vehicle) => vehicle.id === vehicleId
-            )}
-          />
-        ));
-    }
-    */
   };
 
   const SearchPageWrapper = styled(Grid)({
