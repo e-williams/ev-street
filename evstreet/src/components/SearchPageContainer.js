@@ -208,9 +208,12 @@ function SearchPageContainer() {
     marginLeft: 0,
   });
 
-  const FilterWrapper = styled(Container)({
+  const FilterWrapper = styled(Grid)({
     marginTop: 8,
-    padding: 8,
+    marginLeft: 22,
+    paddingTop: 8,
+    paddingRight: 7,
+    paddingBottom: 8,
     border: 1.8,
     borderStyle: 'solid',
     borderColor: '#3be15f',
@@ -220,8 +223,7 @@ function SearchPageContainer() {
   return (
     // new code for MUI implementation
     <SearchPageWrapper container columnSpacing={3}>
-      <Grid item>
-        <FilterWrapper>
+        <FilterWrapper item>
           <SearchContainer
             setVehicleCheckboxFilters={setVehicleCheckboxFilters}
             vehicleCheckboxFilters={vehicleCheckboxFilters}
@@ -229,7 +231,6 @@ function SearchPageContainer() {
             setSelectedPrice={setSelectedPrice}
           />
         </FilterWrapper>
-      </Grid>
       <Grid item sx={{ mt: 1 }}>
         {handleResultsRender()}
       </Grid>

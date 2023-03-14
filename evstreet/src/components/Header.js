@@ -10,8 +10,8 @@ function Header () {
   })
 
   const LogoWrapper = styled(Grid)({
-    paddingTop: 16,
-    paddingLeft: 16,
+    paddingTop: 15,
+    paddingLeft: 15,
   });
 
   const Img = styled('img')({
@@ -25,17 +25,16 @@ function Header () {
     color: '#2db34a',
     fontSize: 12,
     fontFamily: 'Roboto, Verdana, sans-serif',
-    letterSpacing: 1.4,
+    letterSpacing: 1.3,
     fontWeight: '700',
-    fontStyle: 'italic',
   });
 
   const FilterMessage = styled(Typography)({
     color: '#9e9e9e',
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: 'Ubuntu, Verdana, sans-serif',
-    letterSpacing: 1.2,
-    paddingBottom: 6,
+    letterSpacing: 1.15,
+    paddingBottom: 5,
   })
 
   const MessageWrapper = styled(Grid)({
@@ -49,7 +48,7 @@ function Header () {
         <Grid item>
           <Img alt='EVstreet logo' src={evLogo} />
           <LogoTypo>
-            Find the right car.
+            Find the right car
           </LogoTypo>
         </Grid>
       </LogoWrapper>
