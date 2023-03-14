@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
+import React, { useCallback, useEffect, useState } from 'react';
+import { styled } from '@mui/material/styles';
 import {
   Box,
   Grid,
   Typography,
   FormGroup,
-} from "@mui/material";
+} from '@mui/material';
 
-import CustomCheckbox from "../Checkbox";
+import CustomCheckbox from '../Checkbox';
 
 function BodyStyleFilter({
   vehicleCheckboxFilters,
@@ -22,22 +22,32 @@ function BodyStyleFilter({
     // useEffect() below.
 
   useEffect(() => {
-    // update vehicleCheckboxFilters to receive an array with all the
+    // Update vehicleCheckboxFilters to receive an array with all the
     // Checkbox ids that were selected.
     setVehicleCheckboxFilters(checkedFilters);
   }, [checkedFilters]);
 
   const handleChange = useCallback(
     (event) => {
-      console.log("HANDLE CHANGE::::");
+      // Function is re-invoked whenever user clicks a checkbox an dependency
+      // array checkedFilters changes.
+      // useCallback: upon subsequent renders, if the dependencies haven't
+      // changed, returns the stored fuction; otherwise returns (not invokes)
+      // re-rendered function.
+      // event is parameter name taking on HTML Event() interface.
       if (event.target.checked) {
-          // if checkbox checked, filter added to checkedFilters array
+          // if checkbox checked, filter name added to checkedFilters array
         setCheckedFilters([...checkedFilters, event.target.id]);
-          // ['4-door seand']
+          // ['4-door sedan', ...]
+          // Spread syntax ... to add element id value to new array state; not
+          // an array pointing to checkedFilters memory.
+          // console.log({checkedFilters}) would initially produce empty array
+          // here because this useCallback function is only stored until called.
       } else {
-        setCheckedFilters(checkedFilters.filter((check) => check !== event.target.id));
-          // filters the checkedFilters array according to condition that each
-          // element in the array is not equal to the filter name.
+        setCheckedFilters(checkedFilters.filter((check) =>
+          check !== event.target.id));
+            // Filters the checkedFilters array according to condition that each
+            // element in the array is not equal to the filter name.
       }
     },
     [checkedFilters]
@@ -45,13 +55,14 @@ function BodyStyleFilter({
 
   const hasBeenChecked = useCallback((id) => checkedFilters.includes(id),
     [checkedFilters]);
-  // Passed down to Checkbox.js as prop.
+  // Main purpose of this function is to keep the checked state of every
+  // checkbox element in sync with all the currently selected filters.
+  // Function is passed down to Checkbox.js as prop.
   // useCalback returns the stored function upon subsequent renders or the new
   // function if the dependency has changed.
   // includes() returns a boolean value - true if vehicleCheckboxFilters
   // includes the body_style name.
-  // * The main purpose of this function is to keep the checked state of every
-  // checkbox element in sync with all the currently selected filters.
+
   // First, onChange triggers addition of filter to checkedFilters array.
   // When checkedFilters changes, useEffect updates vehicleCheckboxFilters.
   // Also when checkedFilters changes, hasBeenChecked() is updated to check if
@@ -67,48 +78,48 @@ function BodyStyleFilter({
   const FilterHeading = styled(Typography)({
     fontSize: 16,
     marginTop: 10,
-    color: "black",
+    color: 'black',
   });
 
   return (
     <Box>
       <FilterHeading>Body Style</FilterHeading>
-      <Grid container sx={{ color: "#7e7e7e" }}>
+      <Grid container sx={{ color: '#7e7e7e' }}>
         <Grid item>
           <FormGroup sx={{ fontSize: 2 }}>
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="mini/subcompact"
+              id='mini/subcompact'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="2-door sports car"
+              id='2-door sports car'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="3-door sports car"
+              id='3-door sports car'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="2-door sedan"
+              id='2-door sedan'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="3-door sedan"
+              id='3-door sedan'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="4-door sedan"
+              id='4-door sedan'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="5-door sedan"
+              id='5-door sedan'
               onChange={handleChange}
             />
           </FormGroup>
@@ -117,37 +128,37 @@ function BodyStyleFilter({
           <FormGroup sx={{ fontSize: 2 }}>
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="wagon"
+              id='wagon'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="3-door crossover"
+              id='3-door crossover'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="5-door crossover"
+              id='5-door crossover'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="3-door SUV"
+              id='3-door SUV'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="5-door SUV"
+              id='5-door SUV'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="minivan/van"
+              id='minivan/van'
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id="truck"
+              id='truck'
               onChange={handleChange}
             />
           </FormGroup>
@@ -157,145 +168,4 @@ function BodyStyleFilter({
   );
 }
 
-/*
-function BodyStyleFilter({ handleCheckboxFilterSelection }) {
-  return (
-    <div>
-      <h4 className="filterHeadings">Body Style:</h4>
-      <div className="filterFlexbox">
-        <div className="flexColumn1">
-          <li>
-            <input 
-              type="checkbox" 
-              className="checkbox"
-              id="mini/subcompact"
-              onChange={handleCheckboxFilterSelection}
-            />
-            mini/subcompact
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="2-door sports car"
-              onChange={handleCheckboxFilterSelection}
-            />
-            2-door sports car
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="3-door sports car"
-              onChange={handleCheckboxFilterSelection}
-            />
-            3-door sports car
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="2-door sedan"
-              onChange={handleCheckboxFilterSelection}
-            />
-            2-door sedan
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="3-door sedan"
-              onChange={handleCheckboxFilterSelection}
-            />
-            3-door sedan
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="4-door sedan"
-              onChange={handleCheckboxFilterSelection}
-            />
-            4-door sedan
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="5-door sedan"
-              onChange={handleCheckboxFilterSelection}
-            />
-            5-door sedan
-          </li>
-        </div>
-        <div>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="wagon"
-              onChange={handleCheckboxFilterSelection}
-            />
-            wagon
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="3-door crossover"
-              onChange={handleCheckboxFilterSelection}
-            />
-            3-door crossover
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="5-door crossover"
-              onChange={handleCheckboxFilterSelection}
-            />
-            5-door crossover
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="3-door SUV"
-              onChange={handleCheckboxFilterSelection}
-            />
-            3-door SUV
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="5-door SUV"
-              onChange={handleCheckboxFilterSelection}
-            />
-            5-door SUV
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="minivan/van"
-              onChange={handleCheckboxFilterSelection}
-            />
-            minivan/van
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              className="checkbox"
-              id="truck"
-              onChange={handleCheckboxFilterSelection}
-            />
-            truck
-          </li>
-        </div>
-      </div>
-    </div>
-  );
-}
-*/
 export default BodyStyleFilter;
