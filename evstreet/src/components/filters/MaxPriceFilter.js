@@ -28,7 +28,9 @@ function MaxPriceFilter({ selectedPrice, setSelectedPrice }) {
         sx={{ color: '#2db34a' }}
       >
         <MenuItem value='unlimited'>unlimited</MenuItem>
+        <MenuItem value={300000}>$300,000</MenuItem>
         <MenuItem value={200000}>$200,000</MenuItem>
+        <MenuItem value={150000}>$150,000</MenuItem>
         <MenuItem value={100000}>$100,000</MenuItem>
         <MenuItem value={70000}>$70,000</MenuItem>
         <MenuItem value={40000}>$40,000</MenuItem>

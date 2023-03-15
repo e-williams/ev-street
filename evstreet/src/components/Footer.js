@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Grid, Typography, Divider, Chip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function Footer () {
 
@@ -17,15 +18,20 @@ function Footer () {
   });
 
   const MainSection = styled(Grid)({
-    padding: 26,
+    marginTop: 12,
+    marginBottom: 10,
+    marginLeft: 0,
   });
 
-  const LinkTypo = styled(Typography)({
+  const StyledLink = styled(Link)({
     fontSize: 14,
-  });
+    textDecoration: 'none',
+    color: '#7e7e7e',
+    paddingBottom: 2,
+  })
 
   const CopyrightTypo = styled(Typography)({
-    marginLeft: 26,
+    marginLeft: 23,
     fontSize: 12,
     fontWeight: 300,
     fontStyle: 'italic',
@@ -36,16 +42,20 @@ function Footer () {
       <FooterTopBottom item>
         <Divider
           sx={{
-            borderBottomWidth: 3,
+            borderBottomWidth: 2,
           }}
         />
       </FooterTopBottom>
       <MainSection container columnSpacing={3}>
         <Grid item>
-          <LinkTypo>About Us</LinkTypo>
+          <StyledLink to='/about' sx={{ '&:hover': {borderBottom: 1} }}>
+            About Us
+          </StyledLink>
         </Grid>
         <Grid item>
-          <LinkTypo>Contact Us</LinkTypo>
+          <StyledLink to='/contact' sx={{ '&:hover': {borderBottom: 1} }}>
+            Contact Us
+          </StyledLink>
         </Grid>
       </MainSection>
       <FooterTopBottom item>
@@ -58,7 +68,7 @@ function Footer () {
         <CopyrightTypo>Copyright &copy; 2023 EVstreet.com</CopyrightTypo>
       </FooterTopBottom>
     </FooterWrapper>
-  )
+  );
 }
 
 export default Footer;

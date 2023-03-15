@@ -2,27 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './components/App';
+import AboutUS from './components/aboutUs_contactUs/AboutUs';
+import ContactUs from './components/aboutUs_contactUs/ContactUs';
+import VehiclePage from './components/VehiclePage';
+import NotFound from './components/NotFound';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <p>Oops, page not found.</p>,
-    children: [
-      {
-        path: '/',
-        element: <p>All the vehicles go here.</p>,
-      },
-      {
-        path: 'vehicle/:vehicleId',
-        element: <p>Vehicle</p>,
-      },
-    ],
+    errorElement: <NotFound />,
+    // children: [
+    //   {
+    //     path: 'vehicle/:vehicleId',
+    //     element: <VehiclePage />,
+    //   },
+    // ],
   },
   {
     path: '/about',
-    element: <p>About Us Page</p>,
+    element: <AboutUS />,
   },
+  {
+    path: '/contact',
+    element: <ContactUs />,
+  },
+  {
+    path: 'vehicle/:vehicleId',
+    element: <VehiclePage />,
+  }
 ]);
 
 // Render router in div element of index.html w/ id='root', and provide all
