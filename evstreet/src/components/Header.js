@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Grid, Typography } from '@mui/material';
 import evLogo from '../assets/images/evLogoSignXXXSm.png';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Header () {
 
@@ -13,10 +13,7 @@ function Header () {
 
   const LogoWrapper = styled(Grid)({
     padding: 15,
-  });
-
-  const StyledLink = styled(Link)({
-    textDecoration: 'none',
+    cursor: 'pointer',
   });
 
   const Img = styled('img')({
@@ -34,17 +31,15 @@ function Header () {
     fontWeight: '700',
   });
 
+  const navigate = useNavigate();
+
   return (
     <HeaderWrapper container>
-      <LogoWrapper container>
-        <Grid item>
-          <StyledLink to='/'>
+      <LogoWrapper item onClick={() => navigate('/')}>
             <Img alt='EVstreet logo' src={evLogo} />
             <LogoTypo>
               Find the right car
             </LogoTypo>
-          </StyledLink>
-        </Grid>
       </LogoWrapper>
     </HeaderWrapper>
   );

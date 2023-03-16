@@ -19,7 +19,12 @@ function NotFound() {
 
   const StyledNav = styled(Typography)({
     fontSize: 15,
-    color: '#2db34a',
+    cursor: 'pointer',
+    display: 'inline',
+    '&:hover': {
+      borderBottom: '1px solid #2db34a',
+      color: '#2db34a',
+    },
   });
 
   const navigate = useNavigate();

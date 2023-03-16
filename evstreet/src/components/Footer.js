@@ -28,6 +28,10 @@ function Footer () {
     textDecoration: 'none',
     color: '#7e7e7e',
     paddingBottom: 2,
+    '&:hover': {
+      borderBottom: '1px solid #2db34a',
+      color: '#2db34a',
+    },
   })
 
   const CopyrightTypo = styled(Typography)({
@@ -48,12 +52,12 @@ function Footer () {
       </FooterTopBottom>
       <MainSection container columnSpacing={3}>
         <Grid item>
-          <StyledLink to='/about' sx={{ '&:hover': {borderBottom: 1} }}>
+          <StyledLink to='/about'>
             About Us
           </StyledLink>
         </Grid>
         <Grid item>
-          <StyledLink to='/contact' sx={{ '&:hover': {borderBottom: 1} }}>
+          <StyledLink to='/contact'>
             Contact Us
           </StyledLink>
         </Grid>

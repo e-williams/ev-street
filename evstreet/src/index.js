@@ -12,12 +12,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     errorElement: <NotFound />,
-    // children: [
-    //   {
-    //     path: 'vehicle/:vehicleId',
-    //     element: <VehiclePage />,
-    //   },
-    // ],
   },
   {
     path: '/about',
@@ -28,7 +22,7 @@ const router = createBrowserRouter([
     element: <ContactUs />,
   },
   {
-    path: 'vehicle/:vehicleId',
+    path: '/vehicle/:vehicleId',
     element: <VehiclePage />,
   }
 ]);

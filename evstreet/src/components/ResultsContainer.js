@@ -2,7 +2,7 @@ import React from '@testing-library/user-event';
 import { styled } from '@mui/material/styles';
 import { Paper, Grid, ButtonBase, Typography } from '@mui/material';
 import map_vehicle_to_image from './images';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
@@ -18,6 +18,10 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     backgroundColor: '#f9f9f9',
     paddingRight: 14,
     marginBottom: 14,
+    cursor: 'pointer',
+    '&:hover': {
+      boxShadow: '0 0 10px #626262',
+    },
   });
 
   const ListingHeader = styled(Typography)({
@@ -42,9 +46,13 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     color: '#626262',
   });
 
+  const navigate = useNavigate();
+
   return (
-    <Link to={`/vehicle/${filteredVehicleSpecs.id}`}>
-      <ResultsWrapper elevation={2}>
+      <ResultsWrapper
+        elevation={2}
+        onClick={() => navigate(`/vehicle/${filteredVehicleSpecs.id}`)}
+      >
         <Grid container columnSpacing={2}>
           <Grid item>
             <ListingHeader>
@@ -70,7 +78,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
           </Grid>
         </Grid>
       </ResultsWrapper>
-    </Link>
   );
 }
 
