@@ -2,8 +2,10 @@ import React from '@testing-library/user-event';
 import { styled } from '@mui/material/styles';
 import { Paper, Grid, ButtonBase, Typography } from '@mui/material';
 import map_vehicle_to_image from './images';
+import { useNavigate } from 'react-router-dom';
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
+
   const priceToDollars = () => (
     new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -16,6 +18,10 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     backgroundColor: '#f9f9f9',
     paddingRight: 14,
     marginBottom: 14,
+    cursor: 'pointer',
+    '&:hover': {
+      boxShadow: '0 0 10px #626262',
+    },
   });
 
   const ListingHeader = styled(Typography)({
@@ -40,33 +46,38 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     color: '#626262',
   });
 
+  const navigate = useNavigate();
+
   return (
-    <ResultsWrapper elevation={2}>
-      <Grid container columnSpacing={2}>
-        <Grid item>
-          <ListingHeader>
-            {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
-          </ListingHeader>
-          <ButtonBase sx={{ width: 210, height: 140 }}>
-            <ListingImg
-              src={map_vehicle_to_image[filteredVehicleSpecs.model]}
-                // [filteredVehicleSpecs.model] is used to access
-                // map_vehicle_to_image object properties to obtain images
-                // imported to images.js, b/c React won't handle relative
-                // image reference in src attribute.
-            />
-          </ButtonBase>
+      <ResultsWrapper
+        elevation={2}
+        onClick={() => navigate(`/vehicle/${filteredVehicleSpecs.id}`)}
+      >
+        <Grid container columnSpacing={2}>
+          <Grid item>
+            <ListingHeader>
+              {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
+            </ListingHeader>
+            <ButtonBase sx={{ width: 210, height: 140 }}>
+              <ListingImg
+                src={map_vehicle_to_image[filteredVehicleSpecs.model]}
+                  // [filteredVehicleSpecs.model] is used to access
+                  // map_vehicle_to_image object properties to obtain images
+                  // imported to images.js, b/c React won't handle relative
+                  // image reference in src attribute.
+              />
+            </ButtonBase>
+          </Grid>
+          <Grid item>
+            <ListingSpecs sx={{ mt: 2.9 }}>
+              Base Price: { priceToDollars() }
+            </ListingSpecs>
+            <ListingSpecs>
+              Body Style: {filteredVehicleSpecs.body_style}
+            </ListingSpecs>
+          </Grid>
         </Grid>
-        <Grid item>
-          <ListingSpecs sx={{ mt: 2.9 }}>
-            Base Price: { priceToDollars() }
-          </ListingSpecs>
-          <ListingSpecs>
-            Body Style: {filteredVehicleSpecs.body_style}
-          </ListingSpecs>
-        </Grid>
-      </Grid>
-    </ResultsWrapper>
+      </ResultsWrapper>
   );
 }
 

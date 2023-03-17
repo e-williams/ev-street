@@ -3,7 +3,7 @@ import vehicleData from '../vehicleData.json';
 import SearchContainer from './SearchContainer';
 import ResultsContainer from './ResultsContainer';
 import { styled } from '@mui/material/styles';
-import { Paper, Grid, Container } from '@mui/material';
+import { Paper, Grid, Typography } from '@mui/material';
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
@@ -204,13 +204,14 @@ function SearchPageContainer() {
   const SearchPageWrapper = styled(Grid)({
     fontFamily: 'Roboto, Verdana, sans-serif',
     fontWeight: 300,
-    marginTop: 14,
-    marginLeft: 0,
+    marginLeft: 0, // required for columnSpacing on left
   });
 
-  const FilterWrapper = styled(Container)({
-    marginTop: 8,
-    padding: 8,
+  const FilterWrapper = styled(Grid)({
+    marginLeft: 22,
+    paddingTop: 8,
+    paddingRight: 7,
+    paddingBottom: 8,
     border: 1.8,
     borderStyle: 'solid',
     borderColor: '#3be15f',
@@ -220,17 +221,15 @@ function SearchPageContainer() {
   return (
     // new code for MUI implementation
     <SearchPageWrapper container columnSpacing={3}>
+      <FilterWrapper item>
+        <SearchContainer
+          setVehicleCheckboxFilters={setVehicleCheckboxFilters}
+          vehicleCheckboxFilters={vehicleCheckboxFilters}
+          selectedPrice={selectedPrice}
+          setSelectedPrice={setSelectedPrice}
+        />
+      </FilterWrapper>
       <Grid item>
-        <FilterWrapper>
-          <SearchContainer
-            setVehicleCheckboxFilters={setVehicleCheckboxFilters}
-            vehicleCheckboxFilters={vehicleCheckboxFilters}
-            selectedPrice={selectedPrice}
-            setSelectedPrice={setSelectedPrice}
-          />
-        </FilterWrapper>
-      </Grid>
-      <Grid item sx={{ mt: 1 }}>
         {handleResultsRender()}
       </Grid>
     </SearchPageWrapper>

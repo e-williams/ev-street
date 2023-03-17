@@ -2,16 +2,18 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Grid, Typography } from '@mui/material';
 import evLogo from '../assets/images/evLogoSignXXXSm.png';
+import { useNavigate } from 'react-router-dom';
 
 function Header () {
 
   const HeaderWrapper = styled(Grid)({
     backgroundColor: 'black',
+    marginBottom: 21,
   })
 
   const LogoWrapper = styled(Grid)({
-    paddingTop: 16,
-    paddingLeft: 16,
+    padding: 15,
+    cursor: 'pointer',
   });
 
   const Img = styled('img')({
@@ -25,42 +27,22 @@ function Header () {
     color: '#2db34a',
     fontSize: 12,
     fontFamily: 'Roboto, Verdana, sans-serif',
-    letterSpacing: 1.4,
+    letterSpacing: 1.3,
     fontWeight: '700',
-    fontStyle: 'italic',
   });
 
-  const FilterMessage = styled(Typography)({
-    color: '#9e9e9e',
-    fontSize: 15,
-    fontFamily: 'Ubuntu, Verdana, sans-serif',
-    letterSpacing: 1.2,
-    paddingBottom: 6,
-  })
-
-  const MessageWrapper = styled(Grid)({
-    textAlign: 'center',
-    width: '100%',
-  })
+  const navigate = useNavigate();
 
   return (
     <HeaderWrapper container>
-      <LogoWrapper container>
-        <Grid item>
-          <Img alt='EVstreet logo' src={evLogo} />
-          <LogoTypo>
-            Find the right car.
-          </LogoTypo>
-        </Grid>
+      <LogoWrapper item onClick={() => navigate('/')}>
+            <Img alt='EVstreet logo' src={evLogo} />
+            <LogoTypo>
+              Find the right car
+            </LogoTypo>
       </LogoWrapper>
-      <MessageWrapper item>
-        <FilterMessage>
-          Select your preferred electric vehicle specifications in the FILTERS
-          column:
-        </FilterMessage>
-      </MessageWrapper>
     </HeaderWrapper>
-  )
+  );
 }
 
 export default Header;
