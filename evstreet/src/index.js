@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './components/App';
 import AboutUS from './components/aboutUs_contactUs/AboutUs';
 import ContactUs from './components/aboutUs_contactUs/ContactUs';
-import VehiclePage from './components/VehiclePage';
+import VehiclePageContainer from './components/VehiclePageContainer';
 import NotFound from './components/NotFound';
 
 const router = createBrowserRouter([
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/vehicle/:vehicleId',
-    element: <VehiclePage />,
+    element: <VehiclePageContainer />,
   }
 ]);
 

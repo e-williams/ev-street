@@ -20,7 +20,7 @@ function NotFound() {
   const StyledNav = styled(Typography)({
     fontSize: 15,
     cursor: 'pointer',
-    display: 'inline',
+    display: 'inline', // limits border to text
     '&:hover': {
       borderBottom: '1px solid #2db34a',
       color: '#2db34a',

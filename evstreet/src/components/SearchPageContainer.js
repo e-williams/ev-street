@@ -3,7 +3,7 @@ import vehicleData from '../vehicleData.json';
 import SearchContainer from './SearchContainer';
 import ResultsContainer from './ResultsContainer';
 import { styled } from '@mui/material/styles';
-import { Paper, Grid, Typography } from '@mui/material';
+import { Paper, Grid } from '@mui/material';
 
 function SearchPageContainer() {
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);

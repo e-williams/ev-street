@@ -1,6 +1,6 @@
 import React from '@testing-library/user-event';
 import { styled } from '@mui/material/styles';
-import { Paper, Grid, ButtonBase, Typography } from '@mui/material';
+import { Paper, Grid, Typography, Tooltip } from '@mui/material';
 import map_vehicle_to_image from './images';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     marginBottom: 14,
     cursor: 'pointer',
     '&:hover': {
-      boxShadow: '0 0 10px #626262',
+      boxShadow: '0 0 7px #626262',
     },
   });
 
@@ -33,12 +33,10 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
   });
 
   const ListingImg = styled('img')({
-    margin: 'auto',
     display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    width: 210,
+    height: 140,
     borderBottomLeftRadius: 5,
-    alt: 'Tesla Model 3',
   });
 
   const ListingSpecs = styled(Typography)({
@@ -58,15 +56,20 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             <ListingHeader>
               {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
             </ListingHeader>
-            <ButtonBase sx={{ width: 210, height: 140 }}>
-              <ListingImg
-                src={map_vehicle_to_image[filteredVehicleSpecs.model]}
-                  // [filteredVehicleSpecs.model] is used to access
-                  // map_vehicle_to_image object properties to obtain images
-                  // imported to images.js, b/c React won't handle relative
-                  // image reference in src attribute.
-              />
-            </ButtonBase>
+              <Tooltip
+                title={`IMAGE SOURCE: ${filteredVehicleSpecs.images.main}`}
+                arrow
+                placement='right-end'
+              >
+                <ListingImg
+                  alt={`${filteredVehicleSpecs.make} ${filteredVehicleSpecs.model}`}
+                  src={map_vehicle_to_image[filteredVehicleSpecs.model]}
+                    // [filteredVehicleSpecs.model] is used to access
+                    // map_vehicle_to_image object properties to obtain images
+                    // imported to images.js, b/c React won't handle relative
+                    // image reference in src attribute.
+                />
+              </Tooltip>
           </Grid>
           <Grid item>
             <ListingSpecs sx={{ mt: 2.9 }}>

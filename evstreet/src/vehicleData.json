@@ -9,6 +9,9 @@
       "2022": {
         "base_price": "test format"
       }
+    },
+    "images": {
+      "main": "https://tesla-cdn.thron.com/delivery/public/image/tesla/5a7b3001-249f-4065-a330-4ea6a17ccf7b/bvlatuR/std/2560x1708/Model-3-Main-Hero-Desktop-LHD"
     }
   },
   {
@@ -16,13 +19,19 @@
     "make": "Kia",
     "model": "EV6",
     "base_price": 48700,
-    "body_style": "5-door crossover"
+    "body_style": "5-door crossover",
+    "images": {
+      "main": "https://www.kia.com/content/dam/kia/us/en/vehicles/ev6/2023/mep/in-page-gallery/kia_EV6_2023_asset-carousel-1.jpg"
+    }
   },
   {
     "id": 2,
     "make": "Audi",
     "model": "e-tron GT",
     "base_price": 104900,
-    "body_style": "4-door sedan"
+    "body_style": "4-door sedan",
+    "images": {
+      "main": "https://www.audiusa.com/content/dam/nemo/us/models/e-tron/e-tron-gt/my23/1920x1920_eGT_2023_2301.jpg?imwidth=1440"
+    }
   }
 ]
