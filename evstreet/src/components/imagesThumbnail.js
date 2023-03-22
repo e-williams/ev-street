@@ -9,10 +9,10 @@ import ev6 from '../assets/images/vehicles/kia/ev6_main_2023_thumbnail.png';
 // So, [filteredVehicleSpecs.model] can be used to access map_vehicle_to_image
 // object properties.
 
-const map_vehicle_to_image = {
+const map_vehicle_to_thumbnail = {
   'Model 3': model3,
   'e-tron GT': eTronGT,
   EV6: ev6,
 };
 
-export default map_vehicle_to_image;
+export default map_vehicle_to_thumbnail;

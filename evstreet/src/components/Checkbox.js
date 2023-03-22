@@ -9,6 +9,9 @@ const CustomCheckbox = ({ hasBeenChecked, id, onChange }) => {
   const CheckboxLabels = styled(Typography)({
     fontSize: 14,
     color: labelColor,
+    '&:hover': {
+      color: '#2db34a',
+    },
   });
 
   return (

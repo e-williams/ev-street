@@ -1,7 +1,7 @@
 import React from '@testing-library/user-event';
 import { styled } from '@mui/material/styles';
 import { Paper, Grid, Typography, Tooltip } from '@mui/material';
-import map_vehicle_to_image from './images';
+import map_vehicle_to_thumbnail from './imagesThumbnail';
 import { useNavigate } from 'react-router-dom';
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
@@ -63,11 +63,11 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
               >
                 <ListingImg
                   alt={`${filteredVehicleSpecs.make} ${filteredVehicleSpecs.model}`}
-                  src={map_vehicle_to_image[filteredVehicleSpecs.model]}
+                  src={map_vehicle_to_thumbnail[filteredVehicleSpecs.model]}
                     // [filteredVehicleSpecs.model] is used to access
-                    // map_vehicle_to_image object properties to obtain images
-                    // imported to images.js, b/c React won't handle relative
-                    // image reference in src attribute.
+                    // map_vehicle_to_thumbnail object properties to obtain
+                    // images imported to images.js, b/c React won't handle
+                    // relative image reference in src attribute.
                 />
               </Tooltip>
           </Grid>

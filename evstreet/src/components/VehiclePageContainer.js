@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import VehiclePageCarousel from './VehiclePageCarousel';
+import VehiclePageSelection from './VehiclePageSelection';
+import VehiclePageOverview from './VehiclePageOverview';
+import VehiclePageSpecs from './VehiclePageSpecs';
 import { styled } from '@mui/material/styles';
-import { Typography, Grid, Container } from "@mui/material";
+import { Typography, Container } from "@mui/material";
 import { useParams } from "react-router-dom";
 import vehicleData from '../vehicleData.json';
 import { useNavigate } from 'react-router-dom';
 
 function VehiclePageContainer() {
+
+  const [isOverview, setIsOverview] = useState(true);
+
+  console.log({isOverview});
 
   // Get vehicleId param from the URL.
   const { vehicleId } = useParams();
@@ -46,13 +53,9 @@ function VehiclePageContainer() {
     color: '#7e7e7e',
   });
 
-  const VehiclePageGrid = styled(Grid)({
-
-  });
-
-  const VehiclePageHeader = styled(Typography)({
+  const HeaderTypo = styled(Typography)({
     textAlign: 'center',
-  })
+  });
 
   if (!vehicle) { // if vehicle evaluates to false
     return (
@@ -72,16 +75,20 @@ function VehiclePageContainer() {
     return (
       <>
         <Header />
-        <VehiclePageWrapper>
-          <VehiclePageGrid>
-            <Grid item>
-              <VehiclePageHeader variant='h5'>
-                {vehicle.make} {vehicle.model}
-              </VehiclePageHeader>
-              <VehiclePageCarousel />
-
-            </Grid>
-          </VehiclePageGrid>
+        <VehiclePageWrapper maxWidth='md'>
+          <HeaderTypo variant='h5'>
+            {vehicle.make} {vehicle.model}
+          </HeaderTypo>
+          <VehiclePageCarousel />
+          <VehiclePageSelection
+            setIsOverview={setIsOverview}
+            isOverview={isOverview}
+          />
+          { isOverview ? (
+            <VehiclePageOverview />
+          ) : (
+            <VehiclePageSpecs />
+          )}
         </VehiclePageWrapper>
       </>
     );

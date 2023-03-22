@@ -5,6 +5,20 @@
     "model": "Model 3",
     "base_price": 43990,
     "body_style": "5-door sedan",
+    "seating_capacity": "5",
+    "convertible_option": "no",
+    "luxary_vehicle": "yes",
+    "drivetrain": "RWD or AWD",
+    "maximum_range": {
+      "standard": "272 miles",
+      "long_range": "358 miles",
+      "performance": "315 miles"
+    },
+    "MPGe": {
+      "rwd": "138",
+      "awd": "134",
+      "performance_awd": "113"
+    },
     "year": {
       "2022": {
         "base_price": "test format"
