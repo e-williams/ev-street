@@ -15,6 +15,7 @@ function VehiclePageContainer() {
 
   // Get vehicleId param from the URL.
   const { vehicleId } = useParams();
+  console.log({ vehicleId });
 
   const [vehicle, setVehicle] = useState(
     vehicleData.find((v) => v.id === +vehicleId)

@@ -7,16 +7,21 @@ import ShuffleIcon from "@mui/icons-material/Shuffle";
 import VEHICLE_IMAGE_MAP from "../imagesGallery";
 
 const CarouselItem = (props) => {
-  console.log({ props });
   return (
     <Paper>
-      <img src={props.item.main} width="400" height="200" />
+      <img src={props.item.url} width="400" height="200" />
       <p>{props.item.location}</p>
     </Paper>
   );
 };
 
 const VehiclePageCarousel = ({ vehicleModel }) => {
+  const vehicleImages = VEHICLE_IMAGE_MAP[vehicleModel];
+
+  if (!vehicleImages) {
+    return <></>;
+  }
+
   return (
     <Carousel NextIcon={<ShuffleIcon />} PrevIcon={<ShuffleIcon />}>
       {VEHICLE_IMAGE_MAP[vehicleModel].map((item) => (
