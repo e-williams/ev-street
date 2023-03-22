@@ -1,30 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './components/App';
-import AboutUS from './components/aboutUs_contactUs/AboutUs';
-import ContactUs from './components/aboutUs_contactUs/ContactUs';
-import VehiclePageContainer from './components/VehiclePageContainer';
-import NotFound from './components/NotFound';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./components/App";
+import AboutUS from "./components/Footer/AboutUs";
+import ContactUs from "./components/Footer/ContactUs";
+import VehiclePageContainer from "./components/VehiclePageIndex/Container";
+import NotFound from "./components/NotFound";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     errorElement: <NotFound />,
+    children: [
+      {
+        path: "/vehicle/:vehicleId",
+        element: <VehiclePageContainer />, // render the overview
+      },
+    ],
   },
   {
-    path: '/about',
+    path: "/about",
     element: <AboutUS />,
   },
   {
-    path: '/contact',
+    path: "/contact",
     element: <ContactUs />,
   },
-  {
-    path: '/vehicle/:vehicleId',
-    element: <VehiclePageContainer />,
-  }
+  // {
+  //   path: "/vehicle/:vehicleId",
+  //   children: [
+  //     {
+  //       path: "/vehicle/:vehicleId/overview",
+  //       element: <>Hi</>, // render the overview
+  //     },
+  //     {
+  //       path: "/vehicle/:vehicleId/overview",
+  //       element: <>hi</>, // render the overview
+  //     },
+  //   ],
+  //   element: <VehiclePageContainer />,
+  // },
 ]);
 
 // Render router in div element of index.html w/ id='root', and provide all

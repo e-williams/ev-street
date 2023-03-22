@@ -1,8 +1,8 @@
-import React from 'react';
-import '../assets/styles/App.css';
-import Header from './Header';
-import SearchPageContainer from './SearchPageContainer';
-import Footer from './Footer';
+import React from "react";
+import "../assets/styles/App.css";
+import Header from "./common/Header";
+import SearchPageContainer from "./VehicleResults/SearchPageContainer";
+import Footer from "./common/Footer";
 
 function App() {
   return (
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

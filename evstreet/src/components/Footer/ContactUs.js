@@ -1,11 +1,11 @@
 import { React } from "react";
-import Header from "./common/Header";
+import Header from "../common/Header";
 import { styled } from "@mui/material/styles";
 import { Typography, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function NotFound() {
-  const NotFoundContainer = styled(Container)({
+function ContactUs() {
+  const ContactUsWrapper = styled(Container)({
     fontFamily: "Roboto, Verdana, sans-serif",
     marginTop: 40,
     color: "#7e7e7e",
@@ -18,6 +18,7 @@ function NotFound() {
 
   const StyledNav = styled(Typography)({
     fontSize: 15,
+    color: "#2db34a",
     cursor: "pointer",
     display: "inline", // limits border to text
     "&:hover": {
@@ -31,14 +32,15 @@ function NotFound() {
   return (
     <>
       <Header />
-      <NotFoundContainer>
-        <Typo>Oops, it looks like the page does not exist.</Typo>
+      <ContactUsWrapper>
+        <Typo>The ability to contact EVstreet.com is coming soon!</Typo>
+        <Typo>Thank you for your interest in reaching us.</Typo>
         <StyledNav onClick={() => navigate(-1)}>
           Click here to return to the previous page.
         </StyledNav>
-      </NotFoundContainer>
+      </ContactUsWrapper>
     </>
   );
 }
 
-export default NotFound;
+export default ContactUs;
