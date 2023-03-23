@@ -1,7 +1,7 @@
 import React from "react";
+import evLogo from "../../assets/images/evLogoSignXXXSm.png";
 import { styled } from "@mui/material/styles";
 import { Grid, Typography } from "@mui/material";
-import evLogo from "../../assets/images/evLogoSignXXXSm.png";
 import { useNavigate } from "react-router-dom";
 
 function Header() {

@@ -1,20 +1,20 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
-import { Grid, Typography, Divider, Chip } from '@mui/material';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Grid, Typography, Divider, Chip } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Footer () {
 
   const FooterWrapper = styled(Grid)({
     marginTop: 22,
     marginBottom: 10,
-    fontFamily: 'Robato, Verdana, sans-serif',
+    fontFamily: "Robato, Verdana, sans-serif",
     fontWeight: 300,
-    color: '#7e7e7e',
+    color: "#7e7e7e",
   });
 
   const FooterTopBottom = styled(Grid)({
-    width: '100%',
+    width: "100%",
   });
 
   const MainSection = styled(Grid)({
@@ -25,12 +25,12 @@ function Footer () {
 
   const StyledLink = styled(Link)({
     fontSize: 14,
-    textDecoration: 'none',
-    color: '#7e7e7e',
+    textDecoration: "none",
+    color: "#7e7e7e",
     paddingBottom: 2,
-    '&:hover': {
-      borderBottom: '1px solid #2db34a',
-      color: '#2db34a',
+    "&:hover": {
+      borderBottom: "1px solid #2db34a",
+      color: "#2db34a",
     },
   })
 
@@ -38,7 +38,7 @@ function Footer () {
     marginLeft: 23,
     fontSize: 12,
     fontWeight: 300,
-    fontStyle: 'italic',
+    fontStyle: "italic",
   });
 
   return (
@@ -52,21 +52,21 @@ function Footer () {
       </FooterTopBottom>
       <MainSection container columnSpacing={3}>
         <Grid item>
-          <StyledLink to='/about'>
+          <StyledLink to="/about">
             About Us
           </StyledLink>
         </Grid>
         <Grid item>
-          <StyledLink to='/contact'>
+          <StyledLink to="/contact">
             Contact Us
           </StyledLink>
         </Grid>
       </MainSection>
       <FooterTopBottom item>
         <Chip sx={{
-                width: '50%',
-                height: '1px',
-                background: 'linear-gradient(to right, #dcdcdc, #00000000)'
+                width: "50%",
+                height: "1px",
+                background: "linear-gradient(to right, #dcdcdc, #00000000)"
                 }}>
         </Chip>
         <CopyrightTypo>Copyright &copy; 2023 EVstreet.com</CopyrightTypo>

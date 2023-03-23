@@ -1,10 +1,12 @@
 import React from "@testing-library/user-event";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
-import map_vehicle_to_thumbnail from "../imagesThumbnail";
+import map_vehicle_to_thumbnail from "../ImageManagement/imagesThumbnail";
+import map_tooltip_to_source from "../ImageManagement/imagesTooltip";
 import { useNavigate } from "react-router-dom";
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
+
   const priceToDollars = () =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -44,6 +46,11 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
   const navigate = useNavigate();
 
+  const vehicleModel = filteredVehicleSpecs.model;
+  console.log({vehicleModel});
+  console.log(map_tooltip_to_source["Model 3"].main);
+  //console.log(map_tooltip_to_source[vehicleModel].main);
+
   return (
     <ResultsWrapper
       elevation={2}
@@ -55,7 +62,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
           </ListingHeader>
           <Tooltip
-            title={`IMAGE SOURCE: ${filteredVehicleSpecs.images.main}`}
+            //title={`IMAGE SOURCE: ${filteredVehicleSpecs.images.main}`}
+            title={`IMAGE SOURCE: ${map_tooltip_to_source[vehicleModel].main}`}
             arrow
             placement="right-end"
           >

@@ -4,18 +4,17 @@ import Carousel from "react-material-ui-carousel";
 import { Paper } from "@mui/material";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 
-import VEHICLE_IMAGE_MAP from "../imagesGallery";
+import VEHICLE_IMAGE_MAP from "../ImageManagement/imagesGallery";
 
 const CarouselItem = (props) => {
   return (
     <Paper>
       <img src={props.item.url} width="400" height="200" />
-      <p>{props.item.location}</p>
     </Paper>
   );
 };
 
-const VehiclePageCarousel = ({ vehicleModel }) => {
+const CarouselImages = ({ vehicleModel }) => {
   const vehicleImages = VEHICLE_IMAGE_MAP[vehicleModel];
 
   if (!vehicleImages) {
@@ -31,4 +30,4 @@ const VehiclePageCarousel = ({ vehicleModel }) => {
   );
 };
 
-export default VehiclePageCarousel;
+export default CarouselImages;

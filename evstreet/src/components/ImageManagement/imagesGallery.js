@@ -1,4 +1,4 @@
-const map_vehicle_to_image = {
+const map_vehicle_to_gallery = {
   "Model 3": [
     {
       location: "main",
@@ -19,4 +19,4 @@ const map_vehicle_to_image = {
   ],
 };
 
-export default map_vehicle_to_image;
+export default map_vehicle_to_gallery;

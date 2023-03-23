@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Header from "../common/Header";
-import VehiclePageCarousel from "./CarouselImages";
-import VehiclePageSelection from "./HeaderSelection";
-import VehiclePageOverview from "./Overview";
-import VehiclePageSpecs from "./Specs";
+import Header from "../Common/Header";
+import CarouselImages from "./CarouselImages";
+import HeaderSelection from "./HeaderSelection";
+import Overview from "./Overview";
+import Specifications from "./Specifications";
 import { styled } from "@mui/material/styles";
 import { Typography, Container } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -15,6 +15,9 @@ function VehiclePageContainer() {
 
   // Get vehicleId param from the URL.
   const { vehicleId } = useParams();
+    // useParams() returns an object of key/value pairs of the dynamic params
+    // of the current URL.
+    // destructured from: const vehicleId = useParams().vehicleId
   console.log({ vehicleId });
 
   const [vehicle, setVehicle] = useState(
@@ -76,12 +79,12 @@ function VehiclePageContainer() {
           <HeaderTypo variant="h5">
             {vehicle.make} {vehicle.model}
           </HeaderTypo>
-          <VehiclePageCarousel vehicleModel={vehicle.model} />
-          <VehiclePageSelection
+          <CarouselImages vehicleModel={vehicle.model} />
+          <HeaderSelection
             setIsOverview={setIsOverview}
             isOverview={isOverview}
           />
-          {isOverview ? <VehiclePageOverview /> : <VehiclePageSpecs />}
+          {isOverview ? <Overview /> : <Specifications />}
         </VehiclePageWrapper>
       </>
     );

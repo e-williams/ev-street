@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo } from "react";
 import { Outlet, useParams } from "react-router-dom";
 
 import vehicleData from "../../vehicleData.json";
@@ -8,9 +8,18 @@ import { styled } from "@mui/material/styles";
 import { Paper, Grid } from "@mui/material";
 
 function SearchPageContainer() {
-  const params = useParams();
 
-  const urlHasParams = useMemo(() => !!Object.values(params).length, [params]);
+  const params = useParams();
+    // useParams() returns an object of key/value pairs of the dynamic params
+    // of the current URL.
+
+  const urlParams = useMemo(() => !!Object.values(params).length, [params]);
+    // Object.values returns an array of an object's keyed propery values, so
+    // if a result is selected, Object.values(params) will be an array of one
+    // number, the vehicle id.
+    // !! converts the number to a boolean value so if lenghth is 1, result is
+    // true and if length is 0, result is false.
+    // useMemo applied so that urlParams is updated when params changes.
 
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
   // [state value variable, function to change state]
@@ -59,7 +68,9 @@ function SearchPageContainer() {
     const vehicleIdsMatchingSelectedPrice = [];
 
     vehicleData.forEach(({ base_price, id }) => {
-      // destructured vehicleData.base_price = parameter
+      // destructured vehicleData.base_price = parameter for example
+      // creates new variables with values the same as the values of
+      // object keys base_price and id
       if (base_price <= selectedPrice || selectedPrice === "unlimited") {
         vehicleIdsMatchingSelectedPrice.push(id);
       }
@@ -219,7 +230,8 @@ function SearchPageContainer() {
           setSelectedPrice={setSelectedPrice}
         />
       </FilterWrapper>
-      {!urlHasParams && <Grid item>{handleResultsRender()}</Grid>}
+      {!urlParams && <Grid item>{handleResultsRender()}</Grid>}
+        {/* if urlParams is not true (has no vehicle id), render results */}
       <Grid item>
         <Outlet />
       </Grid>

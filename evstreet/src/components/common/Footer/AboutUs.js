@@ -1,5 +1,6 @@
 import { React } from "react";
-import Header from "../common/Header";
+import Header from "../Header";
+import Footer from "./Footer";
 import { styled } from "@mui/material/styles";
 import { Typography, Container } from "@mui/material";
 
@@ -25,6 +26,7 @@ function AboutUs() {
           to shop for and research electric vehicles.
         </Typography>
       </AboutUsWrapper>
+      <Footer />
     </>
   );
 }

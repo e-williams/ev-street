@@ -1,16 +1,16 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
-import { Checkbox, Typography, FormControlLabel } from '@mui/material';
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Checkbox, Typography, FormControlLabel } from "@mui/material";
 
 const CustomCheckbox = ({ hasBeenChecked, id, onChange }) => {
 
-  const labelColor = hasBeenChecked(id) ? '#2db34a' : '#7e7e7e';
+  const labelColor = hasBeenChecked(id) ? "#2db34a" : "#7e7e7e";
 
   const CheckboxLabels = styled(Typography)({
     fontSize: 14,
     color: labelColor,
-    '&:hover': {
-      color: '#2db34a',
+    "&:hover": {
+      color: "#2db34a",
     },
   });
 
@@ -18,8 +18,8 @@ const CustomCheckbox = ({ hasBeenChecked, id, onChange }) => {
     <FormControlLabel
       control={
         <Checkbox
-          size='small'
-          color='success'
+          size="small"
+          color="success"
           sx={{ padding: .7 }}
           checked={hasBeenChecked(id)}
             // checked prop = parameter hasBeenChecked which is defined in
