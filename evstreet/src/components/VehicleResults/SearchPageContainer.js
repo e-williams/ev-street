@@ -209,9 +209,10 @@ function SearchPageContainer() {
   });
 
   const FilterWrapper = styled(Grid)({
+    marginTop: 10,
     marginLeft: 22,
     paddingTop: 8,
-    paddingRight: 7,
+    paddingRight: 4,
     paddingBottom: 8,
     border: 1.8,
     borderStyle: "solid",
@@ -230,9 +231,9 @@ function SearchPageContainer() {
           setSelectedPrice={setSelectedPrice}
         />
       </FilterWrapper>
-      {!urlParams && <Grid item>{handleResultsRender()}</Grid>}
+      {!urlParams && <Grid item sx={{ mt: "10px" }}>{handleResultsRender()}</Grid>}
         {/* if urlParams is not true (has no vehicle id), render results */}
-      <Grid item>
+      <Grid item sx={{width: 670}}>
         <Outlet />
       </Grid>
     </SearchPageWrapper>

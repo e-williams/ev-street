@@ -68,10 +68,6 @@ function BodyStyleFilter({
 
   console.log({ checkedFilters });
 
-  const FlexColumn2 = styled(Grid)({
-    marginLeft: 10,
-  });
-
   const FilterHeading = styled(Typography)({
     fontSize: 16,
     marginTop: 10,
@@ -83,7 +79,7 @@ function BodyStyleFilter({
       <FilterHeading>Body Style</FilterHeading>
       <Grid container sx={{ color: "#7e7e7e" }}>
         <Grid item>
-          <FormGroup sx={{ fontSize: 2 }}>
+          <FormGroup>
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
               id="mini/subcompact"
@@ -121,8 +117,8 @@ function BodyStyleFilter({
             />
           </FormGroup>
         </Grid>
-        <FlexColumn2 item>
-          <FormGroup sx={{ fontSize: 2 }}>
+        <Grid item>
+          <FormGroup>
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
               id="wagon"
@@ -159,7 +155,7 @@ function BodyStyleFilter({
               onChange={handleChange}
             />
           </FormGroup>
-        </FlexColumn2>
+        </Grid>
       </Grid>
     </Box>
   );

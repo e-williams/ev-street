@@ -20,7 +20,7 @@ const CustomCheckbox = ({ hasBeenChecked, id, onChange }) => {
         <Checkbox
           size="small"
           color="success"
-          sx={{ padding: .7 }}
+          sx={{ padding: .5 }}
           checked={hasBeenChecked(id)}
             // checked prop = parameter hasBeenChecked which is defined in
             // BodyStyleFilter with argument id and passed down to here.

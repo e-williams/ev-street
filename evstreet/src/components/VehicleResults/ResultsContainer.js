@@ -1,8 +1,8 @@
 import React from "@testing-library/user-event";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
-import map_vehicle_to_thumbnail from "../ImageManagement/imagesThumbnail";
-import map_tooltip_to_source from "../ImageManagement/imagesTooltip";
+import vehicle_thumbnail_map from "../ImageManagement/VehicleThumbnailMap";
+import vehicle_image_map from "../ImageManagement/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
@@ -46,10 +46,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
   const navigate = useNavigate();
 
+  const vehicleMake = filteredVehicleSpecs.make;
   const vehicleModel = filteredVehicleSpecs.model;
-  console.log({vehicleModel});
-  console.log(map_tooltip_to_source["Model 3"].main);
-  //console.log(map_tooltip_to_source[vehicleModel].main);
 
   return (
     <ResultsWrapper
@@ -59,17 +57,17 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       <Grid container columnSpacing={2}>
         <Grid item>
           <ListingHeader>
-            {filteredVehicleSpecs.make} {filteredVehicleSpecs.model}
+            {vehicleMake} {vehicleModel}
           </ListingHeader>
           <Tooltip
-            //title={`IMAGE SOURCE: ${filteredVehicleSpecs.images.main}`}
-            title={`IMAGE SOURCE: ${map_tooltip_to_source[vehicleModel].main}`}
+            //title={`IMAGE SOURCE: ${vehicle_image_map[vehicleModel][0].url}`}
+            title={`IMAGE SOURCE: ${vehicle_thumbnail_map[vehicleModel].url}`}
             arrow
             placement="right-end"
           >
             <ListingImg
-              alt={`${filteredVehicleSpecs.make} ${filteredVehicleSpecs.model}`}
-              src={map_vehicle_to_thumbnail[filteredVehicleSpecs.model]}
+              alt={`${vehicleMake} ${vehicleModel}`}
+              src={vehicle_thumbnail_map[vehicleModel].filepath}
               // [filteredVehicleSpecs.model] is used to access
               // map_vehicle_to_thumbnail object properties to obtain
               // images imported to images.js, b/c React won't handle

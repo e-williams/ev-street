@@ -1,33 +1,36 @@
 import React from "react";
-
+import { Tooltip } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import { Paper } from "@mui/material";
-import ShuffleIcon from "@mui/icons-material/Shuffle";
+import vehicle_gallery_map from "../ImageManagement/VehicleImageMap";
 
-import VEHICLE_IMAGE_MAP from "../ImageManagement/imagesGallery";
+function CarouselImages({ vehicleModel }) {
 
-const CarouselItem = (props) => {
-  return (
-    <Paper>
-      <img src={props.item.url} width="400" height="200" />
-    </Paper>
-  );
-};
-
-const CarouselImages = ({ vehicleModel }) => {
-  const vehicleImages = VEHICLE_IMAGE_MAP[vehicleModel];
+  const vehicleImages = vehicle_gallery_map[vehicleModel];
 
   if (!vehicleImages) {
     return <></>;
   }
 
+  const CarouselItem = (props) => {
+
+    return (
+        <Tooltip
+          title={`IMAGE SOURCE: ${props.item.url}`}
+          arrow
+          placement="bottom-start"
+        >
+          <img src={props.item.filepath} width="670" height="380" />
+        </Tooltip>
+    );
+  };
+
   return (
-    <Carousel NextIcon={<ShuffleIcon />} PrevIcon={<ShuffleIcon />}>
-      {VEHICLE_IMAGE_MAP[vehicleModel].map((item) => (
-        <CarouselItem key={item.location} item={item} />
+    <Carousel>
+      {vehicle_gallery_map[vehicleModel].map((item) => (
+        <CarouselItem key={item.id} item={item} />
       ))}
     </Carousel>
   );
-};
+}
 
 export default CarouselImages;

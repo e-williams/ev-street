@@ -1,12 +1,12 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-function VehiclePageOverview() {
+function Overview() {
   return (
-    <Typography>
+    <Typography sx={{ mt: 4 }}>
       Here will go a general description of the vehicle with some highlights.
     </Typography>
   );
 }
 
-export default VehiclePageOverview;
+export default Overview;

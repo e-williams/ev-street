@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Grid, Button, Typography } from "@mui/material";
+import { Box, Tabs, Tab, Grid, Typography, Button } from "@mui/material";
 
-function VehiclePageSelection({ isOverview, setIsOverview }) {
-  const handleOverviewSelection = () => setIsOverview(true);
+function HeaderSelection() {
 
-  const handleSpecsSelection = () => setIsOverview(false);
+  // Handle content display for Overview and Specifications selection.
+  //const handleOverviewSelection = () => setIsOverview(true);
+  //const handleSpecsSelection = () => setIsOverview(false);
 
-  const overviewHeaderStyling = isOverview ? "underline" : "none";
+  const [value, setValue] = useState(0);
 
-  const specsHeaderStyling = isOverview ? "none" : "underline";
+  // Handle Tabs
+  const handleSelection = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const StyledTab = styled(Tab)({
+    fontSize: 17,
+  });
+
+  //const overviewHeaderStyling = isOverview ? "underline" : "none";
+
+  //const specsHeaderStyling = isOverview ? "none" : "underline";
 
   const ContentSelection = styled(Grid)({
     justifyContent: "center",
@@ -17,7 +29,7 @@ function VehiclePageSelection({ isOverview, setIsOverview }) {
 
   const StyledTypography = styled(Typography)({
     cursor: "pointer",
-    fontSize: 19,
+    fontSize: 18,
     color: "#2db34a",
     "&:hover": {
       textDecoration: "underline",
@@ -27,7 +39,7 @@ function VehiclePageSelection({ isOverview, setIsOverview }) {
   });
 
   const StyledButton = styled(Button)({
-    fontSize: 19,
+    fontSize: 18,
     color: "#2db34a",
     "&:hover": {
       textDecoration: "underline",
@@ -36,6 +48,20 @@ function VehiclePageSelection({ isOverview, setIsOverview }) {
     },
   });
 
+  return (
+    <Box>
+      <Tabs 
+        value={value}
+        onChange={handleSelection}
+        centered
+      >
+        <StyledTab label="Overview" />
+        <StyledTab label="Specifications" />
+      </Tabs>
+    </Box>
+  );
+
+  {/*}
   return (
     <ContentSelection container columnSpacing={7}>
       <Grid item>
@@ -55,6 +81,7 @@ function VehiclePageSelection({ isOverview, setIsOverview }) {
       </Grid>
     </ContentSelection>
   );
+  */}
 }
 
-export default VehiclePageSelection;
+export default HeaderSelection;

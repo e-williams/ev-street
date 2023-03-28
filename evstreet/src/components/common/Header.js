@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Header() {
   const HeaderWrapper = styled(Grid)({
     backgroundColor: "black",
-    marginBottom: 21,
+    marginBottom: 10,
   });
 
   const LogoWrapper = styled(Grid)({

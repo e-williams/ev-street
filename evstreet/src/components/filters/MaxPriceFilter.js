@@ -16,7 +16,7 @@ function MaxPriceFilter({ selectedPrice, setSelectedPrice }) {
   );
 
   return (
-    <FormControl size="small" sx={{ minWidth: 160, mt: 2.2, mb: 1.5 }}>
+    <FormControl size="small" sx={{ minWidth: 160, mt: 1.5, mb: 1.5 }}>
       <InputLabel id="basePriceLabel" sx={{ fontSize: 16, color: "black" }}>
         Max Base Price
       </InputLabel>
