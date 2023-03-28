@@ -1,5 +1,5 @@
 import { React } from "react";
-import Header from "./Common/Header";
+import Header from "./common/Header";
 import { styled } from "@mui/material/styles";
 import { Typography, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";

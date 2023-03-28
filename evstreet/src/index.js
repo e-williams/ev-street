@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/App";
-import AboutUS from "./components/Common/Footer/AboutUs";
-import ContactUs from "./components/Common/Footer/ContactUs";
-import VehiclePageContainer from "./components/VehiclePage/VehiclePageContainer";
+import AboutUS from "./components/common/Footer/AboutUs";
+import ContactUs from "./components/common/Footer/ContactUs";
+import VehiclePageContainer from
+  "./components/VehiclePage/VehiclePageContainer";
 import NotFound from "./components/NotFound";
 
 const router = createBrowserRouter([

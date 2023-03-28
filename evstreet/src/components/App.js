@@ -1,8 +1,8 @@
 import React from "react";
 import "../assets/styles/App.css";
-import Header from "./Common/Header";
+import Header from "./common/Header";
 import SearchPageContainer from "./VehicleResults/SearchPageContainer";
-import Footer from "./Common/Footer/Footer";
+import Footer from "./common/Footer/Footer";
 
 function App() {
   return (

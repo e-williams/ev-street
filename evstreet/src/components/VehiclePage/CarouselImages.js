@@ -12,7 +12,6 @@ function CarouselImages({ vehicleModel }) {
   }
 
   const CarouselItem = (props) => {
-
     return (
         <Tooltip
           title={`IMAGE SOURCE: ${props.item.url}`}

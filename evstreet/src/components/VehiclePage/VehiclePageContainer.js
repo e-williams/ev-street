@@ -7,7 +7,7 @@ import { Typography, Grid, Container, Box, Tabs, Tab } from "@mui/material";
 import { useParams } from "react-router-dom";
 import vehicleData from "../../vehicleData.json";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIcon from "../Common/ArrowBackIcon";
+import ArrowBackIcon from "../common/ArrowBackIcon";
 
 function VehiclePageContainer() {
 
