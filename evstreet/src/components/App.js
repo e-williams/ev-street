@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/styles/App.css";
 import Header from "./Common/Header";
-import SearchPageContainer from "./VehicleResults/SearchPageContainer";
+import SearchPageContainer from "./VehicleSearch/SearchPageContainer";
 import Footer from "./Common/Footer/Footer";
 
 function App() {

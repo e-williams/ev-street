@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import { Outlet, useParams } from "react-router-dom";
-
 import vehicleData from "../../vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
@@ -210,7 +209,7 @@ function SearchPageContainer() {
 
   const FilterWrapper = styled(Grid)({
     marginTop: 10,
-    marginLeft: 22,
+    marginLeft: 23,
     paddingTop: 8,
     paddingRight: 4,
     paddingBottom: 8,
@@ -221,7 +220,6 @@ function SearchPageContainer() {
   });
 
   return (
-    // new code for MUI implementation
     <SearchPageWrapper container columnSpacing={3}>
       <FilterWrapper item>
         <SearchContainer

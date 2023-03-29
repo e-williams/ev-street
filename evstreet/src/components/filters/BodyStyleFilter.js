@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Grid, Typography, FormGroup } from "@mui/material";
-
-import CustomCheckbox from "../VehicleResults/Checkbox";
+import CustomCheckbox from "./Checkbox";
 
 function BodyStyleFilter({
   vehicleCheckboxFilters,

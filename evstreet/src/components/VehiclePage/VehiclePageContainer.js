@@ -3,7 +3,7 @@ import CarouselImages from "./CarouselImages";
 import Overview from "./Overview";
 import Specifications from "./Specifications";
 import { styled } from "@mui/material/styles";
-import { Typography, Grid, Container, Box, Tabs, Tab } from "@mui/material";
+import { Container, Typography, Grid, Box, Tabs, Tab } from "@mui/material";
 import { useParams } from "react-router-dom";
 import vehicleData from "../../vehicleData.json";
 import { useNavigate } from "react-router-dom";
@@ -34,25 +34,15 @@ function VehiclePageContainer() {
     setValue(newValue);
   };
 
-  const NoVehicleWrapper = styled(Container)({
+  const NoVehicleWrapper = styled(Box)({
     fontFamily: "Roboto, Verdana, sans-serif",
-    marginTop: 40,
     color: "#7e7e7e",
   });
 
   const NoVehicleTypo = styled(Typography)({
     marginBottom: 6,
     fontSize: 19,
-  });
-
-  const StyledNav = styled(Typography)({
-    fontSize: 15,
-    cursor: "pointer",
-    display: "inline",
-    "&:hover": {
-      borderBottom: "1px solid #2db34a",
-      color: "#2db34a",
-    },
+    fontWeight: "300",
   });
 
   const navigate = useNavigate();
@@ -75,10 +65,12 @@ function VehiclePageContainer() {
     // if vehicle evaluates to false
     return (
         <NoVehicleWrapper>
-          <NoVehicleTypo>Oops, that vehicle does not exist.</NoVehicleTypo>
-          <StyledNav onClick={() => navigate(-1)}>
-            Click here to return to the previous page.
-          </StyledNav>
+          <Box onClick={() => navigate(-1)}>
+            <ArrowBackIcon />
+          </Box>
+          <Container maxWidth="xl">
+            < NoVehicleTypo>Oops, that vehicle does not exist.</NoVehicleTypo>
+          </Container>
         </NoVehicleWrapper>
     );
   } else {

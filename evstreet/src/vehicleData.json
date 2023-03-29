@@ -5,25 +5,50 @@
     "model": "Model 3",
     "base_price": 43990,
     "body_style": "5-door sedan",
-    "seating_capacity": "5",
     "convertible_option": "no",
+    "seating_capacity": "5",
+    "cargo_space": "23 cu ft",
     "luxary_vehicle": "yes",
     "drivetrain": "RWD or AWD",
-    "maximum_range": {
-      "standard": "272 miles",
-      "long_range": "358 miles",
-      "performance": "315 miles"
+    "awd_motor_system": "2 motors total for front and rear wheels",
+    "base_weight": "3,862 lbs - RWD trim",
+    "weight": {
+      "long_range_awd": "4,034 lbs",
+      "performance_awd": "4,048 lbs",
+      "rwd": "3,862 lbs"
     },
-    "energy_efficiency": {
-      "rwd": "25",
-      "awd": "26",
-      "performance_awd": "30"
+    "max_range": "358 - Long Range AWD trim",
+    "max_range_options": {
+      "long_range_awd": "358 miles",
+      "performance_awd": "315 miles",
+      "rwd": "272 miles"
     },
+    "fuel_economy": {
+      "long_range_awd": "26 kWh/100 mi",
+      "performance_awd": "30 kWh/100 mi",
+      "rwd": "25 kWh/100 mi"
+    },
+    "max_MPGe": "138 - Rear-Wheel Drive trim",
     "MPGe": {
-      "rwd": "138",
-      "awd": "134",
-      "performance_awd": "113"
+      "long_range_awd": "134",
+      "performance_awd": "113",
+      "rwd": "138"
     },
+    "top_acceleration_0_60": "3.1s - Performance AWD trim",
+    "acceleration_0_60": {
+      "long_range_awd": "4.2s",
+      "performance_awd": "3.1s",
+      "rwd": "5.8s"
+    },
+    "max_supercharging": "11.5 kW(48A) - AWD trim levels",
+    "max_supercharging_details": {
+      "longe_range_awd": "11.5 kW(48A)",
+      "performance_awd": "11.5 kW(48A)",
+      "rwd": "7.6 kW(32A)"
+    },
+    "driver_assist": "yes",
+    "driver_assist_options": "Autopilot, Enhanced Autopilot, Full Self-Driving",
+    "self_parking": "yes",
     "year": {
       "2022": {
         "base_price": "test format"

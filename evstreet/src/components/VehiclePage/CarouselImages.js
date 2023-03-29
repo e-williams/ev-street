@@ -1,7 +1,7 @@
 import React from "react";
 import { Tooltip } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import vehicle_gallery_map from "../ImageManagement/VehicleImageMap";
+import vehicle_gallery_map from "../ImageHandling/VehicleImageMap";
 
 function CarouselImages({ vehicleModel }) {
 
@@ -12,7 +12,6 @@ function CarouselImages({ vehicleModel }) {
   }
 
   const CarouselItem = (props) => {
-
     return (
         <Tooltip
           title={`IMAGE SOURCE: ${props.item.url}`}

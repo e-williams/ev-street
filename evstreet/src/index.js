@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./components/App";
-import AboutUS from "./components/Common/Footer/AboutUs";
-import ContactUs from "./components/Common/Footer/ContactUs";
-import VehiclePageContainer from "./components/VehiclePage/VehiclePageContainer";
-import NotFound from "./components/NotFound";
+import App from "./Components/App";
+import AboutUS from "./Components/Common/Footer/AboutUs";
+import ContactUs from "./Components/Common/Footer/ContactUs";
+import VehiclePageContainer from "./Components/VehiclePage/VehiclePageContainer";
+import NotFound from "./Components/ErrorHandling/NotFound";
 
 const router = createBrowserRouter([
   {
