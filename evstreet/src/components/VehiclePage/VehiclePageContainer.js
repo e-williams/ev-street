@@ -10,12 +10,11 @@ import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "../Common/ArrowBackIcon";
 
 function VehiclePageContainer() {
-
   // Get vehicleId param from the URL.
   const { vehicleId } = useParams();
-    // useParams() returns an object of key/value pairs of the dynamic params
-    // of the current URL.
-    // destructured from: const vehicleId = useParams().vehicleId
+  // useParams() returns an object of key/value pairs of the dynamic params
+  // of the current URL.
+  // destructured from: const vehicleId = useParams().vehicleId
   console.log({ vehicleId });
 
   // Set state of variable vehicle to match vehicleId params.
@@ -58,19 +57,23 @@ function VehiclePageContainer() {
 
   const StyledTab = styled(Tab)({
     fontSize: 17,
+
+    "&.Mui-selected": {
+      color: "#2e7d32",
+    },
   });
 
   if (!vehicle) {
     // if vehicle evaluates to false
     return (
-        <NoVehicleWrapper>
-          <Box onClick={() => navigate(-1)}>
-            <ArrowBackIcon />
-          </Box>
-          <Container maxWidth="xl">
-            < NoVehicleTypo>Oops, that vehicle does not exist.</NoVehicleTypo>
-          </Container>
-        </NoVehicleWrapper>
+      <NoVehicleWrapper>
+        <Box onClick={() => navigate(-1)}>
+          <ArrowBackIcon />
+        </Box>
+        <Container maxWidth="xl">
+          <NoVehicleTypo>Oops, that vehicle does not exist.</NoVehicleTypo>
+        </Container>
+      </NoVehicleWrapper>
     );
   } else {
     return (
@@ -91,6 +94,7 @@ function VehiclePageContainer() {
             value={value}
             onChange={handleSelection}
             centered
+            TabIndicatorProps={{ style: { backgroundColor: "#2e7d32" } }}
           >
             <StyledTab label="Overview" />
             <StyledTab label="Specifications" />
