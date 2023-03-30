@@ -50,7 +50,6 @@ function VehiclePageContainer() {
   const VehiclePageWrapper = styled(Box)({
     fontFamily: "Roboto, Verdana, sans-serif",
     color: "#7e7e7e",
-    width: "100%",
   });
 
   const HeaderTypo = styled(Typography)({

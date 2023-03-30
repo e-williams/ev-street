@@ -17,11 +17,11 @@
       "performance_awd": "4,048 lbs",
       "rwd": "3,862 lbs"
     },
-    "max_range": "358 - Long Range AWD trim",
+    "max_range": "358 mi - Long Range AWD trim",
     "max_range_options": {
-      "long_range_awd": "358 miles",
-      "performance_awd": "315 miles",
-      "rwd": "272 miles"
+      "long_range_awd": "358 mi",
+      "performance_awd": "315 mi",
+      "rwd": "272 mi"
     },
     "fuel_economy": {
       "long_range_awd": "26 kWh/100 mi",
