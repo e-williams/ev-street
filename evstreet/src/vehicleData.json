@@ -18,19 +18,16 @@
       "rwd": "3,862 lbs"
     },
 
-
-    // KIA
-    "max_range_options": {
+    "max_range_options1": {
       "270": {
         "train": "rwd",
         "trim": "standard",
         "millage": "370 miles",
         "label": "AWD Long Range Trim"
       }
-    }
+    },
 
-    // TESLA
-    "max_range_options": {
+    "max_range_options2": {
       "370": {
         "train": "awd",
         "trim": "long_range",
@@ -43,9 +40,9 @@
         "millage": "355 miles",
         "label": "AWD Performance Trim"
       }
-    }
+    },
 
-    "max_range_options": {
+    "max_range_options3": {
       "max_range_route": ["awd", "long_range", "millage"],
       "rwd": {
         "standard": {
@@ -59,8 +56,8 @@
           "label": "RWD trim"
         }
       }
-    }
-    "max_range_options": {
+    },
+    "max_range_options4": {
       "max_range_route": ["awd", "long_range", "millage"],
       "awd": {
         "long_range": {
@@ -78,7 +75,7 @@
           "label": "RWD trim"
         }
       }
-    }
+    },
 
     "max_range": "358 - Long Range AWD trim",
     "max_range_options": {
