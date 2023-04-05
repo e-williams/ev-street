@@ -115,10 +115,10 @@ function Specifications(vehicle) {
         <IndentedGrid item>
           <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{standard.MPGe}</InlineTypoSm>
         </IndentedGrid>
-        <IndentedGrid>
+        <IndentedGrid item>
           <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{standard["0_60"]}</InlineTypoSm>
         </IndentedGrid>
-        <IndentedGrid>
+        <IndentedGrid item>
           <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{standard.supercharging}</InlineTypoSm>
         </IndentedGrid>
 
@@ -146,10 +146,10 @@ function Specifications(vehicle) {
         <IndentedGrid item>
           <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{awd.MPGe}</InlineTypoSm>
         </IndentedGrid>
-        <IndentedGrid>
+        <IndentedGrid item>
           <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{awd["0_60"]}</InlineTypoSm>
         </IndentedGrid>
-        <IndentedGrid>
+        <IndentedGrid item>
           <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{awd.supercharging}</InlineTypoSm>
         </IndentedGrid>
 
@@ -177,10 +177,10 @@ function Specifications(vehicle) {
         <IndentedGrid item>
           <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{performance.MPGe}</InlineTypoSm>
         </IndentedGrid>
-        <IndentedGrid>
+        <IndentedGrid item>
           <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{performance["0_60"]}</InlineTypoSm>
         </IndentedGrid>
-        <IndentedGrid>
+        <IndentedGrid item>
           <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{performance.supercharging}</InlineTypoSm>
         </IndentedGrid>
       </Grid>
