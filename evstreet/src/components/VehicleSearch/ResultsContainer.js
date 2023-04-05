@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
+  console.log("filtvehspecs:::", filteredVehicleSpecs);
+
   const priceToDollars = () =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -44,10 +46,20 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     color: "#505050",
   });
 
+  const BoldTypo = styled(Typography)({
+    fontSize: 12.6,
+    fontWeight: 500,
+    display: "inline",
+  });
+
   const navigate = useNavigate();
 
   const vehicleMake = filteredVehicleSpecs.make;
   const vehicleModel = filteredVehicleSpecs.model;
+  const trim = filteredVehicleSpecs.trim;
+  const results = filteredVehicleSpecs.results
+
+  console.log('range::::', filteredVehicleSpecs.trim?.performance.range);
 
   return (
     <ResultsWrapper
@@ -74,50 +86,50 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             />
           </Tooltip>
         </Grid>
-        <Grid item sx={{ mt: 2.9 }}>
-          <ListingSpecs >
-            Base Price: {priceToDollars()}
+        <Grid item xs={2.4} sx={{ mt: 2.9 }}>
+          <ListingSpecs>
+            <BoldTypo>Base Price:</BoldTypo> {priceToDollars()}
           </ListingSpecs>
           <ListingSpecs>
-            Body Style: {filteredVehicleSpecs.body_style}
+            <BoldTypo>Body Style:</BoldTypo> {filteredVehicleSpecs.body_style}
           </ListingSpecs>
           <ListingSpecs>
-            Convertible Option: {filteredVehicleSpecs.convertible_option}
+            <BoldTypo>Convertible Option:</BoldTypo> {filteredVehicleSpecs.convertible_option}
           </ListingSpecs>
           <ListingSpecs>
-            Seating Capacity: {filteredVehicleSpecs.seating_capacity}
+            <BoldTypo>Seating Capacity:</BoldTypo> {filteredVehicleSpecs.seating_capacity}
           </ListingSpecs>
           <ListingSpecs>
-            Cargo Space: {filteredVehicleSpecs.cargo_space}
+            <BoldTypo>Cargo Space:</BoldTypo> {filteredVehicleSpecs.cargo_space}
           </ListingSpecs>
           <ListingSpecs>
-            Luxary Vehicle: {filteredVehicleSpecs.luxary_vehicle}
+            <BoldTypo>Luxary Vehicle:</BoldTypo> {filteredVehicleSpecs.luxary_vehicle}
           </ListingSpecs>
           <ListingSpecs>
-            Drivetrain: {filteredVehicleSpecs.drivetrain}
+            <BoldTypo>Drivetrain:</BoldTypo> {filteredVehicleSpecs.drivetrain}
           </ListingSpecs>
         </Grid>
         <Grid item sx={{ mt: 2.9 }}>
           <ListingSpecs>
-            Max Range: {filteredVehicleSpecs.max_range}
+            <BoldTypo>Range:</BoldTypo> {results?.range}
           </ListingSpecs>
           <ListingSpecs>
-            Max Fuel Economy (MPGe): {filteredVehicleSpecs.max_MPGe}
+            <BoldTypo>Fuel Economy:</BoldTypo> {results?.MPGe}
           </ListingSpecs>
           <ListingSpecs>
-            Top Acceleration (0-60 mph): {filteredVehicleSpecs.top_acceleration_0_60}
+            <BoldTypo>Acceleration (0-60):</BoldTypo> {results?.["0_60"]}
           </ListingSpecs>
           <ListingSpecs>
-            Max Supercharging: {filteredVehicleSpecs.max_supercharging}
+            <BoldTypo>Supercharging Max:</BoldTypo> {results?.supercharging}
           </ListingSpecs>
           <ListingSpecs>
-            Driver Assistance: {filteredVehicleSpecs.driver_assist}
+            <BoldTypo>Driver Assistance System:</BoldTypo> {filteredVehicleSpecs.driver_assist}
           </ListingSpecs>
           <ListingSpecs>
-            Self-Parking: {filteredVehicleSpecs.self_parking}
+            <BoldTypo>Self-Parking:</BoldTypo> {filteredVehicleSpecs.self_parking}
           </ListingSpecs>
           <ListingSpecs>
-            Weight: {filteredVehicleSpecs.base_weight}
+            <BoldTypo>Weight:</BoldTypo> {trim?.standard.weight} {`- ${trim?.standard.label} trim`}
           </ListingSpecs>
         </Grid>
       </Grid>

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import CarouselImages from "./CarouselImages";
-import Overview from "./Overview";
-import Specifications from "./Specifications";
 import { styled } from "@mui/material/styles";
-import { Container, Typography, Grid, Box, Tabs, Tab } from "@mui/material";
+import { Container, Typography, Grid, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import vehicleData from "../../vehicleData.json";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "../Common/ArrowBackIcon";
+import VehicleDescription from "./VehicleDescription";
 
 function VehiclePageContainer() {
   // Get vehicleId param from the URL.
@@ -23,15 +22,7 @@ function VehiclePageContainer() {
     // Unary plus operator + converts vehicleId from string to num.
   );
 
-  // const [isOverview, setIsOverview] = useState(true);
-
-  // Define state for Tab selection
-  const [value, setValue] = useState(0);
-
-  // Handle Tab selection
-  const handleSelection = (event, newValue) => {
-    setValue(newValue);
-  };
+  console.log("vehicle state variable::::", vehicle);
 
   const NoVehicleWrapper = styled(Box)({
     fontFamily: "Roboto, Verdana, sans-serif",
@@ -53,14 +44,6 @@ function VehiclePageContainer() {
 
   const HeaderTypo = styled(Typography)({
     textAlign: "center",
-  });
-
-  const StyledTab = styled(Tab)({
-    fontSize: 17,
-
-    "&.Mui-selected": {
-      color: "#2e7d32",
-    },
   });
 
   if (!vehicle) {
@@ -89,27 +72,9 @@ function VehiclePageContainer() {
           </Grid>
         </Grid>
         <CarouselImages vehicleModel={vehicle.model} />
-        <Box>
-          <Tabs
-            value={value}
-            onChange={handleSelection}
-            centered
-            TabIndicatorProps={{ style: { backgroundColor: "#2e7d32" } }}
-          >
-            <StyledTab label="Overview" />
-            <StyledTab label="Specifications" />
-          </Tabs>
-        </Box>
-        {!value ? <Overview /> : <Specifications />}
-        {/*
-        <HeaderSelection
-          value={value}
-          setValue={setValue}
-          //setIsOverview={setIsOverview}
-          //isOverview={isOverview}
+        <VehicleDescription 
+          vehicle={vehicle}
         />
-        {isOverview ? <Overview /> : <Specifications />}
-        */}
       </VehiclePageWrapper>
     );
   }

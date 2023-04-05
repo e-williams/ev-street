@@ -3,78 +3,85 @@
     "id": 0,
     "make": "TESLA",
     "model": "Model 3",
-    "base_price": 43990,
+    "base_price": 42990,
     "body_style": "5-door sedan",
     "convertible_option": "no",
-    "seating_capacity": "5",
+    "seating_capacity": 5,
     "cargo_space": "23 cu ft",
     "luxary_vehicle": "yes",
     "drivetrain": "RWD or AWD",
-    "awd_motor_system": "2 motors total for front and rear wheels",
+    "self_parking": "yes (Autopilot, Enhanced Autopilot packages)",
+    "driver_assistance": "yes",
+    "driver_assistance_packages": {
+      "level1": {
+        "label": "Autopilot",
+        "description": "Traffic-Aware Cruise Control, Autosteer."
+      },
+      "level2": {
+        "label": "Enhanced Autopilot",
+        "description": "In addition to Autopilot featurs, includes Auto Lane Change, Navigate on Autopilot, Autopark, Summon, Smart Summon."
+      },
+      "level3": {
+        "label": "Full Self-Driving",
+        "description": "In addition to Autopilot and Enhanced Autopilot features, includes Traffic and Stop Sign Control."
+      }
+    },
+    "trim": {
+      "standard": {
+        "base_price": "$42,990",
+        "label": "Rear-Wheel Drive trim",
+        "weight": "3,862 lbs",
+        "drivetrain": "RWD",
+        "motors": "single motor for rear wheels",
+        "range": "272 mi (EPA est.)",
+        "fuel_economy": "25 kWh/100 mi (EPA est.)",
+        "MPGe": 138,
+        "0_60": "5.8s",
+        "supercharging": "7.6 kW(32A)"
+      },
+      "awd": {
+        "base_price": "tbd",
+        "label": "Long Range AWD trim",
+        "weight": "4,034 lbs",
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "range": "358 mi",
+        "fuel_economy": "26 kWh/100 mi",
+        "MPGe": 134,
+        "0_60": "4.2s",
+        "supercharging": "11.5 kW(48A)"
+      },
+      "performance": {
+        "base_price": "$53,990",
+        "label": "Performance trim",
+        "weight": "4,048 lbs",
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "range": "315 mi",
+        "fuel_economy": "30 kWh/100 mi",
+        "MPGe": 113,
+        "0_60": "3.1s",
+        "supercharging": "11.5 kW(48A)"
+      }
+    },
+    "results": {
+      "range": "358 mi (EPA est.) - Long Range AWD trim",
+      "MPGe": "138 MPGe (EPA est.) - Rear-Wheel Drive trim",
+      "0_60": "3.1s - Performance trim",
+      "supercharging": "11.5 kW(48A) - AWD, Performance trims"
+    },
+    "test_format_year": {
+      "2022": {
+        "base_price": "test format"
+      }
+    },
+
     "base_weight": "3,862 lbs - RWD trim",
     "weight": {
       "long_range_awd": "4,034 lbs",
       "performance_awd": "4,048 lbs",
       "rwd": "3,862 lbs"
     },
-
-    "max_range_options1": {
-      "270": {
-        "train": "rwd",
-        "trim": "standard",
-        "millage": "370 miles",
-        "label": "AWD Long Range Trim"
-      }
-    },
-    "max_range_options2": {
-      "370": {
-        "train": "awd",
-        "trim": "long_range",
-        "millage": "370 miles",
-        "label": "AWD Long Range Trim"
-      },
-      "355": {
-        "train": "awd",
-        "trim": "performance",
-        "millage": "355 miles",
-        "label": "AWD Performance Trim"
-      }
-    },
-    "max_range_options3": {
-      "max_range_route": ["awd", "long_range", "millage"],
-      "rwd": {
-        "standard": {
-          "millage": "272 miles",
-          "label": "RWD trim"
-        }
-      },
-      "awd": {
-        "long_rande": {
-          "millage": "300 miles",
-          "label": "RWD trim"
-        }
-      }
-    },
-    "max_range_options4": {
-      "max_range_route": ["awd", "long_range", "millage"],
-      "awd": {
-        "long_range": {
-          "millage": "358 miles",
-          "label": "Long Range AWD trim"
-        },
-        "performance": {
-          "millage": "315 miles",
-          "label": "Performance AWD trim"
-        }
-      },
-      "rwd": {
-        "standard": {
-          "millage": "272 miles",
-          "label": "RWD trim"
-        }
-      }
-    },
-
     "max_range": "358 - Long Range AWD trim",
     "max_range_options": {
       "long_range_awd": "358 mi",
@@ -106,13 +113,9 @@
     },
     "driver_assist": "yes",
     "driver_assist_options": "Autopilot, Enhanced Autopilot, Full Self-Driving",
-    "self_parking": "yes",
-    "year": {
-      "2022": {
-        "base_price": "test format"
-      }
-    }
+    "self_parking": "yes"
   },
+
   {
     "id": 1,
     "make": "Kia",
@@ -120,6 +123,7 @@
     "base_price": 48700,
     "body_style": "5-door crossover"
   },
+
   {
     "id": 2,
     "make": "Audi",

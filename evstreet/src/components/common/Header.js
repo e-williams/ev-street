@@ -36,7 +36,7 @@ function Header() {
     <HeaderWrapper container>
       <LogoWrapper item onClick={() => navigate("/")}>
         <Img alt="EVstreet logo" src={evLogo} />
-        <LogoTypo>Find the right car</LogoTypo>
+        <LogoTypo>Find your ride</LogoTypo>
       </LogoWrapper>
     </HeaderWrapper>
   );
