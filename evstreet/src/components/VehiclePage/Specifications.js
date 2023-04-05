@@ -91,98 +91,104 @@ function Specifications(vehicle) {
       </Grid>
 
       <Grid item xs={6}>
-        <Grid item>
-          <BoldInlineTypo>{`${standard.label}:`}</BoldInlineTypo>
+        <Grid Container direction="column">
+          <Grid item>
+            <BoldInlineTypo>{`${standard.label}:`}</BoldInlineTypo>
+          </Grid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Base Price:</BoldInlineTypoSm> <InlineTypoSm>{standard.base_price}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Weight:</BoldInlineTypoSm> <InlineTypoSm>{standard.weight}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Drivetrain:</BoldInlineTypoSm> <InlineTypoSm>{standard.drivetrain}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Motors:</BoldInlineTypoSm> <InlineTypoSm>{standard.motors}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Range:</BoldInlineTypoSm> <InlineTypoSm>{standard.range}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Fuel Economy:</BoldInlineTypoSm> <InlineTypoSm>{standard.fuel_economy}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{standard.MPGe}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{standard["0_60"]}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{standard.supercharging}</InlineTypoSm>
+          </IndentedGrid>
         </Grid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Base Price:</BoldInlineTypoSm> <InlineTypoSm>{standard.base_price}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Weight:</BoldInlineTypoSm> <InlineTypoSm>{standard.weight}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Drivetrain:</BoldInlineTypoSm> <InlineTypoSm>{standard.drivetrain}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Motors:</BoldInlineTypoSm> <InlineTypoSm>{standard.motors}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Range:</BoldInlineTypoSm> <InlineTypoSm>{standard.range}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Fuel Economy:</BoldInlineTypoSm> <InlineTypoSm>{standard.fuel_economy}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{standard.MPGe}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{standard["0_60"]}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{standard.supercharging}</InlineTypoSm>
-        </IndentedGrid>
 
-        <Grid item sx={{ mt: 3 }}>
-          <BoldInlineTypo>{`${awd.label}:`}</BoldInlineTypo>
+        <Grid Container direction="column">
+          <Grid item sx={{ mt: 3 }}>
+            <BoldInlineTypo>{`${awd.label}:`}</BoldInlineTypo>
+          </Grid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Base Price:</BoldInlineTypoSm> <InlineTypoSm>{awd.base_price}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Weight:</BoldInlineTypoSm> <InlineTypoSm>{awd.weight}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Drivetrain:</BoldInlineTypoSm> <InlineTypoSm>{awd.drivetrain}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Motors:</BoldInlineTypoSm> <InlineTypoSm>{awd.motors}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Range:</BoldInlineTypoSm> <InlineTypoSm>{awd.range}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Fuel Economy:</BoldInlineTypoSm> <InlineTypoSm>{awd.fuel_economy}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{awd.MPGe}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{awd["0_60"]}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{awd.supercharging}</InlineTypoSm>
+          </IndentedGrid>
         </Grid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Base Price:</BoldInlineTypoSm> <InlineTypoSm>{awd.base_price}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Weight:</BoldInlineTypoSm> <InlineTypoSm>{awd.weight}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Drivetrain:</BoldInlineTypoSm> <InlineTypoSm>{awd.drivetrain}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Motors:</BoldInlineTypoSm> <InlineTypoSm>{awd.motors}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Range:</BoldInlineTypoSm> <InlineTypoSm>{awd.range}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Fuel Economy:</BoldInlineTypoSm> <InlineTypoSm>{awd.fuel_economy}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{awd.MPGe}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{awd["0_60"]}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{awd.supercharging}</InlineTypoSm>
-        </IndentedGrid>
 
-        <Grid item sx={{ mt: 3 }}>
-          <BoldInlineTypo>{`${performance.label}:`}</BoldInlineTypo>
+        <Grid Container direction="column">
+          <Grid item sx={{ mt: 3 }}>
+            <BoldInlineTypo>{`${performance.label}:`}</BoldInlineTypo>
+          </Grid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Base Price:</BoldInlineTypoSm> <InlineTypoSm>{performance.base_price}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Weight:</BoldInlineTypoSm> <InlineTypoSm>{performance.weight}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Drivetrain:</BoldInlineTypoSm> <InlineTypoSm>{performance.drivetrain}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Motors:</BoldInlineTypoSm> <InlineTypoSm>{performance.motors}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Range:</BoldInlineTypoSm> <InlineTypoSm>{performance.range}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Fuel Economy:</BoldInlineTypoSm> <InlineTypoSm>{performance.fuel_economy}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{performance.MPGe}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{performance["0_60"]}</InlineTypoSm>
+          </IndentedGrid>
+          <IndentedGrid item>
+            <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{performance.supercharging}</InlineTypoSm>
+          </IndentedGrid>
         </Grid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Base Price:</BoldInlineTypoSm> <InlineTypoSm>{performance.base_price}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Weight:</BoldInlineTypoSm> <InlineTypoSm>{performance.weight}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Drivetrain:</BoldInlineTypoSm> <InlineTypoSm>{performance.drivetrain}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Motors:</BoldInlineTypoSm> <InlineTypoSm>{performance.motors}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Range:</BoldInlineTypoSm> <InlineTypoSm>{performance.range}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Fuel Economy:</BoldInlineTypoSm> <InlineTypoSm>{performance.fuel_economy}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm> <InlineTypoSm>{performance.MPGe}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm> <InlineTypoSm>{performance["0_60"]}</InlineTypoSm>
-        </IndentedGrid>
-        <IndentedGrid item>
-          <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm> <InlineTypoSm>{performance.supercharging}</InlineTypoSm>
-        </IndentedGrid>
       </Grid>
     </SpecsWrapper>
   );
