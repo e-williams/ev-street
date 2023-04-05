@@ -34,7 +34,7 @@
         "drivetrain": "RWD",
         "motors": "single motor for rear wheels",
         "range": "272 mi (EPA est.)",
-        "fuel_economy": "25 kWh/100 mi (EPA est.)",
+        "fuel_economy": 25,
         "MPGe": 138,
         "0_60": "5.8s",
         "supercharging": "7.6 kW(32A)"

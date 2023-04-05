@@ -14,15 +14,12 @@ function VehiclePageContainer() {
   // useParams() returns an object of key/value pairs of the dynamic params
   // of the current URL.
   // destructured from: const vehicleId = useParams().vehicleId
-  console.log({ vehicleId });
 
   // Set state of variable vehicle to match vehicleId params.
   const [vehicle, setVehicle] = useState(
     vehicleData.find((v) => v.id === +vehicleId)
     // Unary plus operator + converts vehicleId from string to num.
   );
-
-  console.log("vehicle state variable::::", vehicle);
 
   const NoVehicleWrapper = styled(Box)({
     fontFamily: "Roboto, Verdana, sans-serif",
@@ -72,9 +69,10 @@ function VehiclePageContainer() {
           </Grid>
         </Grid>
         <CarouselImages vehicleModel={vehicle.model} />
-        <VehicleDescription 
-          vehicle={vehicle}
-        />
+        {/* Using Destructuring */}
+        <VehicleDescription vehicle={vehicle} />
+        {/* Using Spread operator */}
+        {/* <VehicleDescription {...vehicle} /> */}
       </VehiclePageWrapper>
     );
   }

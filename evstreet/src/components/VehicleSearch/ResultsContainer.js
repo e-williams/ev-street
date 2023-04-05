@@ -5,7 +5,6 @@ import VehicleImageMap from "../ImageHandling/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
-
   console.log("filtvehspecs:::", filteredVehicleSpecs);
 
   const priceToDollars = () =>
@@ -57,9 +56,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
   const vehicleMake = filteredVehicleSpecs.make;
   const vehicleModel = filteredVehicleSpecs.model;
   const trim = filteredVehicleSpecs.trim;
-  const results = filteredVehicleSpecs.results
-
-  console.log('range::::', filteredVehicleSpecs.trim?.performance.range);
+  const results = filteredVehicleSpecs.results;
 
   return (
     <ResultsWrapper
@@ -86,7 +83,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             />
           </Tooltip>
         </Grid>
-        <Grid item xs={2.4} sx={{ mt: 2.9 }}>
+        <Grid item xs={3} sx={{ mt: 2.9 }}>
+          {/* TODO: Avoid p inside of p */}
           <ListingSpecs>
             <BoldTypo>Base Price:</BoldTypo> {priceToDollars()}
           </ListingSpecs>
@@ -94,22 +92,25 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             <BoldTypo>Body Style:</BoldTypo> {filteredVehicleSpecs.body_style}
           </ListingSpecs>
           <ListingSpecs>
-            <BoldTypo>Convertible Option:</BoldTypo> {filteredVehicleSpecs.convertible_option}
+            <BoldTypo>Convertible Option:</BoldTypo>{" "}
+            {filteredVehicleSpecs.convertible_option}
           </ListingSpecs>
           <ListingSpecs>
-            <BoldTypo>Seating Capacity:</BoldTypo> {filteredVehicleSpecs.seating_capacity}
+            <BoldTypo>Seating Capacity:</BoldTypo>{" "}
+            {filteredVehicleSpecs.seating_capacity}
           </ListingSpecs>
           <ListingSpecs>
             <BoldTypo>Cargo Space:</BoldTypo> {filteredVehicleSpecs.cargo_space}
           </ListingSpecs>
           <ListingSpecs>
-            <BoldTypo>Luxary Vehicle:</BoldTypo> {filteredVehicleSpecs.luxary_vehicle}
+            <BoldTypo>Luxary Vehicle:</BoldTypo>{" "}
+            {filteredVehicleSpecs.luxary_vehicle}
           </ListingSpecs>
           <ListingSpecs>
             <BoldTypo>Drivetrain:</BoldTypo> {filteredVehicleSpecs.drivetrain}
           </ListingSpecs>
         </Grid>
-        <Grid item sx={{ mt: 2.9 }}>
+        <Grid item>
           <ListingSpecs>
             <BoldTypo>Range:</BoldTypo> {results?.range}
           </ListingSpecs>
@@ -123,13 +124,16 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             <BoldTypo>Supercharging Max:</BoldTypo> {results?.supercharging}
           </ListingSpecs>
           <ListingSpecs>
-            <BoldTypo>Driver Assistance System:</BoldTypo> {filteredVehicleSpecs.driver_assist}
+            <BoldTypo>Driver Assistance System:</BoldTypo>{" "}
+            {filteredVehicleSpecs.driver_assist}
           </ListingSpecs>
           <ListingSpecs>
-            <BoldTypo>Self-Parking:</BoldTypo> {filteredVehicleSpecs.self_parking}
+            <BoldTypo>Self-Parking:</BoldTypo>{" "}
+            {filteredVehicleSpecs.self_parking}
           </ListingSpecs>
           <ListingSpecs>
-            <BoldTypo>Weight:</BoldTypo> {trim?.standard.weight} {`- ${trim?.standard.label} trim`}
+            <BoldTypo>Weight:</BoldTypo> {trim?.standard.weight}{" "}
+            {`- ${trim?.standard.label} trim`}
           </ListingSpecs>
         </Grid>
       </Grid>
