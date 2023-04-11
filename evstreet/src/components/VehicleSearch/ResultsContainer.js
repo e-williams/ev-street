@@ -5,14 +5,6 @@ import VehicleImageMap from "../ImageHandling/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
-  console.log("filtvehspecs:::", filteredVehicleSpecs);
-
-  const priceToDollars = () =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(filteredVehicleSpecs.base_price);
 
   const ResultsWrapper = styled(Paper)({
     backgroundColor: "#f9f9f9",
@@ -39,43 +31,113 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     borderBottomLeftRadius: 5,
   });
 
-  const ListingSpecs = styled(Typography)({
-    fontSize: 12.6,
-    fontWeight: 300,
+  const SpecsRows = styled(Grid)({
+    height: 19,
     color: "#505050",
+  })
+
+  const ListingSpecs = styled(Typography)({
+    fontSize: 12.2,
+    fontWeight: 300,
+    display: "inline",
   });
 
   const BoldTypo = styled(Typography)({
-    fontSize: 12.6,
+    fontSize: 12.2,
     fontWeight: 500,
     display: "inline",
   });
 
   const navigate = useNavigate();
 
-  const vehicleMake = filteredVehicleSpecs.make;
-  const vehicleModel = filteredVehicleSpecs.model;
-  const trim = filteredVehicleSpecs.trim;
-  const results = filteredVehicleSpecs.results;
+  const priceToDollars = (price) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+    }).format(price);
+
+  const {
+    make, 
+    model
+  } = filteredVehicleSpecs;
+
+  const base_price = filteredVehicleSpecs.trim?.standard.base_price;
+
+  const { results } = filteredVehicleSpecs;
+
+  // Get max range, MPGe, 0_60, supercharging of all trims:
+  const { trim = {} } = filteredVehicleSpecs;
+    // destructures trim and wraps it in an object
+
+  const rangeArray = [];
+  const MPGeArray = [];
+  const accelerationArray = [];
+  const chargingArray = [];
+  const vehicleTrims = Object.values(trim);
+    // returns an array of the sting-keyed property values of trim
+  // Loop through trims and add range to rangeArray:
+  vehicleTrims.forEach((trim) => {
+    const range = trim.range;
+    const MPGe = trim.MPGe;
+    const acceleration = trim["0_60"];
+    const charging = trim.max_charging;
+    rangeArray.push(range);
+    MPGeArray.push(MPGe);
+    accelerationArray.push(acceleration);
+    chargingArray.push(charging);
+  });
+  const maxRange = Math.max(...rangeArray);
+  const maxMPGe = Math.max(...MPGeArray);
+  const minAcceleration = Math.min(...accelerationArray);
+  const maxCharging = Math.max(...chargingArray);
+
+  // Get trim labels for max/min values
+  let maxRangeLabel = [];
+  let maxMPGeLabel = [];
+  let minAccelerationLabel = [];
+  let maxChargingLabel = [];
+  vehicleTrims.forEach((trim) => {
+    if (trim.range === maxRange) {
+      maxRangeLabel.push(trim.label);
+    }
+    if (trim.MPGe === maxMPGe) {
+      maxMPGeLabel.push(trim.label);
+    }
+    if (trim["0_60"] === minAcceleration) {
+      minAccelerationLabel.push(trim.label);
+    }
+    if (trim.max_charging === maxCharging) {
+      //maxSuperchargingLabel = trim.label;
+      maxChargingLabel.push(trim.label);
+    }
+  });
+  
+  const { label } = filteredVehicleSpecs.trim.standard;
+  const { weight } = filteredVehicleSpecs.trim.standard;
+
+  const formattedNumbers = (number) =>
+    new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 0,
+    }).format(number);
 
   return (
     <ResultsWrapper
       elevation={2}
       onClick={() => navigate(`/vehicle/${filteredVehicleSpecs.id}`)}
     >
-      <Grid container columnSpacing={2}>
+      <Grid container>
+
         <Grid item>
-          <ListingHeader>
-            {vehicleMake} {vehicleModel}
-          </ListingHeader>
+          <ListingHeader>{make}{" "}{model}</ListingHeader>
           <Tooltip
-            title={`IMAGE SOURCE: ${VehicleImageMap[vehicleModel][0].url}`}
+            title={`IMAGE SOURCE: ${VehicleImageMap[model][0].url}`}
             arrow
             placement="right-end"
           >
             <ListingImg
-              alt={`${vehicleMake} ${vehicleModel}`}
-              src={VehicleImageMap[vehicleModel][0].filepath}
+              alt={`${make} ${model}`}
+              src={VehicleImageMap[model][0].filepath}
               // [filteredVehicleSpecs.model] is used to access
               // VehicleThumbnailMap object properties to obtain
               // images imported to images.js, b/c React won't handle
@@ -83,58 +145,84 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             />
           </Tooltip>
         </Grid>
-        <Grid item xs={3} sx={{ mt: 2.9 }}>
-          {/* TODO: Avoid p inside of p */}
-          <ListingSpecs>
-            <BoldTypo>Base Price:</BoldTypo> {priceToDollars()}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Body Style:</BoldTypo> {filteredVehicleSpecs.body_style}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Convertible Option:</BoldTypo>{" "}
-            {filteredVehicleSpecs.convertible_option}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Seating Capacity:</BoldTypo>{" "}
-            {filteredVehicleSpecs.seating_capacity}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Cargo Space:</BoldTypo> {filteredVehicleSpecs.cargo_space}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Luxary Vehicle:</BoldTypo>{" "}
-            {filteredVehicleSpecs.luxary_vehicle}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Drivetrain:</BoldTypo> {filteredVehicleSpecs.drivetrain}
-          </ListingSpecs>
+
+        <Grid item xs={2.9} sx={{ mt: 2.5, pl: 2 }}>
+          <Grid container direction={"column"}>
+            <SpecsRows item>         
+              <BoldTypo>Base Price:{" "}</BoldTypo>
+              <ListingSpecs>
+                {priceToDollars(base_price)}
+              </ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Body Style:{" "}</BoldTypo>
+              <ListingSpecs>{filteredVehicleSpecs.body_style}</ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Convertible Option:{" "}</BoldTypo>
+              <ListingSpecs>{filteredVehicleSpecs.convertible_option}</ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Seating Capacity:{" "}</BoldTypo>
+              <ListingSpecs>{filteredVehicleSpecs.seating_capacity}</ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Cargo Space:{" "}</BoldTypo>
+              <ListingSpecs>
+                {filteredVehicleSpecs.cargo_space}{" cu ft"}
+              </ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Luxary Vehicle:{" "}</BoldTypo>
+              <ListingSpecs>{filteredVehicleSpecs.luxary_vehicle}</ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Drivetrain:{" "}</BoldTypo>
+              <ListingSpecs>{filteredVehicleSpecs.drivetrain}</ListingSpecs>
+            </SpecsRows>
+          </Grid>
         </Grid>
-        <Grid item>
-          <ListingSpecs>
-            <BoldTypo>Range:</BoldTypo> {results?.range}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Fuel Economy:</BoldTypo> {results?.MPGe}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Acceleration (0-60):</BoldTypo> {results?.["0_60"]}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Supercharging Max:</BoldTypo> {results?.supercharging}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Driver Assistance System:</BoldTypo>{" "}
-            {filteredVehicleSpecs.driver_assist}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Self-Parking:</BoldTypo>{" "}
-            {filteredVehicleSpecs.self_parking}
-          </ListingSpecs>
-          <ListingSpecs>
-            <BoldTypo>Weight:</BoldTypo> {trim?.standard.weight}{" "}
-            {`- ${trim?.standard.label} trim`}
-          </ListingSpecs>
+
+        <Grid item sx={{ mt: 2.5 }}>
+          <Grid container direction={"column"}>
+            <SpecsRows item>
+              <BoldTypo>Range:{" "}</BoldTypo>
+              <ListingSpecs>
+                {maxRange}{" mi (EPA est.) - "}{maxRangeLabel.join(", ")}{" trim"}
+              </ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Fuel Economy (MPGe):{" "}</BoldTypo>
+              <ListingSpecs>{
+                maxMPGe}{" (EPA est.) - "}{maxMPGeLabel.join(", ")}{" trim"}
+              </ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Acceleration (0-60):{" "}</BoldTypo>
+              <ListingSpecs>
+                {minAcceleration}{" s - "}{minAccelerationLabel.join(", ")}{" trim"}
+              </ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Max Charging:{" "}</BoldTypo>
+              <ListingSpecs>
+                {maxCharging}{" kW - "}{maxChargingLabel.join(", ")}{" trim"}
+              </ListingSpecs>
+              </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Driver Assistance System:{" "}</BoldTypo>
+              <ListingSpecs>{filteredVehicleSpecs.driver_assistance}</ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Self-Parking:{" "}</BoldTypo>
+              <ListingSpecs>{filteredVehicleSpecs.self_parking}</ListingSpecs>
+            </SpecsRows>
+            <SpecsRows item>
+              <BoldTypo>Weight:{" "}</BoldTypo>
+              <ListingSpecs>{formattedNumbers(weight)}{" lbs - "}
+              {label}{" trim"}</ListingSpecs>
+            </SpecsRows>
+          </Grid>
         </Grid>
       </Grid>
     </ResultsWrapper>

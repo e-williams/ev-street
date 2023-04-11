@@ -35,7 +35,7 @@ function VehiclePageContainer() {
   const navigate = useNavigate();
 
   const VehiclePageWrapper = styled(Box)({
-    fontFamily: "Roboto, Verdana, sans-serif",
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
     color: "#7e7e7e",
   });
 

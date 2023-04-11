@@ -202,7 +202,7 @@ function SearchPageContainer() {
   };
 
   const SearchPageWrapper = styled(Grid)({
-    fontFamily: "Roboto, Verdana, sans-serif",
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
     fontWeight: 300,
     marginLeft: 0, // required for columnSpacing on left
   });
@@ -229,7 +229,8 @@ function SearchPageContainer() {
           setSelectedPrice={setSelectedPrice}
         />
       </FilterWrapper>
-      {!urlParams && <Grid item sx={{ mt: "10px" }}>{handleResultsRender()}</Grid>}
+      {!urlParams &&
+        <Grid item sx={{ mt: "10px", width: 850 }}>{handleResultsRender()}</Grid>}
         {/* if urlParams is not true (has no vehicle id), render results */}
       <Grid item sx={{width: 670}}>
         <Outlet />

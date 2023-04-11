@@ -3,11 +3,10 @@
     "id": 0,
     "make": "TESLA",
     "model": "Model 3",
-    "base_price": 42990,
     "body_style": "5-door sedan",
     "convertible_option": "no",
     "seating_capacity": 5,
-    "cargo_space": "23 cu ft",
+    "cargo_space": 22.9,
     "luxary_vehicle": "yes",
     "drivetrain": "RWD or AWD",
     "self_parking": "yes (Autopilot, Enhanced Autopilot packages)",
@@ -28,68 +27,170 @@
     },
     "trim": {
       "standard": {
-        "base_price": "$42,990",
-        "label": "Rear-Wheel Drive trim",
-        "weight": "3,862 lbs",
+        "base_price": 42990,
+        "label": "Rear-Wheel Drive",
+        "weight": 3862,
         "drivetrain": "RWD",
         "motors": "single motor for rear wheels",
-        "range": "272 mi (EPA est.)",
+        "range": 272,
         "fuel_economy": 25,
         "MPGe": 138,
-        "0_60": "5.8s",
-        "supercharging": "7.6 kW(32A)"
+        "0_60": 5.8,
+        "max_charging": 7.6
       },
       "awd": {
         "base_price": "tbd",
-        "label": "Long Range AWD trim",
-        "weight": "4,034 lbs",
+        "label": "Long Range AWD",
+        "weight": 4034,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
-        "range": "358 mi",
-        "fuel_economy": "26 kWh/100 mi",
+        "range": 358,
+        "fuel_economy": 26,
         "MPGe": 134,
-        "0_60": "4.2s",
-        "supercharging": "11.5 kW(48A)"
+        "0_60": 4.2,
+        "max_charging": 11.5
       },
       "performance": {
-        "base_price": "$53,990",
-        "label": "Performance trim",
-        "weight": "4,048 lbs",
+        "base_price": 53990,
+        "label": "Performance",
+        "weight": 4048,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
-        "range": "315 mi",
-        "fuel_economy": "30 kWh/100 mi",
+        "range": 315,
+        "fuel_economy": 30,
         "MPGe": 113,
-        "0_60": "3.1s",
-        "supercharging": "11.5 kW(48A)"
-      }
-    },
-    "results": {
-      "range": "358 mi (EPA est.) - Long Range AWD trim",
-      "MPGe": "138 MPGe (EPA est.) - Rear-Wheel Drive trim",
-      "0_60": "3.1s - Performance trim",
-      "supercharging": "11.5 kW(48A) - AWD, Performance trims"
-    },
-    "test_format_year": {
-      "2022": {
-        "base_price": "test format"
+        "0_60": 3.1,
+        "max_charging": 11.5
       }
     }
   },
-
   {
     "id": 1,
     "make": "Kia",
     "model": "EV6",
     "base_price": 48700,
-    "body_style": "5-door crossover"
+    "body_style": "5-door crossover",
+    "convertible_option": "no",
+    "seating_capacity": 5,
+    "cargo_space": 50.2,
+    "luxary_vehicle": "yes",
+    "drivetrain": "RWD or AWD",
+    "self_parking": "yes (Autopilot, Enhanced Autopilot packages)",
+    "driver_assistance": "yes",
+    "driver_assistance_packages": "none",
+    "trim": {
+      "standard": {
+        "base_price": 48700,
+        "label": "Wind (RWD)",
+        "weight": 4255,
+        "drivetrain": "RWD",
+        "motors": "single motor for rear wheels",
+        "hp": 320,
+        "torque": 258,
+        "range": 310,
+        "fuel_economy": 28,
+        "MPGe": 117,
+        "0_60": 7.2,
+        "top_speed": 115,
+        "max_charging": 10.9
+      },
+      "awd": {
+        "base_price": "tbd",
+        "label": "Wind (e-AWD)",
+        "weight": 4502,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "hp": 320,
+        "torque": 446,
+        "range": 282,
+        "fuel_economy": 31,
+        "MPGe": 109,
+        "0_60": 5.1,
+        "top_speed": 117,
+        "max_charging": 10.9
+      },
+      "performance": {
+        "base_price": 53990,
+        "label": "GT (e-AWD)",
+        "weight": 4795,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "hp": 576,
+        "torque": 545,
+        "range": 206,
+        "fuel_economy": 42,
+        "MPGe": 79,
+        "0_60": 3.4,
+        "top_speed": 161,
+        "max_charging": 10.9
+      }
+    }
   },
-
   {
     "id": 2,
     "make": "Audi",
     "model": "e-tron GT",
     "base_price": 104900,
-    "body_style": "4-door sedan"
+    "body_style": "4-door sedan",
+
+    "convertible_option": "no",
+    "seating_capacity": 5,
+    "cargo_space": 23,
+    "luxary_vehicle": "yes",
+    "drivetrain": "RWD or AWD",
+    "self_parking": "yes (Autopilot, Enhanced Autopilot packages)",
+    "driver_assistance": "yes",
+    "driver_assistance_packages": {
+      "level1": {
+        "label": "Autopilot",
+        "description": "Traffic-Aware Cruise Control, Autosteer."
+      },
+      "level2": {
+        "label": "Enhanced Autopilot",
+        "description": "In addition to Autopilot featurs, includes Auto Lane Change, Navigate on Autopilot, Autopark, Summon, Smart Summon."
+      },
+      "level3": {
+        "label": "Full Self-Driving",
+        "description": "In addition to Autopilot and Enhanced Autopilot features, includes Traffic and Stop Sign Control."
+      }
+    },
+    "trim": {
+      "standard": {
+        "base_price": 42990,
+        "label": "Rear-Wheel Drive",
+        "weight": 3862,
+        "drivetrain": "RWD",
+        "motors": "single motor for rear wheels",
+        "range": 272,
+        "fuel_economy": 25,
+        "MPGe": 138,
+        "0_60": 5.8,
+        "max_charging": 7.6
+      },
+      "awd": {
+        "base_price": "tbd",
+        "label": "Long Range AWD",
+        "weight": 4034,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "range": 358,
+        "fuel_economy": 26,
+        "MPGe": 134,
+        "0_60": 4.2,
+        "max_charging": 11.5
+      },
+      "performance": {
+        "base_price": 53990,
+        "label": "Performance",
+        "weight": 4048,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "range": 315,
+        "fuel_economy": 30,
+        "MPGe": 113,
+        "0_60": 3.1,
+        "max_charging": 11.5
+      }
+    }
   }
 ]

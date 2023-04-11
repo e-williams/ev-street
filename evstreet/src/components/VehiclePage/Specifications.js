@@ -8,11 +8,19 @@ const SpecsWrapper = styled(Grid)({
 });
 
 const InlineTypo = styled(Typography)({
+  fontSize: 14,
+  fontWeight: 300,
   display: "inline",
 });
 
 const BoldInlineTypo = styled(Typography)({
   fontSize: 14,
+  fontWeight: 500,
+  display: "inline",
+});
+
+const BoldInlineHeader = styled(Typography)({
+  fontSize: 15.5,
   fontWeight: 500,
   display: "inline",
 });
@@ -29,163 +37,168 @@ const BoldInlineTypoSm = styled(Typography)({
   display: "inline",
 });
 
-const IndentedGrid = styled(Grid)({
-  marginLeft: 24,
-});
-
 function Specifications({ vehicle }) {
-  // const { vehicle } = props;
 
-  // {
-  //   vehicle: {
-  //    trim: {
-  //     standard: {
-  //       base_price: "$42,990",
-  //     },
-  //     awd: {
-  //       base_price: "tbd",
-  //     },
-  //     performance: {
-  //       base_price: "$53,990",
-  //     },
-  //   }},
-  // };
+  const formattedNumbers = (number) =>
+  new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+  }).format(number);
 
-  //const standard = vehicle.trim.standard;
-  //const awd = vehicle.trim.awd;
-  //const performance = vehicle.trim.performance;
-
-  // const {
-  //   trim: { standard },
-  // } = vehicle;
-
-  // const {
-  //   trim: { awd },
-  // } = vehicle;
-  // //const awd = vehicle.trim.awd;
-
-  // const {
-  //   trim: { performance },
-  // } = vehicle;
-  // //const performance = vehicle.trim.performance;
+  // Find all the trims for each vehicle.
+  // Render with a loop the information of those trims.
 
   const { trim = {} } = vehicle;
+    // destructures trim and wraps it in an object
+    // { standard: {..}, awd: {..}, performance: {..} }
 
   const renderVehicleTrims = () => {
     const vehicleTrims = Object.values(trim);
+      // returns an array of the sting-keyed property values of trim
+      // [ {base_price: '$42,990'}, {label: 'Rear-Wheel Drive', etc.}, {..},
+      // {..} ]
 
-    return vehicleTrims.map((trimInformation, index) => {
+    return vehicleTrims.map((trimInformation, index) => { // index unused
+
+      const priceToDollars = (price) => {
+        return (
+          isNaN(trimInformation.base_price) ? trimInformation.base_price :
+            new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 0,
+            }).format(price)
+        );
+      }
+
       return (
-        <Grid container direction="column" key={trimInformation.label}>
+        <Grid container direction="column" key={trimInformation.label}
+          sx={{ mb: 2 }}
+        >
           <Grid item>
-            <BoldInlineTypo>{`${trimInformation.label}:`}</BoldInlineTypo>
+            <BoldInlineHeader>{trimInformation.label}{" trim:"}</BoldInlineHeader>
           </Grid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Base Price:</BoldInlineTypoSm>{" "}
-            <InlineTypoSm>{trimInformation.base_price}</InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Weight:</BoldInlineTypoSm>{" "}
-            <InlineTypoSm>{trimInformation.weight}</InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Drivetrain:</BoldInlineTypoSm>{" "}
-            <InlineTypoSm>{trimInformation.drivetrain}</InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Motors:</BoldInlineTypoSm>{" "}
-            <InlineTypoSm>{trimInformation.motors}</InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Range:</BoldInlineTypoSm>{" "}
-            <InlineTypoSm>{trimInformation.range}</InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Fuel Economy:</BoldInlineTypoSm>{" "}
+          <Grid item>
+            <BoldInlineTypoSm>Base Price:{" "}</BoldInlineTypoSm>
             <InlineTypoSm>
-              {trimInformation.fuel_economy}kWh / 100 miles
+              {priceToDollars(trimInformation.base_price)}
             </InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>MGPe:</BoldInlineTypoSm>{" "}
+          </Grid>
+          <Grid item>
+            <BoldInlineTypoSm>Weight:{" "}</BoldInlineTypoSm>
+            <InlineTypoSm>
+              {formattedNumbers(trimInformation.weight)}{" lbs"}
+            </InlineTypoSm>
+          </Grid>
+          <Grid item>
+            <BoldInlineTypoSm>Drivetrain:{" "}</BoldInlineTypoSm>
+            <InlineTypoSm>{trimInformation.drivetrain}</InlineTypoSm>
+          </Grid>
+          <Grid item>
+            <BoldInlineTypoSm>Motors:{" "}</BoldInlineTypoSm>
+            <InlineTypoSm>{trimInformation.motors}</InlineTypoSm>
+          </Grid>
+          {trimInformation.hp !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Horsepower:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>{trimInformation.hp}{" hp"}</InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.torque !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Torque:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>{trimInformation.torque}{" lb-ft"}</InlineTypoSm>
+            </Grid> : <Grid item />}
+          <Grid item>
+            <BoldInlineTypoSm>Range:{" "}</BoldInlineTypoSm>
+            <InlineTypoSm>{trimInformation.range}{" mi (EPA est.)"}</InlineTypoSm>
+          </Grid>
+          <Grid item>
+            <BoldInlineTypoSm>Fuel Economy:{" "}</BoldInlineTypoSm>
+            <InlineTypoSm>
+              {trimInformation.fuel_economy}{" kWh / 100 miles"}
+            </InlineTypoSm>
+          </Grid>
+          <Grid item>
+            <BoldInlineTypoSm>Fuel Economy (MGPe):{" "}</BoldInlineTypoSm>
             <InlineTypoSm>{trimInformation.MPGe}</InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Acceleration (0-60):</BoldInlineTypoSm>{" "}
-            <InlineTypoSm>{trimInformation["0_60"]}</InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>Supercharging Maximum:</BoldInlineTypoSm>{" "}
-            <InlineTypoSm>{trimInformation.supercharging}</InlineTypoSm>
-          </IndentedGrid>
+          </Grid>
+          <Grid item>
+            <BoldInlineTypoSm>Acceleration (0-60):{" "}</BoldInlineTypoSm>
+            <InlineTypoSm>{trimInformation["0_60"]}{" s"}</InlineTypoSm>
+          </Grid>
+          {trimInformation.top_speed !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Top Speed:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>{trimInformation.top_speed}{" mph"}</InlineTypoSm>
+            </Grid> : <Grid item />}
+          <Grid item>
+            <BoldInlineTypoSm>Maximum Charging:{" "}</BoldInlineTypoSm>
+            <InlineTypoSm>{trimInformation.max_charging}{" kW"}</InlineTypoSm>
+          </Grid>
         </Grid>
       );
     });
-  };
+  }
 
-  // Find all the trims a vehicle has.
-  // Render with a loop the information of those trims.
+  const { driver_assistance_packages = {} } = vehicle;
 
-  // TODO destructure the following dot notations vehicle.driver_assistance_packages.level1.label
+  const renderDriverAssistPackages = () => {
+    const driverAssistPackages = Object.values(driver_assistance_packages);
+      // returns an array of the sting-keyed property values of
+      // driverAssistPackages
+
+    if (driver_assistance_packages === "none") {
+      return <InlineTypo>{"none"}</InlineTypo>
+    }
+
+    else {
+      return driverAssistPackages.map((driverAssistInformation, index ) => {
+        return (
+          <Grid container direction="column" rowSpacing={0.7}
+            key={driverAssistInformation.label}
+          >
+            <Grid item sx={{ mt: "6px" }}>
+              <BoldInlineTypoSm>
+                {driverAssistInformation.label}{": "}</BoldInlineTypoSm>
+              <InlineTypoSm>{driverAssistInformation.description}</InlineTypoSm>
+            </Grid>
+          </Grid>
+        );
+      });
+    }
+  }
+
   return (
     <SpecsWrapper container columnSpacing={6}>
       <Grid item xs={6}>
         <Grid container direction="column">
           <Grid item>
-            <BoldInlineTypo>Make/Model:</BoldInlineTypo>{" "}
+            <BoldInlineTypo>Make/Model:{" "}</BoldInlineTypo>
             <InlineTypo>
-              {vehicle.make} {vehicle.model}
+              {vehicle.make}{" "}{vehicle.model}
             </InlineTypo>
           </Grid>
           <Grid item>
-            <BoldInlineTypo>Body Style:</BoldInlineTypo>{" "}
+            <BoldInlineTypo>Body Style:{" "}</BoldInlineTypo>
             <InlineTypo>{vehicle.body_style}</InlineTypo>
           </Grid>
           <Grid item>
-            <BoldInlineTypo>Seating Capacity:</BoldInlineTypo>{" "}
+            <BoldInlineTypo>Seating Capacity:{" "}</BoldInlineTypo>
             <InlineTypo>{vehicle.seating_capacity}</InlineTypo>
           </Grid>
           <Grid item>
-            <BoldInlineTypo>Cargo Space:</BoldInlineTypo>{" "}
-            <InlineTypo>{vehicle.cargo_space}</InlineTypo>
+            <BoldInlineTypo>Cargo Space:{" "}</BoldInlineTypo>
+            <InlineTypo>{vehicle.cargo_space}{" cu ft"}</InlineTypo>
           </Grid>
           <Grid item>
-            <BoldInlineTypo>Luxary Vehicle:</BoldInlineTypo>{" "}
+            <BoldInlineTypo>Luxary Vehicle:{" "}</BoldInlineTypo>
             <InlineTypo>{vehicle.luxary_vehicle}</InlineTypo>
           </Grid>
-        </Grid>
-
-        <Grid container direction="column" rowSpacing={0.7} sx={{ mt: 2 }}>
-          <Grid item>
-            <BoldInlineTypo>Driver Assistance Packages:</BoldInlineTypo>
+          <Grid item sx={{ mt: 3 }}>
+            <BoldInlineHeader>Driver Assistance Packages:</BoldInlineHeader>
           </Grid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>
-              {`${vehicle.driver_assistance_packages?.level1.label}:`}
-            </BoldInlineTypoSm>{" "}
-            <InlineTypoSm>
-              {vehicle.driver_assistance_packages?.level1.description}
-            </InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>
-              {`${vehicle.driver_assistance_packages?.level2.label}:`}
-            </BoldInlineTypoSm>{" "}
-            <InlineTypoSm>
-              {vehicle.driver_assistance_packages?.level2.description}
-            </InlineTypoSm>
-          </IndentedGrid>
-          <IndentedGrid item>
-            <BoldInlineTypoSm>
-              {`${vehicle.driver_assistance_packages?.level3.label}:`}
-            </BoldInlineTypoSm>{" "}
-            <InlineTypoSm>
-              {vehicle.driver_assistance_packages?.level3.description}
-            </InlineTypoSm>
-          </IndentedGrid>
         </Grid>
+        {renderDriverAssistPackages()}
       </Grid>
-
       <Grid item xs={6}>
         {renderVehicleTrims()}
       </Grid>
