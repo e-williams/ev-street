@@ -6,6 +6,33 @@ import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid } from "@mui/material";
 
+const NoResultsMessage = styled(Paper)({
+  fontSize: 18,
+  color: "#536d90",
+  backgroundColor: "#f9f9f9",
+  lineHeight: 3,
+  padding: 14,
+  borderRadius: 4,
+});
+
+const SearchPageWrapper = styled(Grid)({
+  fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+  fontWeight: 300,
+  marginLeft: 0, // required for columnSpacing on left
+});
+
+const FilterWrapper = styled(Grid)({
+  marginTop: 10,
+  marginLeft: 23,
+  paddingTop: 8,
+  paddingRight: 4,
+  paddingBottom: 8,
+  border: 1.8,
+  borderStyle: "solid",
+  borderColor: "#3be15f",
+  borderRadius: 10,
+});
+
 function SearchPageContainer() {
 
   const params = useParams();
@@ -182,14 +209,6 @@ function SearchPageContainer() {
         selectedPrice !== "" &&
         findVehicleIdsMatchingMultipleFilterTypes.length === 0)
     ) {
-      const NoResultsMessage = styled(Paper)({
-        fontSize: 18,
-        color: "#536d90",
-        backgroundColor: "#f9f9f9",
-        lineHeight: 3,
-        padding: 14,
-        borderRadius: 4,
-      });
 
       return (
         <NoResultsMessage elevation={2}>
@@ -199,25 +218,7 @@ function SearchPageContainer() {
         </NoResultsMessage>
       );
     }
-  };
-
-  const SearchPageWrapper = styled(Grid)({
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-    fontWeight: 300,
-    marginLeft: 0, // required for columnSpacing on left
-  });
-
-  const FilterWrapper = styled(Grid)({
-    marginTop: 10,
-    marginLeft: 23,
-    paddingTop: 8,
-    paddingRight: 4,
-    paddingBottom: 8,
-    border: 1.8,
-    borderStyle: "solid",
-    borderColor: "#3be15f",
-    borderRadius: 10,
-  });
+  }
 
   return (
     <SearchPageWrapper container columnSpacing={3}>

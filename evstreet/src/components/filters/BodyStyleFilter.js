@@ -3,6 +3,12 @@ import { styled } from "@mui/material/styles";
 import { Box, Grid, Typography, FormGroup } from "@mui/material";
 import CustomCheckbox from "./Checkbox";
 
+const FilterHeading = styled(Typography)({
+  fontSize: 16,
+  marginTop: 10,
+  color: "black",
+});
+
 function BodyStyleFilter({
   vehicleCheckboxFilters,
   setVehicleCheckboxFilters,
@@ -66,12 +72,6 @@ function BodyStyleFilter({
   // run upon re-render, which happens with a change in state.
 
   console.log({ checkedFilters });
-
-  const FilterHeading = styled(Typography)({
-    fontSize: 16,
-    marginTop: 10,
-    color: "black",
-  });
 
   return (
     <Box>

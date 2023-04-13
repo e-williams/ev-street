@@ -4,16 +4,17 @@ import BodyStyleFilter from "../Filters/BodyStyleFilter";
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 
+const FilterTitle = styled(Typography)({
+  textAlign: "center",
+  color: "#7e7e7e",
+});
+
 function SearchContainer({
   setVehicleCheckboxFilters,
   vehicleCheckboxFilters,
   selectedPrice,
   setSelectedPrice,
 }) {
-  const FilterTitle = styled(Typography)({
-    textAlign: "center",
-    color: "#7e7e7e",
-  });
 
   return (
     <Box>

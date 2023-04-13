@@ -8,6 +8,26 @@ import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "../Common/ArrowBackIcon";
 import VehicleDescription from "./VehicleDescription";
 
+const NoVehicleWrapper = styled(Box)({
+  fontFamily: "Roboto, Verdana, sans-serif",
+  color: "#7e7e7e",
+});
+
+const NoVehicleTypo = styled(Typography)({
+  marginBottom: 6,
+  fontSize: 19,
+  fontWeight: "300",
+});
+
+const VehiclePageWrapper = styled(Box)({
+  fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+  color: "#7e7e7e",
+});
+
+const HeaderTypo = styled(Typography)({
+  textAlign: "center",
+});
+
 function VehiclePageContainer() {
   // Get vehicleId param from the URL.
   const { vehicleId } = useParams();
@@ -21,27 +41,7 @@ function VehiclePageContainer() {
     // Unary plus operator + converts vehicleId from string to num.
   );
 
-  const NoVehicleWrapper = styled(Box)({
-    fontFamily: "Roboto, Verdana, sans-serif",
-    color: "#7e7e7e",
-  });
-
-  const NoVehicleTypo = styled(Typography)({
-    marginBottom: 6,
-    fontSize: 19,
-    fontWeight: "300",
-  });
-
   const navigate = useNavigate();
-
-  const VehiclePageWrapper = styled(Box)({
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-    color: "#7e7e7e",
-  });
-
-  const HeaderTypo = styled(Typography)({
-    textAlign: "center",
-  });
 
   if (!vehicle) {
     // if vehicle evaluates to false

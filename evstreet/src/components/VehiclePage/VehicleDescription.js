@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
 import Overview from "./Overview";
 import Specifications from "./Specifications";
 import { styled } from "@mui/material/styles";
 import { Box, Tabs, Tab } from "@mui/material";
+
+const StyledTab = styled(Tab)({
+  fontSize: 17,
+  color: "#505050",
+  "&.Mui-selected": {
+    // MUI Tabs API - CSS
+    color: "#2e7d32",
+  },
+  "&:hover": {
+    color: "#2e7d32",
+  },
+});
 
 function VehicleDescription({ vehicle }) {
 
@@ -15,18 +26,6 @@ function VehicleDescription({ vehicle }) {
   const handleSelection = (event, newValue) => {
     setValue(newValue);
   };
-
-  const StyledTab = styled(Tab)({
-    fontSize: 17,
-    color: "#505050",
-    "&.Mui-selected": {
-      // MUI Tabs API - CSS
-      color: "#2e7d32",
-    },
-    "&:hover": {
-      color: "#2e7d32",
-    },
-  });
 
   return (
     <Box sx={{ mt: 2.5, backgroundColor: "#f9f9f9" }}>

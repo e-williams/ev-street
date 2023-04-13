@@ -31,11 +31,21 @@ const InlineTypoSm = styled(Typography)({
   display: "inline",
 });
 
+const TypoSm = styled(Typography)({
+  fontSize: 12.5,
+  fontWeight: 300,
+});
+
 const BoldInlineTypoSm = styled(Typography)({
   fontSize: 12.5,
   fontWeight: 500,
   display: "inline",
 });
+
+const BoldTypoSm = styled(Typography)({
+  fontSize: 12.5,
+  fontWeight: 500,
+})
 
 function Specifications({ vehicle }) {
 
@@ -134,6 +144,13 @@ function Specifications({ vehicle }) {
             <BoldInlineTypoSm>Maximum Charging:{" "}</BoldInlineTypoSm>
             <InlineTypoSm>{trimInformation.max_charging}{" kW"}</InlineTypoSm>
           </Grid>
+          {trimInformation.torque !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Towing Capacity:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.towing_capacity}{" lbs"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
         </Grid>
       );
     });
@@ -145,6 +162,7 @@ function Specifications({ vehicle }) {
     const driverAssistPackages = Object.values(driver_assistance_packages);
       // returns an array of the sting-keyed property values of
       // driverAssistPackages
+    console.log("DApackages::", driverAssistPackages);
 
     if (driver_assistance_packages === "none") {
       return <InlineTypo>{"none"}</InlineTypo>
@@ -152,14 +170,35 @@ function Specifications({ vehicle }) {
 
     else {
       return driverAssistPackages.map((driverAssistInformation, index ) => {
+
+        const { description } = driverAssistInformation;
+
         return (
-          <Grid container direction="column" rowSpacing={0.7}
+          <Grid container direction="column" rowSpacing={1}
             key={driverAssistInformation.label}
           >
-            <Grid item sx={{ mt: "6px" }}>
-              <BoldInlineTypoSm>
-                {driverAssistInformation.label}{": "}</BoldInlineTypoSm>
-              <InlineTypoSm>{driverAssistInformation.description}</InlineTypoSm>
+            <Grid item sx={{ mt: "8px" }}>
+              <BoldTypoSm>{driverAssistInformation.label}{": "}</BoldTypoSm>
+              <TypoSm>{description.item1}</TypoSm>
+              <TypoSm>{description.item2}</TypoSm>
+              <TypoSm>{description.item3}</TypoSm>
+              <TypoSm>{description.item4}</TypoSm>
+              <TypoSm>{description.item5}</TypoSm>
+              <TypoSm>{description.item6}</TypoSm>
+              <TypoSm>{description.item7}</TypoSm>
+              <TypoSm>{description.item8}</TypoSm>
+              <TypoSm>{description.item9}</TypoSm>
+              <TypoSm>{description.item10}</TypoSm>
+              <TypoSm>{description.item11}</TypoSm>
+              <TypoSm>{description.item12}</TypoSm>
+              <TypoSm>{description.item13}</TypoSm>
+              <TypoSm>{description.item14}</TypoSm>
+              <TypoSm>{description.item15}</TypoSm>
+              <TypoSm>{description.item16}</TypoSm>
+              <TypoSm>{description.item17}</TypoSm>
+              <TypoSm>{description.item18}</TypoSm>
+              <TypoSm>{description.item19}</TypoSm>
+              <TypoSm>{description.item20}</TypoSm>
             </Grid>
           </Grid>
         );
@@ -168,8 +207,8 @@ function Specifications({ vehicle }) {
   }
 
   return (
-    <SpecsWrapper container columnSpacing={6}>
-      <Grid item xs={6}>
+    <SpecsWrapper container columnSpacing={4}>
+      <Grid item xs={7}>
         <Grid container direction="column">
           <Grid item>
             <BoldInlineTypo>Make/Model:{" "}</BoldInlineTypo>
@@ -199,7 +238,7 @@ function Specifications({ vehicle }) {
         </Grid>
         {renderDriverAssistPackages()}
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={5}>
         {renderVehicleTrims()}
       </Grid>
     </SpecsWrapper>

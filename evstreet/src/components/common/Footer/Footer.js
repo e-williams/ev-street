@@ -3,44 +3,43 @@ import { styled } from "@mui/material/styles";
 import { Grid, Typography, Divider, Chip } from "@mui/material";
 import { Link } from "react-router-dom";
 
+const FooterWrapper = styled(Grid)({
+  marginTop: 22,
+  marginBottom: 10,
+  fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+  fontWeight: 400,
+  color: "#7e7e7e",
+});
+
+const FooterTopBottom = styled(Grid)({
+  width: "100%",
+});
+
+const MainSection = styled(Grid)({
+  marginTop: 12,
+  marginBottom: 10,
+  marginLeft: 0,
+});
+
+const StyledLink = styled(Link)({
+  fontSize: 14,
+  textDecoration: "none",
+  color: "#7e7e7e",
+  paddingBottom: 2,
+  "&:hover": {
+    borderBottom: "1px solid #2db34a",
+    color: "#2db34a",
+  },
+})
+
+const CopyrightTypo = styled(Typography)({
+  marginLeft: 23,
+  fontSize: 12,
+  fontWeight: 300,
+  fontStyle: "italic",
+});
+
 function Footer () {
-
-  const FooterWrapper = styled(Grid)({
-    marginTop: 22,
-    marginBottom: 10,
-    fontFamily: "Robato, Verdana, sans-serif",
-    fontWeight: 300,
-    color: "#7e7e7e",
-  });
-
-  const FooterTopBottom = styled(Grid)({
-    width: "100%",
-  });
-
-  const MainSection = styled(Grid)({
-    marginTop: 12,
-    marginBottom: 10,
-    marginLeft: 0,
-  });
-
-  const StyledLink = styled(Link)({
-    fontSize: 14,
-    textDecoration: "none",
-    color: "#7e7e7e",
-    paddingBottom: 2,
-    "&:hover": {
-      borderBottom: "1px solid #2db34a",
-      color: "#2db34a",
-    },
-  })
-
-  const CopyrightTypo = styled(Typography)({
-    marginLeft: 23,
-    fontSize: 12,
-    fontWeight: 300,
-    fontStyle: "italic",
-  });
-
   return (
     <FooterWrapper container>
       <FooterTopBottom item>

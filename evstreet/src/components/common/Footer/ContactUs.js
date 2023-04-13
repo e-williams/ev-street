@@ -6,17 +6,17 @@ import { styled } from "@mui/material/styles";
 import { Typography, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-function ContactUs() {
-  const ContactUsWrapper = styled(Container)({
-    fontFamily: "Roboto, Verdana, sans-serif",
-    color: "#7e7e7e",
-  });
+const ContactUsWrapper = styled(Container)({
+  color: "#7e7e7e",
+});
 
-  const Typo = styled(Typography)({
-    marginBottom: 6,
-    fontSize: 19,
-    fontWeight: "300",
-  });
+const Typo = styled(Typography)({
+  marginBottom: 6,
+  fontSize: 19,
+  fontWeight: "300",
+});
+
+function ContactUs() {
 
   const navigate = useNavigate();
 

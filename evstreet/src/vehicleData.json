@@ -14,15 +14,28 @@
     "driver_assistance_packages": {
       "level1": {
         "label": "Autopilot",
-        "description": "Traffic-Aware Cruise Control, Autosteer."
+        "description": {
+          "item1": "Traffic-Aware Cruise Control",
+          "item2": "Autosteer"
+        }
       },
       "level2": {
         "label": "Enhanced Autopilot",
-        "description": "In addition to Autopilot featurs, includes Auto Lane Change, Navigate on Autopilot, Autopark, Summon, Smart Summon."
+        "description": {
+          "item1": "In addition to Autopilot features, includes:",
+          "item2": "Auto Lane Change",
+          "item3": "Navigate on Autopilot",
+          "item4": "Autopark",
+          "item5": "Summon",
+          "item6": "Smart Summon"
+        }
       },
       "level3": {
         "label": "Full Self-Driving",
-        "description": "In addition to Autopilot and Enhanced Autopilot features, includes Traffic and Stop Sign Control."
+        "description": {
+          "item1": "In addition to Autopilot and Enhanced Autopilot features, includes:",
+          "item2": "Traffic and Stop Sign Control"
+        }
       }
     },
     "trim": {
@@ -77,7 +90,43 @@
     "drivetrain": "RWD or AWD",
     "self_parking": "yes (Autopilot, Enhanced Autopilot packages)",
     "driver_assistance": "yes",
-    "driver_assistance_packages": "none",
+    "driver_assistance_packages": {
+      "level1": {
+        "label": "Wind (RWD), Wind (e-AWD) trims",
+        "description": {
+          "item1": "Forward Collision-Avoidance Assist w/ Car, Cyclist and Pedestrian Detection",
+          "item2": "Forward Collision-Avoidance Assist w/ Junction Turning Detection",
+          "item3": "Blind-Spot Collision-Avoidance Assist",
+          "item4": "Blind-Spot View Monitor",
+          "item5": "Rear Cross-Traffic Collision-Avoidance Assist",
+          "item6": "Driver Attention Warning w/ Leading Vehicle Departure Alert",
+          "item7": "Lane Keeping Assist",
+          "item8": "Lane Following Assist",
+          "item9": "Smart Cruise Control w/ Stop & Go",
+          "item10": "Navigation-Based Smart Cruise Control w/ Stop & Go - Curve",
+          "item11": "Highway Driving Assist",
+          "item12": "Intelligent Speed Limit Assist",
+          "item13": "Safe Exit Warning",
+          "item14": "Park Distance Warning - Reverse",
+          "item15": "Park Distance Warning - Forward",
+          "item16": "Parking Collision-Avoidance Assist-Reverse",
+          "item17": "Rear View Monitor with Dynamic Parking Guidance",
+          "item18": "Surround View Monitor w/ 3D View",
+          "item19": "Remote Smart Parking Assist",
+          "item20": "Rear Occupant Alert"
+        }
+      },
+      "level2": {
+        "label": "GT-Line (RWD), GT-Line (e-AWD), GT (e-AWD) trims",
+        "description": {
+          "item1": "In addition to features of Wind trims, includes:",
+          "item2": "Forward Collision-Avoidance Assist w/ Junction Crossing Detection",
+          "item3": "Forward Collision-Avoidance Assist w/ Side and Oncoming Lane Change",
+          "item4": "Forward Collision-Avoidance Assist w/ Driver Steering and Auto Evasive Steering Assist",
+          "item5": "Highway Driving Assist 2"
+        }
+      }
+    },
     "trim": {
       "standard": {
         "base_price": 48700,
@@ -92,7 +141,8 @@
         "MPGe": 117,
         "0_60": 7.2,
         "top_speed": 115,
-        "max_charging": 10.9
+        "max_charging": 10.9,
+        "towing_capacity": 2300
       },
       "awd": {
         "base_price": "tbd",
@@ -107,7 +157,8 @@
         "MPGe": 109,
         "0_60": 5.1,
         "top_speed": 117,
-        "max_charging": 10.9
+        "max_charging": 10.9,
+        "towing_capacity": 2300
       },
       "performance": {
         "base_price": 53990,
@@ -122,7 +173,8 @@
         "MPGe": 79,
         "0_60": 3.4,
         "top_speed": 161,
-        "max_charging": 10.9
+        "max_charging": 10.9,
+        "towing_capacity": 2300
       }
     }
   },

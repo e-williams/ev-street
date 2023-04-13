@@ -4,49 +4,49 @@ import { Paper, Grid, Typography, Tooltip } from "@mui/material";
 import VehicleImageMap from "../ImageHandling/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
 
+const ResultsWrapper = styled(Paper)({
+  backgroundColor: "#f9f9f9",
+  paddingRight: 14,
+  marginBottom: 14,
+  cursor: "pointer",
+  "&:hover": {
+    boxShadow: "0 0 7px #626262",
+  },
+});
+
+const ListingHeader = styled(Typography)({
+  textAlign: "center",
+  lineHeight: 1.5,
+  pt: 0.4,
+  backgroundColor: "#bfffce",
+  borderTopLeftRadius: 5,
+});
+
+const ListingImg = styled("img")({
+  display: "block",
+  width: 236,
+  height: 134,
+  borderBottomLeftRadius: 5,
+});
+
+const SpecsRows = styled(Grid)({
+  height: 19,
+  color: "#505050",
+})
+
+const ListingSpecs = styled(Typography)({
+  fontSize: 12.2,
+  fontWeight: 300,
+  display: "inline",
+});
+
+const BoldTypo = styled(Typography)({
+  fontSize: 12.2,
+  fontWeight: 500,
+  display: "inline",
+});
+
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
-
-  const ResultsWrapper = styled(Paper)({
-    backgroundColor: "#f9f9f9",
-    paddingRight: 14,
-    marginBottom: 14,
-    cursor: "pointer",
-    "&:hover": {
-      boxShadow: "0 0 7px #626262",
-    },
-  });
-
-  const ListingHeader = styled(Typography)({
-    textAlign: "center",
-    lineHeight: 1.5,
-    pt: 0.4,
-    backgroundColor: "#bfffce",
-    borderTopLeftRadius: 5,
-  });
-
-  const ListingImg = styled("img")({
-    display: "block",
-    width: 236,
-    height: 134,
-    borderBottomLeftRadius: 5,
-  });
-
-  const SpecsRows = styled(Grid)({
-    height: 19,
-    color: "#505050",
-  })
-
-  const ListingSpecs = styled(Typography)({
-    fontSize: 12.2,
-    fontWeight: 300,
-    display: "inline",
-  });
-
-  const BoldTypo = styled(Typography)({
-    fontSize: 12.2,
-    fontWeight: 500,
-    display: "inline",
-  });
 
   const navigate = useNavigate();
 
@@ -62,9 +62,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     model
   } = filteredVehicleSpecs;
 
-  const base_price = filteredVehicleSpecs.trim?.standard.base_price;
-
-  const { results } = filteredVehicleSpecs;
+  const { base_price } = filteredVehicleSpecs.trim.standard;
 
   // Get max range, MPGe, 0_60, supercharging of all trims:
   const { trim = {} } = filteredVehicleSpecs;
