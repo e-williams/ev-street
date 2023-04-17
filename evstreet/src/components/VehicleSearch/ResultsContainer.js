@@ -71,30 +71,35 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
   const rangeArray = [];
   const MPGeArray = [];
   const accelerationArray = [];
-  const chargingArray = [];
+  const DcChargingArray = [];
   const vehicleTrims = Object.values(trim);
     // returns an array of the sting-keyed property values of trim
   // Loop through trims and add range to rangeArray:
+  let range = undefined;
+  let MPGe = undefined;
+  let acceleration = undefined;
+  let DcCharging = undefined;
   vehicleTrims.forEach((trim) => {
-    const range = trim.range;
-    const MPGe = trim.MPGe;
-    const acceleration = trim["0_60"];
-    const charging = trim.max_charging;
+    if (trim.range !== undefined) {range = trim.range};
+    if (trim.MPGe !== undefined) {MPGe = trim.MPGe};
+    if (trim["0_60"] !== undefined) {acceleration = trim["0_60"]};
+    if (trim.max_dc_charging !== undefined) {DcCharging = trim.max_dc_charging};
     rangeArray.push(range);
     MPGeArray.push(MPGe);
     accelerationArray.push(acceleration);
-    chargingArray.push(charging);
+    DcChargingArray.push(DcCharging);
   });
+  // Get max/min value from each array
   const maxRange = Math.max(...rangeArray);
   const maxMPGe = Math.max(...MPGeArray);
   const minAcceleration = Math.min(...accelerationArray);
-  const maxCharging = Math.max(...chargingArray);
+  const maxDcCharging = Math.max(...DcChargingArray);
 
   // Get trim labels for max/min values
   let maxRangeLabel = [];
   let maxMPGeLabel = [];
   let minAccelerationLabel = [];
-  let maxChargingLabel = [];
+  let maxDcChargingLabel = [];
   vehicleTrims.forEach((trim) => {
     if (trim.range === maxRange) {
       maxRangeLabel.push(trim.label);
@@ -105,9 +110,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     if (trim["0_60"] === minAcceleration) {
       minAccelerationLabel.push(trim.label);
     }
-    if (trim.max_charging === maxCharging) {
-      //maxSuperchargingLabel = trim.label;
-      maxChargingLabel.push(trim.label);
+    if (trim.max_dc_charging === maxDcCharging) {
+      maxDcChargingLabel.push(trim.label);
     }
   });
   
@@ -204,7 +208,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             <SpecsRows item>
               <BoldTypo>Max Charging:{" "}</BoldTypo>
               <ListingSpecs>
-                {maxCharging}{" kW - "}{maxChargingLabel.join(", ")}{" trim"}
+                {maxDcCharging}{" kW - "}{maxDcChargingLabel.join(", ")}{" trim"}
               </ListingSpecs>
               </SpecsRows>
             <SpecsRows item>

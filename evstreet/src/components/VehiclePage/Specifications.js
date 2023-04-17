@@ -85,65 +85,117 @@ function Specifications({ vehicle }) {
           sx={{ mb: 2 }}
         >
           <Grid item>
-            <BoldInlineHeader>{trimInformation.label}{" trim:"}</BoldInlineHeader>
-          </Grid>
+            <BoldInlineHeader>{trimInformation.label}{" trim"}</BoldInlineHeader>
+          </Grid>          
           <Grid item>
             <BoldInlineTypoSm>Base Price:{" "}</BoldInlineTypoSm>
             <InlineTypoSm>
               {priceToDollars(trimInformation.base_price)}
             </InlineTypoSm>
           </Grid>
-          <Grid item>
-            <BoldInlineTypoSm>Weight:{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>
-              {formattedNumbers(trimInformation.weight)}{" lbs"}
-            </InlineTypoSm>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypoSm>Drivetrain:{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>{trimInformation.drivetrain}</InlineTypoSm>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypoSm>Motors:{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>{trimInformation.motors}</InlineTypoSm>
-          </Grid>
+          {trimInformation.description !== undefined ?
+            <Grid item>
+              <BoldInlineTypoSm>{trimInformation.description}</BoldInlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.weight !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Weight:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>
+                {formattedNumbers(trimInformation.weight)}{" lbs"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.drivetrain !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Drivetrain:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>{trimInformation.drivetrain}</InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.motors !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Motors:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>{trimInformation.motors}</InlineTypoSm>
+            </Grid> : <Grid item />}
           {trimInformation.hp !== undefined ? 
             <Grid item>
               <BoldInlineTypoSm>Horsepower:{" "}</BoldInlineTypoSm>
-              <InlineTypoSm>{trimInformation.hp}{" hp"}</InlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.hp}{" hp (maximum)"}
+              </InlineTypoSm>
             </Grid> : <Grid item />}
           {trimInformation.torque !== undefined ? 
             <Grid item>
               <BoldInlineTypoSm>Torque:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>{trimInformation.torque}{" lb-ft"}</InlineTypoSm>
             </Grid> : <Grid item />}
-          <Grid item>
-            <BoldInlineTypoSm>Range:{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>{trimInformation.range}{" mi (EPA est.)"}</InlineTypoSm>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypoSm>Fuel Economy:{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>
-              {trimInformation.fuel_economy}{" kWh / 100 miles"}
-            </InlineTypoSm>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypoSm>Fuel Economy (MGPe):{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>{trimInformation.MPGe}</InlineTypoSm>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypoSm>Acceleration (0-60):{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>{trimInformation["0_60"]}{" s"}</InlineTypoSm>
-          </Grid>
+          {trimInformation.range !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Range:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.range}{" mi (EPA est.)"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.fuel_economy !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Fuel Economy:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.fuel_economy}
+                {" kWh / 100 miles - combined city/highway (EPA est.)"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.MPGe !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Fuel Economy (MGPe):{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.MPGe}{" - combined city/highway (EPA est.)"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation["0_60"] !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Acceleration (0-60):{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>{trimInformation["0_60"]}{" s"}</InlineTypoSm>
+            </Grid> : <Grid item />}
           {trimInformation.top_speed !== undefined ? 
             <Grid item>
               <BoldInlineTypoSm>Top Speed:{" "}</BoldInlineTypoSm>
-              <InlineTypoSm>{trimInformation.top_speed}{" mph"}</InlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.top_speed}
+                {" mph (may be electronically limited)"}
+              </InlineTypoSm>
+              <TypoSm>
+                {"Always obey speed and traffic laws."}
+              </TypoSm>
             </Grid> : <Grid item />}
-          <Grid item>
-            <BoldInlineTypoSm>Maximum Charging:{" "}</BoldInlineTypoSm>
-            <InlineTypoSm>{trimInformation.max_charging}{" kW"}</InlineTypoSm>
-          </Grid>
+          {trimInformation.max_ac_charging !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>
+                Maximum Onboard (AC) Charging:{" "}
+              </BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.max_ac_charging}{" kW"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.max_dc_charging !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>
+                Maximum Fast (DC) Charging:{" "}
+              </BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.max_dc_charging}{" kW"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.battery_type !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Battery Type:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.battery_type}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
+          {trimInformation.battery_capacity !== undefined ? 
+            <Grid item>
+              <BoldInlineTypoSm>Battery Capacity:{" "}</BoldInlineTypoSm>
+              <InlineTypoSm>
+                {trimInformation.battery_capacity}{" kWh"}
+              </InlineTypoSm>
+            </Grid> : <Grid item />}
           {trimInformation.torque !== undefined ? 
             <Grid item>
               <BoldInlineTypoSm>Towing Capacity:{" "}</BoldInlineTypoSm>
@@ -162,15 +214,13 @@ function Specifications({ vehicle }) {
     const driverAssistPackages = Object.values(driver_assistance_packages);
       // returns an array of the sting-keyed property values of
       // driverAssistPackages
-    console.log("DApackages::", driverAssistPackages);
 
     if (driver_assistance_packages === "none") {
       return <InlineTypo>{"none"}</InlineTypo>
     }
-
     else {
       return driverAssistPackages.map((driverAssistInformation, index ) => {
-
+        
         const { description } = driverAssistInformation;
 
         return (
@@ -208,7 +258,7 @@ function Specifications({ vehicle }) {
 
   return (
     <SpecsWrapper container columnSpacing={4}>
-      <Grid item xs={7}>
+      <Grid item xs={6}>
         <Grid container direction="column">
           <Grid item>
             <BoldInlineTypo>Make/Model:{" "}</BoldInlineTypo>
@@ -233,12 +283,13 @@ function Specifications({ vehicle }) {
             <InlineTypo>{vehicle.luxary_vehicle}</InlineTypo>
           </Grid>
           <Grid item sx={{ mt: 3 }}>
-            <BoldInlineHeader>Driver Assistance Packages:</BoldInlineHeader>
+            <BoldInlineHeader>Driver Assistance Packages</BoldInlineHeader>
+            <TypoSm>(names are manufacturer-specific)</TypoSm>
           </Grid>
         </Grid>
         {renderDriverAssistPackages()}
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={6}>
         {renderVehicleTrims()}
       </Grid>
     </SpecsWrapper>

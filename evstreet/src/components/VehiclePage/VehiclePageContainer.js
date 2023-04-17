@@ -36,7 +36,7 @@ function VehiclePageContainer() {
   // destructured from: const vehicleId = useParams().vehicleId
 
   // Set state of variable vehicle to match vehicleId params.
-  const [vehicle, setVehicle] = useState(
+  const [vehicle] = useState(
     vehicleData.find((v) => v.id === +vehicleId)
     // Unary plus operator + converts vehicleId from string to num.
   );

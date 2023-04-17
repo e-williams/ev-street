@@ -24,7 +24,7 @@ function BodyStyleFilter({
     // Update vehicleCheckboxFilters to receive an array with all the
     // Checkbox ids that were selected.
     setVehicleCheckboxFilters(checkedFilters);
-  }, [checkedFilters]);
+  }, [setVehicleCheckboxFilters, checkedFilters]);
 
   const handleChange = useCallback(
     (event) => {
