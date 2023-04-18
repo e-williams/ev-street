@@ -48,22 +48,6 @@ const BoldTypo = styled(Typography)({
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
-  const navigate = useNavigate();
-
-  const priceToDollars = (price) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-
-  const {
-    make, 
-    model
-  } = filteredVehicleSpecs;
-
-  const { base_price } = filteredVehicleSpecs.trim.standard;
-
   // Get max range, MPGe, 0_60, supercharging of all trims:
   const { trim = {} } = filteredVehicleSpecs;
     // destructures trim and wraps it in an object
@@ -114,14 +98,23 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       maxDcChargingLabel.push(trim.label);
     }
   });
-  
-  const { label } = filteredVehicleSpecs.trim.standard;
-  const { weight } = filteredVehicleSpecs.trim.standard;
+
+  const { make, model } = filteredVehicleSpecs;
+  const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
+
+  const priceToDollars = (price) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+    }).format(price);
 
   const formattedNumbers = (number) =>
     new Intl.NumberFormat("en-US", {
       minimumFractionDigits: 0,
     }).format(number);
+
+  const navigate = useNavigate();
 
   return (
     <ResultsWrapper
