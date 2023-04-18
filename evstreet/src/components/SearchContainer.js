@@ -1,6 +1,6 @@
 import React from 'react';
-import MaxPriceFilter from './filters/MaxPriceFilter';
-import BodyStyleFilter from './filters/BodyStyleFilter';
+import MaxPriceFilter from './Filters/MaxPriceFilter';
+import BodyStyleFilter from './Filters/BodyStyleFilter';
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 
