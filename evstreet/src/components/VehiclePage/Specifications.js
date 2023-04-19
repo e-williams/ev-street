@@ -210,6 +210,8 @@ function Specifications({ vehicle }) {
 
   const { driver_assistance_packages = {} } = vehicle;
 
+  console.log("driver assistance packages", driver_assistance_packages);
+
   const renderDriverAssistPackages = () => {
     const driverAssistPackages = Object.values(driver_assistance_packages);
       // returns an array of the sting-keyed property values of
@@ -222,6 +224,8 @@ function Specifications({ vehicle }) {
       return driverAssistPackages.map((driverAssistInformation, index ) => {
         
         const { description } = driverAssistInformation;
+
+        console.log("description", description);
 
         return (
           <Grid container direction="column" rowSpacing={1}
