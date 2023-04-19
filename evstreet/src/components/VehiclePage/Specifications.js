@@ -221,11 +221,13 @@ function Specifications({ vehicle }) {
       return <InlineTypo>{"none"}</InlineTypo>
     }
     else {
-      return driverAssistPackages.map((driverAssistInformation, index ) => {
+      return driverAssistPackages.map((driverAssistInformation, index) => {
         
         const { description } = driverAssistInformation;
+        const items = Object.values(description);
 
         console.log("description", description);
+        console.log("items", items);
 
         return (
           <Grid container direction="column" rowSpacing={1}
@@ -233,6 +235,12 @@ function Specifications({ vehicle }) {
           >
             <Grid item sx={{ mt: "8px" }}>
               <BoldTypoSm>{driverAssistInformation.label}{": "}</BoldTypoSm>
+
+              {items.map((item, index) => {
+                <TypoSm key={driverAssistInformation.label}>{items}</TypoSm>
+              })}
+
+              {/*            
               <TypoSm>{description.item1}</TypoSm>
               <TypoSm>{description.item2}</TypoSm>
               <TypoSm>{description.item3}</TypoSm>
@@ -253,6 +261,7 @@ function Specifications({ vehicle }) {
               <TypoSm>{description.item18}</TypoSm>
               <TypoSm>{description.item19}</TypoSm>
               <TypoSm>{description.item20}</TypoSm>
+            */}
             </Grid>
           </Grid>
         );
