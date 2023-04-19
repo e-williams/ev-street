@@ -55,7 +55,7 @@
       },
       "awd": {
         "label": "Long Range AWD",
-        "base_price": "tbd",
+        "base_price": "to be determined",
         "weight": 4034,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
@@ -81,13 +81,17 @@
         "max_dc_charging": 250,
         "battery_type": "Lithium ion or Lithium iron phosphate"
       }
+    },
+    "overview": {
+      "paragraph1": "Tesla has significantly more experience designing and producing electric vehicles than any other major auto manufacturer, and it shows in the Model 3. It has a maximum range that is at the top of the competition, world-class handling and performance characteristics, wrapped in an elegant design. Relatively compact for a luxary sedan, the Model 3 looks sporty but still manages seating for 5 and provides sifficient cargo space.",
+      "paragraph2": "From inception, Tesla has been at the forefront of automotive innovation. Engineering achievements like the Model 3's Internal Permanent Magnet Sychronous Reluctance Motor (IPMSynRM) set performance standards that are hard to beat. The Performance trim can rocket from 0 - 60 mph in a blazing 3.1 seconds. The all-glass roof that extends from front to back provides a unique experience and a feeling of openness from any seat. A sleek and minimalist design with refined touches like the carbon fiber spoiler are visually appealing and functional, providing improved aerodynamics and stability. While the interior's central 15 inch touchscreen may look less polished than vehicle designs that incorporate the main screen into the dashboard, it does contribute the the interior's angular lines and maximize visibility around the screen.",
+      "paragraph3": "If you ar looking for stylish luxary EV that seats 5, provides optonal AWD, with nearly unmatched range and superb performance, then you cannot go wrong with the Model 3."
     }
   },
   {
     "id": 1,
     "make": "Kia",
     "model": "EV6",
-    "base_price": 48700,
     "body_style": "5-door crossover",
     "convertible_option": "no",
     "seating_capacity": 5,
@@ -155,7 +159,7 @@
       },
       "awd": {
         "label": "Wind (e-AWD)",
-        "base_price": "tbd",
+        "base_price": 52600,
         "weight": 4502,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
@@ -174,7 +178,7 @@
       },
       "performance": {
         "label": "GT (e-AWD)",
-        "base_price": 53990,
+        "base_price": 61600,
         "weight": 4795,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
@@ -201,13 +205,17 @@
         "base_price": 57600,
         "description": "All other specifications same as Wind (e-AWD) trim."
       }
+    },
+    "overview": {
+      "paragraph1": "",
+      "paragraph2": "",
+      "paragraph3": ""
     }
   },
   {
     "id": 2,
     "make": "Audi",
     "model": "e-tron GT",
-    "base_price": 104900,
     "body_style": "4-door sedan",
     "convertible_option": "no",
     "seating_capacity": 5,
@@ -257,6 +265,11 @@
         "base_price": 111300,
         "description": "All other specifications same as Premium Plus trim."
       }
+    },
+    "overview": {
+      "paragraph1": "",
+      "paragraph2": "",
+      "paragraph3": ""
     }
   }
 ]

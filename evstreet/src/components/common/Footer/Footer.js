@@ -68,7 +68,7 @@ function Footer () {
                 background: "linear-gradient(to right, #dcdcdc, #00000000)"
                 }}>
         </Chip>
-        <CopyrightTypo>Copyright &copy; 2023 EVstreet.com</CopyrightTypo>
+        <CopyrightTypo>Copyright &copy; 2023 Evan Williams</CopyrightTypo>
       </FooterTopBottom>
     </FooterWrapper>
   );

@@ -18,7 +18,12 @@ function CarouselImages({ vehicleModel }) {
           arrow
           placement="bottom-start"
         >
-          <img src={props.item.filepath} width="670" height="380" />
+          <img
+            src={props.item.filepath}
+            alt="" // must define alt to avoid compilation warning
+            width="670"
+            height="380"
+          />
         </Tooltip>
     );
   };

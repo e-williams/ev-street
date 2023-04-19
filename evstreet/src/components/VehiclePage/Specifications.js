@@ -49,6 +49,17 @@ const BoldTypoSm = styled(Typography)({
 
 function Specifications({ vehicle }) {
 
+  const priceToDollars = (price) => {
+    return (
+      isNaN(price) ? price :
+        new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 0,
+        }).format(price)
+    );
+  }
+
   const formattedNumbers = (number) =>
   new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 0,
@@ -69,17 +80,6 @@ function Specifications({ vehicle }) {
 
     return vehicleTrims.map((trimInformation, index) => { // index unused
 
-      const priceToDollars = (price) => {
-        return (
-          isNaN(trimInformation.base_price) ? trimInformation.base_price :
-            new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 0,
-            }).format(price)
-        );
-      }
-
       return (
         <Grid container direction="column" key={trimInformation.label}
           sx={{ mb: 2 }}
@@ -93,67 +93,67 @@ function Specifications({ vehicle }) {
               {priceToDollars(trimInformation.base_price)}
             </InlineTypoSm>
           </Grid>
-          {trimInformation.description !== undefined ?
+          {!trimInformation.description ? <Grid item /> :
             <Grid item>
               <BoldInlineTypoSm>{trimInformation.description}</BoldInlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.weight !== undefined ? 
+            </Grid>}
+          {!trimInformation.weight ? <Grid item /> :
             <Grid item>
               <BoldInlineTypoSm>Weight:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {formattedNumbers(trimInformation.weight)}{" lbs"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.drivetrain !== undefined ? 
+            </Grid>}
+          {!trimInformation.drivetrain ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Drivetrain:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>{trimInformation.drivetrain}</InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.motors !== undefined ? 
+            </Grid>}
+          {!trimInformation.motors ? <Grid item /> :
             <Grid item>
               <BoldInlineTypoSm>Motors:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>{trimInformation.motors}</InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.hp !== undefined ? 
+            </Grid>}
+          {!trimInformation.hp ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Horsepower:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {trimInformation.hp}{" hp (maximum)"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.torque !== undefined ? 
+            </Grid>}
+          {!trimInformation.torque ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Torque:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>{trimInformation.torque}{" lb-ft"}</InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.range !== undefined ? 
+            </Grid>}
+          {!trimInformation.range ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Range:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {trimInformation.range}{" mi (EPA est.)"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.fuel_economy !== undefined ? 
+            </Grid>}
+          {!trimInformation.fuel_economy ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Fuel Economy:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {trimInformation.fuel_economy}
                 {" kWh / 100 miles - combined city/highway (EPA est.)"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.MPGe !== undefined ? 
+            </Grid>}
+          {!trimInformation.MPGe ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Fuel Economy (MGPe):{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {trimInformation.MPGe}{" - combined city/highway (EPA est.)"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation["0_60"] !== undefined ? 
+            </Grid>}
+          {!trimInformation["0_60"] ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Acceleration (0-60):{" "}</BoldInlineTypoSm>
               <InlineTypoSm>{trimInformation["0_60"]}{" s"}</InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.top_speed !== undefined ? 
+            </Grid>}
+          {!trimInformation.top_speed ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Top Speed:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
@@ -163,8 +163,8 @@ function Specifications({ vehicle }) {
               <TypoSm>
                 {"Always obey speed and traffic laws."}
               </TypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.max_ac_charging !== undefined ? 
+            </Grid>}
+          {!trimInformation.max_ac_charging ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>
                 Maximum Onboard (AC) Charging:{" "}
@@ -172,8 +172,8 @@ function Specifications({ vehicle }) {
               <InlineTypoSm>
                 {trimInformation.max_ac_charging}{" kW"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.max_dc_charging !== undefined ? 
+            </Grid>}
+          {!trimInformation.max_dc_charging ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>
                 Maximum Fast (DC) Charging:{" "}
@@ -181,28 +181,28 @@ function Specifications({ vehicle }) {
               <InlineTypoSm>
                 {trimInformation.max_dc_charging}{" kW"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.battery_type !== undefined ? 
+            </Grid>}
+          {!trimInformation.battery_type ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Battery Type:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {trimInformation.battery_type}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.battery_capacity !== undefined ? 
+            </Grid>}
+          {!trimInformation.battery_capacity ? <Grid item /> :
             <Grid item>
               <BoldInlineTypoSm>Battery Capacity:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {trimInformation.battery_capacity}{" kWh"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
-          {trimInformation.torque !== undefined ? 
+            </Grid>}
+          {!trimInformation.torque ? <Grid item /> : 
             <Grid item>
               <BoldInlineTypoSm>Towing Capacity:{" "}</BoldInlineTypoSm>
               <InlineTypoSm>
                 {trimInformation.towing_capacity}{" lbs"}
               </InlineTypoSm>
-            </Grid> : <Grid item />}
+            </Grid>}
         </Grid>
       );
     });

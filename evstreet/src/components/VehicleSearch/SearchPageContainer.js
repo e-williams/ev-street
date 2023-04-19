@@ -93,7 +93,7 @@ function SearchPageContainer() {
 
     const vehicleIdsMatchingSelectedPrice = [];
 
-    vehicleData.forEach(({ base_price, id }) => {
+    vehicleData.forEach(({ trim: {standard: {base_price}}, id }) => {
       // destructured vehicleData.base_price = parameter for example
       // creates new variables with values the same as the values of
       // object keys base_price and id
@@ -214,7 +214,7 @@ function SearchPageContainer() {
         <NoResultsMessage elevation={2}>
           NO VEHICLES MATCH THE SELECTED FILTERS.
           <br />
-          PLEASE REDUCE THE NUMBER OF SELECTIONS.
+          PLEASE REDUCE OR CHANGE THE SELECTIONS.
         </NoResultsMessage>
       );
     }

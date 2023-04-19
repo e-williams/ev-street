@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
 import VehicleImageMap from "../ImageHandling/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
+// import { priceToDollars, formattedNumbers } from "../Common/Utils";
 
 const ResultsWrapper = styled(Paper)({
   backgroundColor: "#f9f9f9",
