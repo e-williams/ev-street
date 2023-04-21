@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, Grid } from "@mui/material";
-import { formattedNumbers, priceToDollars } from "../Common/Utils";
+import { priceToDollars, formattedNumbers } from "../Common/Utils";
 
 const SpecsWrapper = styled(Grid)({
   padding: 20,
@@ -63,8 +63,7 @@ function Specifications({ vehicle }) {
     // [ {base_price: '$42,990'}, {label: 'Rear-Wheel Drive', etc.}, {..},
     // {..} ]
 
-    return vehicleTrims.map((trimInformation, index) => {
-      // index unused
+    return vehicleTrims.map((trimInformation) => {
 
       return (
         <Grid
@@ -83,6 +82,7 @@ function Specifications({ vehicle }) {
             <BoldInlineTypoSm>Base Price: </BoldInlineTypoSm>
             <InlineTypoSm>
               {trimInformation.base_price === -1
+                // data value is -1 if no price available
                 ? "to be determined"
                 : priceToDollars(trimInformation.base_price)}
             </InlineTypoSm>
@@ -270,7 +270,7 @@ function Specifications({ vehicle }) {
     if (driver_assistance_packages === "none") {
       return <InlineTypo>{"none"}</InlineTypo>;
     } else {
-      return driverAssistPackages.map((driverAssistInformation, index) => {
+      return driverAssistPackages.map((driverAssistInformation) => {
         const { description } = driverAssistInformation;
         const items = Object.values(description);
 

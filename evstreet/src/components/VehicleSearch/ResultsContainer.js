@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
 import VehicleImageMap from "../ImageHandling/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
-// import { priceToDollars, formattedNumbers } from "../Common/Utils";
+import { priceToDollars, formattedNumbers } from "../Common/Utils";
 
 const ResultsWrapper = styled(Paper)({
   backgroundColor: "#f9f9f9",
@@ -48,76 +48,56 @@ const BoldTypo = styled(Typography)({
 });
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
-  // Get max range, MPGe, 0_60, supercharging of all trims:
+
+  // Get max or min range, MPGe, 0_60, max_dc_charging of all trims
+
   const { trim = {} } = filteredVehicleSpecs;
   // destructures trim and wraps it in an object
 
-  const MPGeArray = [];
-  const accelerationArray = [];
-  const DcChargingArray = [];
   const vehicleTrims = Object.values(trim);
 
-  /* TODO:
-    If a value is the same as the existing value we want to be able to add all the
-    labels that have the same value.
-    Look into other edge cases.
-  */
   const maxTrims = vehicleTrims.reduce(
     (acc, trim) => {
       if (trim.range > acc.maxRange) {
         acc.maxRange = trim.range;
-        acc.maxRangeLabel = trim.label;
       }
 
       if (trim.MPGe > acc.maxMPGe) {
         acc.maxMPGe = trim.MPGe;
-        acc.maxMPGeLabel = trim.label;
       }
 
       if (trim["0_60"] < acc.minAcceleration || !acc.minAcceleration) {
         acc.minAcceleration = trim["0_60"];
-        acc.minAccelerationLabel = trim.label;
       }
 
       if (trim.max_dc_charging > acc.maxDcCharging) {
         acc.maxDcCharging = trim.max_dc_charging;
-        acc.maxDcChargingLabel = trim.label;
       }
 
       return acc;
     },
-    {
+    { // initial attribute values per reduce()
       maxRange: null,
-      maxRangeLabel: "",
       maxMPGe: null,
-      maxMPGeLabel: "",
       minAcceleration: null,
-      minAccelerationLabel: "",
       maxDcCharging: null,
-      maxDcChargingLabel: "",
     }
   );
 
   console.log({ maxTrims });
 
-  // returns an array of the sting-keyed property values of trim
-  // Loop through trims and add range to rangeArray:
-  vehicleTrims.forEach((trim) => {
-    MPGeArray.push(trim.MPGe || -1);
-    accelerationArray.push(trim["0_60"] || 1000);
-    DcChargingArray.push(trim.max_dc_charging || -1);
-  });
-
-  // Get max/min value from each array
-  const maxMPGe = Math.max(...MPGeArray);
-  const minAcceleration = Math.min(...accelerationArray);
-  const maxDcCharging = Math.max(...DcChargingArray);
-
   // Get trim labels for max/min values
+  let maxRangeLabel = [];
   let maxMPGeLabel = [];
   let minAccelerationLabel = [];
   let maxDcChargingLabel = [];
+
+  const { maxRange, maxMPGe, minAcceleration, maxDcCharging } = maxTrims;
+
   vehicleTrims.forEach((trim) => {
+    if (trim.range === maxRange) {
+      maxRangeLabel.push(trim.label)
+    }
     if (trim.MPGe === maxMPGe) {
       maxMPGeLabel.push(trim.label);
     }
@@ -131,18 +111,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
   const { make, model } = filteredVehicleSpecs;
   const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
-
-  const priceToDollars = (price) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-
-  const formattedNumbers = (number) =>
-    new Intl.NumberFormat("en-US", {
-      minimumFractionDigits: 0,
-    }).format(number);
 
   const navigate = useNavigate();
 
@@ -217,9 +185,9 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             <SpecsRows item>
               <BoldTypo>Range: </BoldTypo>
               <ListingSpecs>
-                {maxTrims.maxRange}
+                {maxRange}
                 {" mi (EPA est.) - "}
-                {maxTrims.maxRangeLabel}
+                {maxRangeLabel.join(", ")}
                 {" trim"}
               </ListingSpecs>
             </SpecsRows>
