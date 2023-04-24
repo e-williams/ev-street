@@ -1,4 +1,3 @@
-<<<<<<< HEAD:evstreet/src/components/VehicleSearch/SearchContainer.js
 import React from "react";
 import MaxPriceFilter from "../Filters/MaxPriceFilter";
 import BodyStyleFilter from "../Filters/BodyStyleFilter";
@@ -9,13 +8,6 @@ const FilterTitle = styled(Typography)({
   textAlign: "center",
   color: "#7e7e7e",
 });
-=======
-import React from 'react';
-import MaxPriceFilter from './Filters/MaxPriceFilter';
-import BodyStyleFilter from './Filters/BodyStyleFilter';
-import { styled } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
->>>>>>> main:evstreet/src/components/SearchContainer.js
 
 function SearchContainer({
   setVehicleCheckboxFilters,
