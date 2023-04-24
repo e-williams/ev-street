@@ -3,26 +3,273 @@
     "id": 0,
     "make": "TESLA",
     "model": "Model 3",
-    "base_price": 43990,
     "body_style": "5-door sedan",
-    "year": {
-      "2022": {
-        "base_price": "test format"
+    "convertible_option": "no",
+    "seating_capacity": 5,
+    "cargo_space": 22.9,
+    "luxary_vehicle": "yes",
+    "drivetrain": "RWD or AWD",
+    "self_parking": "yes - Autopilot, Enhanced Autopilot packages",
+    "driver_assistance": "yes",
+    "driver_assistance_packages": {
+      "level1": {
+        "label": "Autopilot",
+        "description": {
+          "item1": "Traffic-Aware Cruise Control.",
+          "item2": "Autosteer."
+        }
+      },
+      "level2": {
+        "label": "Enhanced Autopilot",
+        "description": {
+          "item1": "In addition to Autopilot features, includes:",
+          "item2": "Auto Lane Change.",
+          "item3": "Navigate on Autopilot.",
+          "item4": "Autopark.",
+          "item5": "Summon.",
+          "item6": "Smart Summon,"
+        }
+      },
+      "level3": {
+        "label": "Full Self-Driving",
+        "description": {
+          "item1": "In addition to Autopilot and Enhanced Autopilot features, includes:",
+          "item2": "Traffic and Stop Sign Control."
+        }
       }
+    },
+    "trim": {
+      "standard": {
+        "label": "Rear-Wheel Drive",
+        "base_price": 42990,
+        "weight": 3862,
+        "drivetrain": "RWD",
+        "motors": "single motor for rear wheels",
+        "range": 272,
+        "fuel_economy": 25,
+        "MPGe": 138,
+        "0_60": 5.8,
+        "max_ac_charging": 7.6,
+        "max_dc_charging": 170,
+        "battery_type": "Lithium ion or Lithium iron phosphate"
+      },
+      "awd": {
+        "label": "Long Range AWD",
+        "base_price": -1,
+        "weight": 4034,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "range": 358,
+        "fuel_economy": 26,
+        "MPGe": 134,
+        "0_60": 4.2,
+        "max_ac_charging": 11.5,
+        "max_dc_charging": 250,
+        "battery_type": "Lithium ion or Lithium iron phosphate"
+      },
+      "performance": {
+        "label": "Performance",
+        "base_price": 53990,
+        "weight": 4048,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "range": 315,
+        "fuel_economy": 30,
+        "MPGe": 113,
+        "0_60": 3.1,
+        "max_ac_charging": 11.5,
+        "max_dc_charging": 250,
+        "battery_type": "Lithium ion or Lithium iron phosphate"
+      }
+    },
+    "overview": {
+      "paragraph1": "Tesla has significantly more experience designing and producing electric vehicles than any other major auto manufacturer, and it shows in the Model 3. It has a maximum range that is at the top of the competition, world-class handling and performance characteristics, wrapped in an elegant design. Relatively compact for a luxary sedan, the Model 3 looks sporty but still manages seating for 5 and provides sifficient cargo space.",
+      "paragraph2": "From inception, Tesla has been at the forefront of automotive innovation. Engineering achievements like the Model 3's Internal Permanent Magnet Sychronous Reluctance Motor (IPMSynRM) set performance standards that are hard to beat. The Performance trim can rocket from 0 - 60 mph in a blazing 3.1 seconds. The all-glass roof that extends from front to back provides a unique experience and a feeling of openness from any seat. A sleek and minimalist design with refined touches like the carbon fiber spoiler are visually appealing and functional, providing improved aerodynamics and stability. While the interior's central 15 inch touchscreen may look less polished than vehicle designs that incorporate the main screen into the dashboard, it contributes to the interior's angular lines.",
+      "paragraph3": "If you are looking for a stylish, luxary EV that seats 5, provides optonal AWD, with nearly unmatched range and superb performance, then you cannot go wrong with the Model 3."
     }
   },
   {
     "id": 1,
     "make": "Kia",
     "model": "EV6",
-    "base_price": 48700,
-    "body_style": "5-door crossover"
+    "body_style": "5-door crossover",
+    "convertible_option": "no",
+    "seating_capacity": 5,
+    "cargo_space": 50.2,
+    "luxary_vehicle": "yes",
+    "drivetrain": "RWD or AWD",
+    "self_parking": "yes - Wind, GT-Line trims",
+    "driver_assistance": "yes",
+    "driver_assistance_packages": {
+      "level1": {
+        "label": "Wind (RWD), Wind (e-AWD) trims",
+        "description": {
+          "item1": "Forward Collision-Avoidance Assist w/ Car, Cyclist and Pedestrian Detection.",
+          "item2": "Forward Collision-Avoidance Assist w/ Junction Turning Detection.",
+          "item3": "Blind-Spot Collision-Avoidance Assist.",
+          "item4": "Blind-Spot View Monitor.",
+          "item5": "Rear Cross-Traffic Collision-Avoidance Assist.",
+          "item6": "Driver Attention Warning w/ Leading Vehicle Departure Alert.",
+          "item7": "Lane Keeping Assist.",
+          "item8": "Lane Following Assist.",
+          "item9": "Smart Cruise Control w/ Stop & Go.",
+          "item10": "Navigation-Based Smart Cruise Control w/ Stop & Go - Curve.",
+          "item11": "Highway Driving Assist.",
+          "item12": "Intelligent Speed Limit Assist.",
+          "item13": "Safe Exit Warning.",
+          "item14": "Park Distance Warning - Reverse.",
+          "item15": "Park Distance Warning - Forward.",
+          "item16": "Parking Collision-Avoidance Assist-Reverse.",
+          "item17": "Rear View Monitor with Dynamic Parking Guidance.",
+          "item18": "Surround View Monitor w/ 3D View.",
+          "item19": "Remote Smart Parking Assist.",
+          "item20": "Rear Occupant Alert."
+        }
+      },
+      "level2": {
+        "label": "GT-Line (RWD), GT-Line (e-AWD), GT (e-AWD) trims",
+        "description": {
+          "item1": "In addition to features of Wind trims, includes:",
+          "item2": "Forward Collision-Avoidance Assist w/ Junction Crossing Detection.",
+          "item3": "Forward Collision-Avoidance Assist w/ Side and Oncoming Lane Change.",
+          "item4": "Forward Collision-Avoidance Assist w/ Driver Steering and Auto Evasive Steering Assist.",
+          "item5": "Highway Driving Assist 2."
+        }
+      }
+    },
+    "trim": {
+      "standard": {
+        "label": "Wind (RWD)",
+        "base_price": 48700,
+        "weight": 4255,
+        "drivetrain": "RWD",
+        "motors": "single motor for rear wheels",
+        "hp": 320,
+        "torque": 258,
+        "range": 310,
+        "fuel_economy": 28,
+        "MPGe": 117,
+        "0_60": 7.2,
+        "top_speed": 115,
+        "max_ac_charging": 10.9,
+        "max_dc_charging": 240,
+        "battery_type": "Lithium ion",
+        "battery_capacity": 77.4,
+        "towing_capacity": 2300
+      },
+      "awd": {
+        "label": "Wind (e-AWD)",
+        "base_price": 52600,
+        "weight": 4502,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "hp": 320,
+        "torque": 446,
+        "range": 282,
+        "fuel_economy": 31,
+        "MPGe": 109,
+        "0_60": 5.1,
+        "top_speed": 117,
+        "max_ac charging": 10.9,
+        "max_dc_charging": 240,
+        "battery_type": "Lithium ion",
+        "battery_capacity": 77.4,
+        "towing_capacity": 2300
+      },
+      "performance": {
+        "label": "GT (e-AWD)",
+        "base_price": 61600,
+        "weight": 4795,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "hp": 576,
+        "torque": 545,
+        "range": 206,
+        "fuel_economy": 42,
+        "MPGe": 79,
+        "0_60": 3.4,
+        "top_speed": 161,
+        "max_ac_charging": 10.9,
+        "max_dc_charging": 240,
+        "battery_type": "Lithium ion",
+        "battery_capacity": 77.4,
+        "towing_capacity": 2300
+      },
+      "standard_plus": {
+        "label": "GT-Line (RWD)",
+        "base_price": 52900,
+        "description": "All other specifications same as Wind (RWD) trim."
+      },
+      "awd_plus": {
+        "label": "GT-Line (AWD)",
+        "base_price": 57600,
+        "description": "All other specifications same as Wind (e-AWD) trim."
+      }
+    },
+    "overview": {
+      "paragraph1": "",
+      "paragraph2": "",
+      "paragraph3": ""
+    }
   },
   {
     "id": 2,
     "make": "Audi",
     "model": "e-tron GT",
-    "base_price": 104900,
-    "body_style": "4-door sedan"
+    "body_style": "4-door sedan",
+    "convertible_option": "no",
+    "seating_capacity": 5,
+    "cargo_space": 9.2,
+    "luxary_vehicle": "yes",
+    "drivetrain": "AWD",
+    "self_parking": "yes - Prestige trim",
+    "driver_assistance": "yes",
+    "driver_assistance_packages": {
+      "level1": {
+        "label": "Premium Plus trim",
+        "description": {
+          "item1": "3D Overhead View.",
+          "item2": "Audi Pre Sense front and rear.",
+          "item3": "Intersection Assist"
+        }
+      },
+      "level2": {
+        "label": "Prestige trim",
+        "description": {
+          "item1": "In addition to features of Premium Plus trim, includes:",
+          "item2": "Adaptive Cruise Assist with Lane Guidance.",
+          "item3": "Park Assist Plus"
+        }
+      }
+    },
+    "trim": {
+      "standard": {
+        "label": "Premium Plus, Prestige",
+        "base_price": 104900,
+        "weight": 5060,
+        "drivetrain": "AWD",
+        "motors": "2 total - 1 each for front and rear wheels",
+        "hp": 522,
+        "range": 238,
+        "fuel_economy": 41,
+        "MPGe": 82,
+        "0_60": 3.9,
+        "top_speed": 152,
+        "max_ac_charging": 9.6,
+        "max_dc_charging": 270,
+        "battery_type": "Lithium ion",
+        "battery_capacity": 83.7
+      },
+      "performance": {
+        "label": "Prestige",
+        "base_price": 111300,
+        "description": "All other specifications same as Premium Plus trim."
+      }
+    },
+    "overview": {
+      "paragraph1": "",
+      "paragraph2": "",
+      "paragraph3": ""
+    }
   }
 ]

@@ -1,30 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './Components/App';
-import AboutUS from './Components/aboutUs_contactUs/AboutUs';
-import ContactUs from './Components/aboutUs_contactUs/ContactUs';
-import VehiclePage from './Components/VehiclePage';
-import NotFound from './Components/NotFound';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./Components/App";
+import AboutUS from "./Components/Common/Footer/AboutUs";
+import ContactUs from "./Components/Common/Footer/ContactUs";
+import VehiclePageContainer from "./Components/VehiclePage/VehiclePageContainer";
+import NotFound from "./Components/ErrorHandling/NotFound";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     errorElement: <NotFound />,
+    children: [
+      {
+        path: "/vehicle/:vehicleId",
+        element: <VehiclePageContainer />, // render the overview
+      },
+    ],
   },
   {
-    path: '/about',
+    path: "/about",
     element: <AboutUS />,
   },
   {
-    path: '/contact',
+    path: "/contact",
     element: <ContactUs />,
   },
-  {
-    path: '/vehicle/:vehicleId',
-    element: <VehiclePage />,
-  }
 ]);
 
 // Render router in div element of index.html w/ id='root', and provide all

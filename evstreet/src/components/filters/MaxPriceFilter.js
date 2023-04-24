@@ -1,8 +1,8 @@
-import React from 'react';
-import { FormControl } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import React from "react";
+import { FormControl } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 function MaxPriceFilter({ selectedPrice, setSelectedPrice }) {
 
@@ -16,18 +16,18 @@ function MaxPriceFilter({ selectedPrice, setSelectedPrice }) {
   );
 
   return (
-    <FormControl size='small' sx={{ minWidth: 160, mt: 2.2, mb: 1.5 }}>
-      <InputLabel id='basePriceLabel' sx={{ fontSize: 16, color: 'black' }}>
+    <FormControl size="small" sx={{ minWidth: 160, mt: 1.5, mb: 1.5 }}>
+      <InputLabel id="basePriceLabel" sx={{ fontSize: 16, color: "black" }}>
         Max Base Price
       </InputLabel>
       <Select
-        label='Max Base price'
-        labelId='basePriceLabel'
+        label="Max Base price"
+        labelId="basePriceLabel"
         value={selectedPrice}
         onChange={handleChange}
-        sx={{ color: '#2db34a' }}
+        sx={{ color: "#2db34a" }}
       >
-        <MenuItem value='unlimited'>unlimited</MenuItem>
+        <MenuItem value="unlimited">unlimited</MenuItem>
         <MenuItem value={300000}>$300,000</MenuItem>
         <MenuItem value={200000}>$200,000</MenuItem>
         <MenuItem value={150000}>$150,000</MenuItem>

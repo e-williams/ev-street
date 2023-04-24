@@ -1,31 +1,30 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Grid,
-  Typography,
-  FormGroup,
-} from '@mui/material';
+import React, { useCallback, useEffect, useState } from "react";
+import { styled } from "@mui/material/styles";
+import { Box, Grid, Typography, FormGroup } from "@mui/material";
+import CustomCheckbox from "./Checkbox";
 
-import CustomCheckbox from '../Checkbox';
+const FilterHeading = styled(Typography)({
+  fontSize: 16,
+  marginTop: 10,
+  color: "black",
+});
 
 function BodyStyleFilter({
   vehicleCheckboxFilters,
   setVehicleCheckboxFilters,
 }) {
-
   const [checkedFilters, setCheckedFilters] = useState(vehicleCheckboxFilters);
-    // checkedFilters and setCheckedFilters is essentially a chain to
-    // vehicleCheckboxFilters and setVehicleCheckboxFilters, done so the
-    // component is handling its own logic and state, in this case, the
-    // checkedFilters array, and passing it to vehicleCheckboxFilters in
-    // useEffect() below.
+  // checkedFilters and setCheckedFilters is essentially a chain to
+  // vehicleCheckboxFilters and setVehicleCheckboxFilters, done so the
+  // component is handling its own logic and state, in this case, the
+  // checkedFilters array, and passing it to vehicleCheckboxFilters in
+  // useEffect() below.
 
   useEffect(() => {
     // Update vehicleCheckboxFilters to receive an array with all the
     // Checkbox ids that were selected.
     setVehicleCheckboxFilters(checkedFilters);
-  }, [checkedFilters]);
+  }, [setVehicleCheckboxFilters, checkedFilters]);
 
   const handleChange = useCallback(
     (event) => {
@@ -36,25 +35,28 @@ function BodyStyleFilter({
       // re-rendered function.
       // event is parameter name taking on HTML Event() interface.
       if (event.target.checked) {
-          // if checkbox checked, filter name added to checkedFilters array
+        // if checkbox checked, filter name added to checkedFilters array
         setCheckedFilters([...checkedFilters, event.target.id]);
-          // ['4-door sedan', ...]
-          // Spread syntax ... to add element id value to new array state; not
-          // an array pointing to checkedFilters memory.
-          // console.log({checkedFilters}) would initially produce empty array
-          // here because this useCallback function is only stored until called.
+        // ['4-door sedan', ...]
+        // Spread syntax ... to add element id value to new array state; not
+        // an array pointing to checkedFilters memory.
+        // console.log({checkedFilters}) would initially produce empty array
+        // here because this useCallback function is only stored until called.
       } else {
-        setCheckedFilters(checkedFilters.filter((check) =>
-          check !== event.target.id));
-            // Filters the checkedFilters array according to condition that each
-            // element in the array is not equal to the filter name.
+        setCheckedFilters(
+          checkedFilters.filter((check) => check !== event.target.id)
+        );
+        // Filters the checkedFilters array according to condition that each
+        // element in the array is not equal to the filter name.
       }
     },
     [checkedFilters]
   );
 
-  const hasBeenChecked = useCallback((id) => checkedFilters.includes(id),
-    [checkedFilters]);
+  const hasBeenChecked = useCallback(
+    (id) => checkedFilters.includes(id),
+    [checkedFilters]
+  );
   // Main purpose of this function is to keep the checked state of every
   // checkbox element in sync with all the currently selected filters.
   // Function is passed down to Checkbox.js as prop.
@@ -69,100 +71,90 @@ function BodyStyleFilter({
   // checkedFilters array includes the filter value of each checkbox, and is
   // run upon re-render, which happens with a change in state.
 
-  console.log({checkedFilters});
-
-  const FlexColumn2 = styled(Grid)({
-    marginLeft: 10,
-  });
-
-  const FilterHeading = styled(Typography)({
-    fontSize: 16,
-    marginTop: 10,
-    color: 'black',
-  });
+  console.log({ checkedFilters });
 
   return (
     <Box>
       <FilterHeading>Body Style</FilterHeading>
-      <Grid container sx={{ color: '#7e7e7e' }}>
+      <Grid container sx={{ color: "#7e7e7e" }}>
         <Grid item>
-          <FormGroup sx={{ fontSize: 2 }}>
+          <FormGroup>
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='mini/subcompact'
+              id="mini/subcompact"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='2-door sports car'
+              id="2-door sports car"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='3-door sports car'
+              id="3-door sports car"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='2-door sedan'
+              id="2-door sedan"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='3-door sedan'
+              id="3-door sedan"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='4-door sedan'
+              id="4-door sedan"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='5-door sedan'
+              id="5-door sedan"
               onChange={handleChange}
             />
           </FormGroup>
         </Grid>
-        <FlexColumn2 item>
-          <FormGroup sx={{ fontSize: 2 }}>
+        <Grid item>
+          <FormGroup>
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='wagon'
+              id="wagon"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='3-door crossover'
+              id="3-door crossover"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='5-door crossover'
+              id="5-door crossover"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='3-door SUV'
+              id="3-door SUV"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='5-door SUV'
+              id="5-door SUV"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='minivan/van'
+              id="minivan/van"
               onChange={handleChange}
             />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
-              id='truck'
+              id="truck"
               onChange={handleChange}
             />
           </FormGroup>
-        </FlexColumn2>
+        </Grid>
       </Grid>
     </Box>
   );
