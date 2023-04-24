@@ -60,10 +60,11 @@ function Specifications({ vehicle }) {
     console.log("TEST", process.env.REACT_APP_NOT_SECRET_CODE);
     const vehicleTrims = Object.values(trim);
     // returns an array of the sting-keyed property values of trim
-    // [ {base_price: '$42,990'}, {label: 'Rear-Wheel Drive', etc.}, {..},
+    // [ {label: 'Rear-Wheel Drive', etc.}, {base_price: '$42,990'}, {..},
     // {..} ]
 
     return vehicleTrims.map((trimInformation) => {
+      console.log("trim info", trimInformation);
 
       return (
         <Grid
