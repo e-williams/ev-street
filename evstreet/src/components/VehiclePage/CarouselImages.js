@@ -4,7 +4,6 @@ import Carousel from "react-material-ui-carousel";
 import vehicle_gallery_map from "../ImageHandling/VehicleImageMap";
 
 function CarouselImages({ vehicleModel }) {
-
   const vehicleImages = vehicle_gallery_map[vehicleModel];
 
   if (!vehicleImages) {
@@ -13,18 +12,18 @@ function CarouselImages({ vehicleModel }) {
 
   const CarouselItem = (props) => {
     return (
-        <Tooltip
-          title={`IMAGE SOURCE: ${props.item.url}`}
-          arrow
-          placement="bottom-start"
-        >
-          <img
-            src={props.item.filepath}
-            alt="" // must define alt to avoid compilation warning
-            width="670"
-            height="380"
-          />
-        </Tooltip>
+      <Tooltip
+        title={`IMAGE SOURCE: ${props.item.url}`}
+        arrow
+        placement="bottom-start"
+      >
+        <img
+          src={props.item.filepath}
+          alt="" // must define alt to avoid compilation warning
+          width="670"
+          height="380"
+        />
+      </Tooltip>
     );
   };
 
