@@ -60,11 +60,87 @@ function Specifications({ vehicle }) {
     console.log("TEST", process.env.REACT_APP_NOT_SECRET_CODE);
     const vehicleTrims = Object.values(trim);
     // returns an array of the sting-keyed property values of trim
-    // [ {label: 'Rear-Wheel Drive', etc.}, {base_price: '$42,990'}, {..},
+    // [ {label: 'Rear-Wheel Drive', etc.}, {base_price: 42990}, {..},
     // {..} ]
 
     return vehicleTrims.map((trimInformation) => {
-      console.log("trim info", trimInformation);
+
+      const LABEL_MAP = {
+        base_price: {
+          label: "Base Price",
+          data: (price) => price === -1 ? "to be determined" : priceToDollars(price)
+            // data value is -1 if no price available
+            // value of price is from map() iterator - 'value'
+        },
+        weight: {
+          label: "Weight",
+          data: (weight) => `${formattedNumbers(weight)} lbs`
+            // value of weight is from map() iterator - 'weight'
+        },
+        drivetrain: {
+          label: "Drivetrain",
+          data: () => `${trimInformation.drivetrain}`
+        },
+        motors: {
+          label: "Motors",
+          data: () => `${trimInformation.motors}`
+        },
+        horsepower: {
+          label: "Horsepower",
+          data: () => `${trimInformation.horsepower} hp (maximum)`
+        },
+        torque: {
+          label: "Torque",
+          data: () => `${trimInformation.torque} lb-ft`
+        },
+        range: {
+          label: "range",
+          data: () => `${trimInformation.range} mi (EPA est.)`
+        },
+        fuel_economy: {
+          label: "Fuel Economy",
+          data: () => `${trimInformation.fuel_economy} kWh / 100 miles - combined city/highway (EPA est.)`
+        },
+        MPGe: {
+          label: "Fuel Economy (MPGe)",
+          data: () =>
+            `${trimInformation.MPGe}  - combined city/highway (EPA est.)`
+        },
+        "0_60": {
+          label: "Acceleration (0-60)",
+          data: () => `${trimInformation["0_60"]} s`
+        },
+        top_speed: {
+          label: "Top Speed",
+          data: () =>
+            `${trimInformation.top_speed} mph (may be electronically limited) Always obey speed and traffic laws.`
+        },
+        max_ac_charging: {
+          label: "Maximum Onboard (AC) Charging",
+          data: () => `${trimInformation.max_ac_charging} kW`
+        },
+        max_dc_charging: {
+          label: "Maximum Fast (DC) Charging",
+          data: () => `${trimInformation.max_dc_charging} kW`
+        },
+        battery_type: {
+          label: "Battery Type",
+          data: () => `${trimInformation.battery_type}`
+        },
+        battery_capacity: {
+          label: "Battery Capacity",
+          data: () => `${trimInformation.battery_capacity} kWh`
+        },
+        towing_capacity: {
+          label: "Towing Capacity",
+          data: (towing_capacity) =>
+            `${formattedNumbers(towing_capacity)} lbs`
+        }
+      }
+
+      console.log("vehicle trims", vehicleTrims);
+      const trimInfoEntries = Object.entries(trimInformation);
+      console.log("trim info entries", trimInfoEntries);
 
       return (
         <Grid
@@ -79,6 +155,38 @@ function Specifications({ vehicle }) {
               {" trim"}
             </BoldInlineHeader>
           </Grid>
+
+          {Object.entries(trimInformation).map(([label, value]) => {
+            // Object.entries(trimInformation) produces an array of arrays,
+            // each array with 2 elements representing key & value from data
+            // trims, for example:
+            // [ [ 'label', 'Rear-Wheel Drive' ], [ 'base_price', 42990 ], ... ]
+            // label and value iterators take on object key & object value.
+
+            console.log("label iterator", label);
+            console.log("value iterator", value);
+            console.log("LABEL_MAP label", LABEL_MAP[label]);
+
+            return (
+              <>
+                {!LABEL_MAP[label]?.label ? (
+                  <Grid item />
+                ) : (
+                <Grid item>
+                  <BoldInlineTypoSm>
+                    {LABEL_MAP[label]?.label}
+                    {": "}
+                  </BoldInlineTypoSm>
+                  <InlineTypoSm>
+                    {LABEL_MAP[label]?.data(value)}
+                  </InlineTypoSm>
+                </Grid>
+                )}
+              </>
+            );
+          })}
+
+          {/*}
           <Grid item>
             <BoldInlineTypoSm>Base Price: </BoldInlineTypoSm>
             <InlineTypoSm>
@@ -88,13 +196,6 @@ function Specifications({ vehicle }) {
                 : priceToDollars(trimInformation.base_price)}
             </InlineTypoSm>
           </Grid>
-          {!trimInformation.description ? (
-            <Grid item />
-          ) : (
-            <Grid item>
-              <BoldInlineTypoSm>{trimInformation.description}</BoldInlineTypoSm>
-            </Grid>
-          )}
           {!trimInformation.weight ? (
             <Grid item />
           ) : (
@@ -243,58 +344,61 @@ function Specifications({ vehicle }) {
               </InlineTypoSm>
             </Grid>
           )}
-          {!trimInformation.torque ? (
+          {!trimInformation.towing_capacity ? (
             <Grid item />
           ) : (
             <Grid item>
               <BoldInlineTypoSm>Towing Capacity: </BoldInlineTypoSm>
               <InlineTypoSm>
-                {trimInformation.towing_capacity}
+                {formattedNumbers(trimInformation.towing_capacity)}
                 {" lbs"}
               </InlineTypoSm>
             </Grid>
           )}
+          */}
         </Grid>
       );
     });
-  };
+  }
 
   const { driver_assistance_packages = {} } = vehicle;
 
   console.log("driver assistance packages", driver_assistance_packages);
 
   const renderDriverAssistPackages = () => {
-    const driverAssistPackages = Object.values(driver_assistance_packages);
-    // returns an array of the sting-keyed property values of
-    // driverAssistPackages
 
     if (driver_assistance_packages === "none") {
       return <InlineTypo>{"none"}</InlineTypo>;
     } else {
-      return driverAssistPackages.map((driverAssistInformation) => {
-        const { description } = driverAssistInformation;
-        const items = Object.values(description);
+      return Object.values(driver_assistance_packages).map(
+        (driverAssistInformation) => {
+          // Object.values returns an array of the sting-keyed property values
+          // of driverAssistPackages.
 
-        return (
-          <Grid
-            container
-            direction="column"
-            rowSpacing={1}
-            key={driverAssistInformation.label}
-          >
-            <Grid item sx={{ mt: "8px" }}>
-              <BoldTypoSm>
-                {driverAssistInformation.label}
-                {": "}
-              </BoldTypoSm>
+          const { description } = driverAssistInformation;
+          const items = Object.values(description);
 
-              {items.map((item) => (
-                <TypoSm key={item}>{item}</TypoSm>
-              ))}
+          return (
+            <Grid
+              container
+              direction="column"
+              rowSpacing={1}
+              key={driverAssistInformation.label}
+            >
+              <Grid item sx={{ mt: "8px" }}>
+                <BoldTypoSm>
+                  {driverAssistInformation.label}
+                  {": "}
+                </BoldTypoSm>
+
+                {items.map((item) => (
+                  <TypoSm key={item}>{item}</TypoSm>
+                ))}
+              </Grid>
             </Grid>
-          </Grid>
-        );
-      });
+          );
+        }
+      );
     }
   };
 
