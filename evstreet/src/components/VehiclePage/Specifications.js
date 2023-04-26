@@ -49,17 +49,31 @@ const BoldTypoSm = styled(Typography)({
 });
 
 const LABEL_MAP = {
+  body_style: {
+    label: "Body Style",
+    data: (body_style) => body_style,
+  },
+  seating_capacity: {
+    label: "Seating Capacity",
+    data: (seating_capacity) => seating_capacity,
+  },
+  cargo_space: {
+    label: "Cargo Space",
+    data: (cargo_space) => `${cargo_space} cu ft`,
+  },
+  luxary_vehicle: {
+    label: "Luxary Vehicle",
+    data: (luxary_vehicle) => luxary_vehicle,
+  },
   base_price: {
     label: "Base Price",
     data: (price) =>
       price === -1 ? "to be determined" : priceToDollars(price),
     // data value is -1 if no price available
-    // value of price is from map() iterator - 'value'
   },
   weight: {
     label: "Weight",
     data: (weight) => `${formattedNumbers(weight)} lbs`,
-    // value of weight is from map() iterator - 'weight'
   },
   drivetrain: {
     label: "Drivetrain",
@@ -124,9 +138,94 @@ const LABEL_MAP = {
     label: "Towing Capacity",
     data: (towing_capacity) => `${formattedNumbers(towing_capacity)} lbs`,
   },
-};
+}
 
 function Specifications({ vehicle }) {
+
+  const renderMainSpecs = () => {
+    return (
+      <Grid container direction="column">
+
+        <Grid item>
+          <BoldInlineTypo>Make/Model: </BoldInlineTypo>
+          <InlineTypo>
+            {vehicle.make} {vehicle.model}
+          </InlineTypo>
+        </Grid>
+
+        {Object.entries(vehicle).map(([label, value]) => {
+          // Object.entries(vehicle) returns an array of arrays:
+          // [ ['id', 0], ['make', 'TESLA'], ...]
+          // label and value iterators take on array values.
+
+
+          if (!LABEL_MAP[label]) {
+            return <Grid item key={`${label} ${value}`} />;
+          }
+
+          return (
+            <Grid item key={`${label} ${value}`}>
+              <BoldInlineTypo>
+                {LABEL_MAP[label].label}
+                {": "}
+              </BoldInlineTypo>
+              <InlineTypo>
+                {LABEL_MAP[label].data(value)}
+              </InlineTypo>
+            </Grid>
+          );
+        })}
+      </Grid>
+    );
+  }
+
+  const { driver_assistance_packages = {} } = vehicle;
+    // destructures driver_assistance_packages and wraps it in an object
+    // { level1: {..}, level2: {..}, level3: {..} }
+
+  const renderDriverAssistPackages = () => {
+    if (driver_assistance_packages === "none") {
+      return <InlineTypo>{"none"}</InlineTypo>;
+    }
+
+    return (
+      <Grid container>
+        <Grid item sx={{ mt: 2.5 }}>
+          <BoldInlineHeader>Driver Assistance Packages</BoldInlineHeader>
+          <TypoSm>(names are manufacturer-specific)</TypoSm>
+        </Grid>
+
+        <Grid item>
+          {Object.values(driver_assistance_packages).map(
+            (driverAssistInformation) => {
+
+              const { description } = driverAssistInformation;
+
+              return (
+                <Grid
+                  container
+                  direction="column"
+                  rowSpacing={1}
+                  key={driverAssistInformation.label}
+                >
+                  <Grid item sx={{ mt: "8px" }}>
+                    <BoldTypoSm>
+                      {driverAssistInformation.label}
+                      {": "}
+                    </BoldTypoSm>
+
+                    {Object.values(description).map((item) => (
+                      <TypoSm key={item}>{item}</TypoSm>
+                    ))}
+                  </Grid>
+                </Grid>
+              );
+          })}
+        </Grid>
+      </Grid>                             
+    );
+  }
+
   // Find all the trims for each vehicle.
   // Render with a loop the information of those trims.
 
@@ -135,12 +234,11 @@ function Specifications({ vehicle }) {
   // { standard: {..}, awd: {..}, performance: {..} }
 
   const renderVehicleTrims = () => {
-    const vehicleTrims = Object.values(trim);
-    // returns an array of the sting-keyed property values of trim
-    // [ {label: 'Rear-Wheel Drive', etc.}, {base_price: 42990}, {..},
-    // {..} ]
 
-    return vehicleTrims.map((trimInformation) => {
+    return Object.values(trim).map((trimInformation) => {
+      // Object.values(trim) returns:
+      // [ {label: 'Rear-Wheel Drive'}, {base_price: 42990}, {..}, {..} ]
+
       return (
         <Grid
           key={trimInformation.label}
@@ -156,6 +254,12 @@ function Specifications({ vehicle }) {
           </Grid>
 
           {Object.entries(trimInformation).map(([label, value]) => {
+            // Object.entries(trimInformation) produces an array of arrays,
+            // each array with 2 elements representing key & value from data
+            // trims, for example:
+            // [ [ 'label', 'Rear-Wheel Drive' ], [ 'base_price', 42990 ], ... ]
+            // label and value iterators take on array values.
+            
             if (!LABEL_MAP[label]) {
               return <Grid item key={`${label} ${value}`} />;
             }
@@ -166,87 +270,21 @@ function Specifications({ vehicle }) {
                   {LABEL_MAP[label].label}
                   {": "}
                 </BoldInlineTypoSm>
-                <InlineTypoSm>{LABEL_MAP[label].data(value)}</InlineTypoSm>
+                <InlineTypoSm>
+                  {LABEL_MAP[label].data(value)}
+                </InlineTypoSm>
               </Grid>
             );
           })}
         </Grid>
       );
     });
-  };
-
-  const { driver_assistance_packages = {} } = vehicle;
-
-  const renderDriverAssistPackages = () => {
-    if (driver_assistance_packages === "none") {
-      return <InlineTypo>{"none"}</InlineTypo>;
-    } else {
-      return Object.values(driver_assistance_packages).map(
-        (driverAssistInformation) => {
-          // Object.values returns an array of the sting-keyed property values
-          // of driverAssistPackages.
-
-          const { description } = driverAssistInformation;
-          const items = Object.values(description);
-
-          return (
-            <Grid
-              container
-              direction="column"
-              rowSpacing={1}
-              key={driverAssistInformation.label}
-            >
-              <Grid item sx={{ mt: "8px" }}>
-                <BoldTypoSm>
-                  {driverAssistInformation.label}
-                  {": "}
-                </BoldTypoSm>
-
-                {items.map((item) => (
-                  <TypoSm key={item}>{item}</TypoSm>
-                ))}
-              </Grid>
-            </Grid>
-          );
-        }
-      );
-    }
-  };
+  }
 
   return (
     <SpecsWrapper container columnSpacing={4}>
       <Grid item xs={6}>
-        <Grid container direction="column">
-          <Grid item>
-            <BoldInlineTypo>Make/Model: </BoldInlineTypo>
-            <InlineTypo>
-              {vehicle.make} {vehicle.model}
-            </InlineTypo>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypo>Body Style: </BoldInlineTypo>
-            <InlineTypo>{vehicle.body_style}</InlineTypo>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypo>Seating Capacity: </BoldInlineTypo>
-            <InlineTypo>{vehicle.seating_capacity}</InlineTypo>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypo>Cargo Space: </BoldInlineTypo>
-            <InlineTypo>
-              {vehicle.cargo_space}
-              {" cu ft"}
-            </InlineTypo>
-          </Grid>
-          <Grid item>
-            <BoldInlineTypo>Luxary Vehicle: </BoldInlineTypo>
-            <InlineTypo>{vehicle.luxary_vehicle}</InlineTypo>
-          </Grid>
-          <Grid item sx={{ mt: 3 }}>
-            <BoldInlineHeader>Driver Assistance Packages</BoldInlineHeader>
-            <TypoSm>(names are manufacturer-specific)</TypoSm>
-          </Grid>
-        </Grid>
+        {renderMainSpecs()}
         {renderDriverAssistPackages()}
       </Grid>
       <Grid item xs={6}>
