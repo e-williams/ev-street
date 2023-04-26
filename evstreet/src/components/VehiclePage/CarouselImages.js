@@ -2,6 +2,7 @@ import React from "react";
 import { Tooltip } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import vehicle_gallery_map from "../ImageHandling/VehicleImageMap";
+import awsDownloadImages from "../../config/aws";
 
 function CarouselImages({ vehicleModel }) {
 
