@@ -48,6 +48,8 @@ const BoldTypoSm = styled(Typography)({
   fontWeight: 500,
 });
 
+// Create map of data labels/values for loops used to generate rendered
+// components.
 const LABEL_MAP = {
   body_style: {
     label: "Body Style",
