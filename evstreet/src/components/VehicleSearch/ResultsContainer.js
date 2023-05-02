@@ -1,4 +1,4 @@
-import React from "@testing-library/user-event";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
 import VehicleImageMap from "../ImageHandling/VehicleImageMap";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import vehicle_gallery_map from "../ImageHandling/VehicleImageMap";
@@ -12,7 +12,22 @@ function CarouselImages({ vehicleModel }) {
     return <></>;
   }
 
+  // Component props passed with CarouselItem component below, in this
+  // CarouselImages function.
   const CarouselItem = (props) => {
+
+    // Get images from aws_key in VehicleImageMap and store in state
+    const [imageData, setImageData] = useState('');
+
+    useEffect(() => {
+      const fetchImage = async () => {
+        const data = await awsDownloadImages(props.item.aws_key);
+          // argument is passed to (key) in aws.js
+        setImageData(data);
+      };
+      fetchImage();
+    }, [props.item.aws_key]);
+
     return (
         <Tooltip
           title={`IMAGE SOURCE: ${props.item.url}`}
@@ -20,7 +35,7 @@ function CarouselImages({ vehicleModel }) {
           placement="bottom-start"
         >
           <img
-            src={props.item.filepath}
+            src={imageData}
             alt="" // must define alt to avoid compilation warning
             width="670"
             height="380"
