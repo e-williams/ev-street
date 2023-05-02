@@ -231,7 +231,9 @@ function SearchPageContainer() {
         />
       </FilterWrapper>
       {!urlParams &&
-        <Grid item sx={{ mt: "10px", width: 850 }}>{handleResultsRender()}</Grid>}
+        <Grid item sx={{ mt: "10px", width: 850 }}>
+          {handleResultsRender()}
+        </Grid>}
         {/* if urlParams is not true (has no vehicle id), render results */}
       <Grid item sx={{width: 670}}>
         <Outlet />
