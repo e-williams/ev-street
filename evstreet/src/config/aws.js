@@ -6,6 +6,9 @@ aws.config.update({
     region: "us-west-1",
 });
 
+console.log("key", process.env.REACT_APP_AWS_ACCESS_KEY_ID);
+console.log("secret key", process.env.REACT_APP_AWS_SECRET_ACCESS_KEY);
+
 const s3 = new aws.S3();
 const bucketName = "evstreet";
 
