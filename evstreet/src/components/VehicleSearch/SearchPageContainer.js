@@ -23,7 +23,7 @@ const SearchPageWrapper = styled(Grid)({
 
 const FilterWrapper = styled(Grid)({
   marginTop: 10,
-  marginLeft: 23,
+  marginLeft: 22,
   paddingTop: 8,
   paddingRight: 4,
   paddingBottom: 8,
