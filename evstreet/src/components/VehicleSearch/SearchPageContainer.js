@@ -120,7 +120,7 @@ function SearchPageContainer() {
 
     const vehicleIdsMatchingMultipleFilterTypes = [];
 
-    vehicleData.forEach(({ body_style, base_price, id }) => {
+    vehicleData.forEach(({ trim: {standard: {base_price}}, body_style, id }) => {
       vehicleCheckboxFilters.forEach((filter) => {
         if (
           body_style === filter &&
@@ -209,7 +209,6 @@ function SearchPageContainer() {
         selectedPrice !== "" &&
         findVehicleIdsMatchingMultipleFilterTypes.length === 0)
     ) {
-
       return (
         <NoResultsMessage elevation={2}>
           NO VEHICLES MATCH THE SELECTED FILTERS.
