@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
 import VehicleImageMap from "../ImageHandling/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
 import { priceToDollars, formattedNumbers } from "../Common/Utils";
+import awsDownloadImages from "../../config/aws";
 
 const ResultsWrapper = styled(Paper)({
   backgroundColor: "#f9f9f9",
@@ -109,6 +110,18 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     }
   });
 
+  // Get images from aws_key in VehicleImageMap and store in state
+  const [imageData, setImageData] = useState('');
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      const data = await awsDownloadImages(VehicleImageMap[model][0].aws_key);
+        // argument is passed to (key) in aws.js
+      setImageData(data);
+    };
+    fetchImage();
+  }, [] );
+
   const { make, model } = filteredVehicleSpecs;
   const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
 
@@ -131,7 +144,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
           >
             <ListingImg
               alt={`${make} ${model}`}
-              src={VehicleImageMap[model][0].filepath}
+              src={imageData}
               // [filteredVehicleSpecs.model] is used to access
               // VehicleThumbnailMap object properties to obtain
               // images imported to images.js, b/c React won't handle
