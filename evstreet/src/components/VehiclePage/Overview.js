@@ -22,6 +22,8 @@ function Overview({ vehicle }) {
       <StyledTypo>{overview.paragraph1}</StyledTypo>
       <StyledTypo>{overview.paragraph2}</StyledTypo>
       <StyledTypo>{overview.paragraph3}</StyledTypo>
+      {overview.paragraph4 &&
+        <StyledTypo>{overview.paragraph4}</StyledTypo>}
     </OverviewWrapper>
   );
 }
