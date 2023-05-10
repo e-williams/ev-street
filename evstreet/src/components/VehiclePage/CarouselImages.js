@@ -44,9 +44,11 @@ function CarouselImages({ vehicleModel }) {
       fetchImage();
     }, [props.item.aws_key]);
 
-    const handleImageLoad = () => {
+    const handleImageLoad = useEffect(() => {
       setImageHasLoaded(true);
-    }
+    }, [imageHasLoaded]);
+
+    console.log("imageHasLoaded", imageHasLoaded);
 
     /*
     if (imageData === "") {
@@ -73,7 +75,7 @@ function CarouselImages({ vehicleModel }) {
             height="380"
           />
     </Tooltip>
-        { !imageHasLoaded && <Spinner color="success" size={70}/> }
+        { (imageHasLoaded === false) && <Spinner color="success" size={70}/> }
       </>              
     );
   };
