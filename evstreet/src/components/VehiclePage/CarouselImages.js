@@ -72,8 +72,8 @@ function CarouselImages({ vehicleModel }) {
             width="670"
             height="380"
           />
-        </Tooltip>
-        { !imageHasLoaded && <Spinner color="success"/>}
+    </Tooltip>
+        { !imageHasLoaded && <Spinner color="success" size={70}/> }
       </>              
     );
   };
