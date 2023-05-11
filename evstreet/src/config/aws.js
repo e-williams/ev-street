@@ -15,23 +15,26 @@ const downloadImageFromS3 = async (key) => {
     Bucket: bucketName,
     Key: key,
   };
+
+  /**
+   * Try/Catch is the way to handle errors when an API Request fails.
+   * In this case the API request is the request to AWS to get the images.
+   * If the request fails and there is an error, the error will bubble up all
+   * the way to the browser, and you will be able to see the error in the console
+   * of the browser.
+   * However; there are better ways to handle API Request errors, and that is by
+   * adding the try/catch around the api request.
+   * In this case if the request fails, I am returning a placeholder image
+   * so any component that uses this file will always be able to render an image.
+   */
   try {
     const response = await s3.getObject(params).promise();
 
-    // Return is a String => `data:${response.ContentType};base64,${response.Body.toString("base64")}`
-    // Convert the return to be an object.
-    // { status: 'success/error', data: 'errorMessage/urlFromAWS' }
-    return {
-      status: "success",
-      data: `data:${response.ContentType};base64,${response.Body.toString(
-        "base64"
-      )}`,
-    };
+    return `data:${response.ContentType};base64,${response.Body.toString(
+      "base64"
+    )}`;
   } catch (er) {
-    return {
-      status: "error",
-      data: ev6_side,
-    };
+    return ev6_side;
   }
 };
 

@@ -16,13 +16,12 @@ const SpinnerBox = styled(Box)({
 const Spinner = styled(CircularProgress)({
   position: "relative",
   left: "47%",
-  bottom: 220,
   zIndex: 30000,
 });
 
 function CarouselImages({ vehicleModel }) {
   const [AWSImages, setAWSImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const vehicleImages = vehicle_gallery_map[vehicleModel];
 
   useEffect(() => {
@@ -33,9 +32,13 @@ function CarouselImages({ vehicleModel }) {
     return <></>;
   }
 
+  // REMOVE THIS FUNCTION just for testing
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
   // Goal: to download all the images before showing the carousel
   const awsVehicleImages = async () => {
-    setIsLoading(true);
+    // REMOVE THIS DELAY
+    await delay(4000);
 
     const AWSResponse = await Promise.all(
       vehicle_gallery_map[vehicleModel].map((vehicleInfo) => {
@@ -68,14 +71,15 @@ function CarouselImages({ vehicleModel }) {
     );
   };
 
+  console.log({ isLoading });
   if (isLoading) {
     return <Spinner color="success" size={70} />;
   }
 
   return (
     <Carousel>
-      {AWSImages.map(({ data, status }, index) => (
-        <CarouselItem key={`${data}-${index}`} url={data} />
+      {AWSImages.map((url, index) => (
+        <CarouselItem key={`${url}-${index}`} url={url} />
       ))}
     </Carousel>
   );
