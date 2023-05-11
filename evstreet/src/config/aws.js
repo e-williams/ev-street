@@ -1,4 +1,5 @@
 import aws from "aws-sdk";
+import ev6_side from "../assets/images/vehicles/kia/ev6_side_2023_crop_resize.jpeg";
 
 aws.config.update({
   accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -14,8 +15,24 @@ const downloadImageFromS3 = async (key) => {
     Bucket: bucketName,
     Key: key,
   };
-  const response = await s3.getObject(params).promise();
-  return `data:${response.ContentType};base64,${response.Body.toString('base64')}`;
+  try {
+    const response = await s3.getObject(params).promise();
+
+    // Return is a String => `data:${response.ContentType};base64,${response.Body.toString("base64")}`
+    // Convert the return to be an object.
+    // { status: 'success/error', data: 'errorMessage/urlFromAWS' }
+    return {
+      status: "success",
+      data: `data:${response.ContentType};base64,${response.Body.toString(
+        "base64"
+      )}`,
+    };
+  } catch (er) {
+    return {
+      status: "error",
+      data: ev6_side,
+    };
+  }
 };
 
 export default downloadImageFromS3;

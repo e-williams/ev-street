@@ -17,75 +17,65 @@ const Spinner = styled(CircularProgress)({
   position: "relative",
   left: "47%",
   bottom: 220,
-  zIndex: 3,
-})
+  zIndex: 30000,
+});
 
 function CarouselImages({ vehicleModel }) {
-
+  const [AWSImages, setAWSImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const vehicleImages = vehicle_gallery_map[vehicleModel];
+
+  useEffect(() => {
+    awsVehicleImages();
+  }, []);
 
   if (!vehicleImages) {
     return <></>;
   }
 
+  // Goal: to download all the images before showing the carousel
+  const awsVehicleImages = async () => {
+    setIsLoading(true);
+
+    const AWSResponse = await Promise.all(
+      vehicle_gallery_map[vehicleModel].map((vehicleInfo) => {
+        const { aws_key } = vehicleInfo;
+
+        return awsDownloadImages(aws_key);
+      })
+    );
+
+    setIsLoading(false);
+    setAWSImages(AWSResponse);
+  };
+
   // Component props passed with CarouselItem component below, in this
   // CarouselImages function.
-  const CarouselItem = (props) => {
-
-    // Get images from aws_key in VehicleImageMap and store in state
-    const [imageData, setImageData] = useState("");
-    const [imageHasLoaded, setImageHasLoaded] = useState(false);
-
-    useEffect(() => {
-      const fetchImage = async () => {
-        const data = await awsDownloadImages(props.item.aws_key);
-          // argument is passed to (key) in aws.js
-        setImageData(data);
-      };
-      //setImageHasLoaded(false);
-      fetchImage();
-    }, [props.item.aws_key]);
-
-    const handleImageLoad = useEffect(() => {
-      setImageHasLoaded(true);
-    }, [imageHasLoaded]);
-
-    console.log("imageHasLoaded", imageHasLoaded);
-
-    /*
-    if (imageData === "") {
-      return (
-        <SpinnerBox>
-          <CircularProgress color="success" />
-        </SpinnerBox>
-      );
-    } else {
-    */
-
+  const CarouselItem = ({ url }) => {
     return (
       <>
-        <Tooltip
-          title={`IMAGE SOURCE: ${props.item.url}`}
-          arrow
-          placement="bottom-start"
-        >
-          <img
-            src={imageData}
-            onLoad={handleImageLoad}
-            alt="" // must define alt to avoid compilation warning
-            width="670"
-            height="380"
-          />
-    </Tooltip>
-        { (imageHasLoaded === false) && <Spinner color="success" size={70}/> }
-      </>              
+        <Tooltip title={`IMAGE SOURCE: ${url}`} arrow placement="bottom-start">
+          <>
+            <img
+              src={url}
+              alt="" // must define alt to avoid compilation warning
+              width="670"
+              height="380"
+            />
+          </>
+        </Tooltip>
+      </>
     );
   };
 
+  if (isLoading) {
+    return <Spinner color="success" size={70} />;
+  }
+
   return (
     <Carousel>
-      {vehicle_gallery_map[vehicleModel].map((item) => (
-        <CarouselItem key={item.id} item={item} />
+      {AWSImages.map(({ data, status }, index) => (
+        <CarouselItem key={`${data}-${index}`} url={data} />
       ))}
     </Carousel>
   );

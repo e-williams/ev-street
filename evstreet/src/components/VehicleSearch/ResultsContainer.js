@@ -49,7 +49,6 @@ const BoldTypo = styled(Typography)({
 });
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
-
   // Get max or min range, MPGe, 0_60, max_dc_charging of all trims
 
   const { trim = {} } = filteredVehicleSpecs;
@@ -77,7 +76,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
       return acc;
     },
-    { // initial attribute values per reduce()
+    {
+      // initial attribute values per reduce()
       maxRange: null,
       maxMPGe: null,
       minAcceleration: null,
@@ -97,7 +97,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
   vehicleTrims.forEach((trim) => {
     if (trim.range === maxRange) {
-      maxRangeLabel.push(trim.label)
+      maxRangeLabel.push(trim.label);
     }
     if (trim.MPGe === maxMPGe) {
       maxMPGeLabel.push(trim.label);
@@ -111,16 +111,15 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
   });
 
   // Get images from aws_key in VehicleImageMap and store in state
-  const [imageData, setImageData] = useState('');
+  const [imageData, setImageData] = useState("");
 
   useEffect(() => {
     const fetchImage = async () => {
       const data = await awsDownloadImages(VehicleImageMap[model][0].aws_key);
-        // argument is passed to (key) in aws.js
-      setImageData(data);
+      setImageData(data.data);
     };
     fetchImage();
-  }, [] );
+  }, []);
 
   const { make, model } = filteredVehicleSpecs;
   const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
