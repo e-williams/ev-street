@@ -17,6 +17,7 @@ const Spinner = styled(CircularProgress)({
   position: "relative",
   left: "47%",
   bottom: 220,
+  zIndex: 3,
 })
 
 function CarouselImages({ vehicleModel }) {
@@ -41,6 +42,7 @@ function CarouselImages({ vehicleModel }) {
           // argument is passed to (key) in aws.js
         setImageData(data);
       };
+      //setImageHasLoaded(false);
       fetchImage();
     }, [props.item.aws_key]);
 
