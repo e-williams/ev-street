@@ -20,9 +20,9 @@ const downloadImageFromS3 = async (key) => {
    * Try/Catch is the way to handle errors when an API Request fails.
    * In this case the API request is the request to AWS to get the images.
    * If the request fails and there is an error, the error will bubble up all
-   * the way to the browser, and you will be able to see the error in the console
-   * of the browser.
-   * However; there are better ways to handle API Request errors, and that is by
+   * the way to the browser, and you will be able to see the error in the
+   * console of the browser.
+   * However, there are better ways to handle API Request errors, and that is by
    * adding the try/catch around the api request.
    * In this case if the request fails, I am returning a placeholder image
    * so any component that uses this file will always be able to render an image.
