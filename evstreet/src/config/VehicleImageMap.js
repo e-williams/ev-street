@@ -1,29 +1,29 @@
 import model3_main from
-  "../../assets/images/vehicles/tesla/model3_main_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/tesla/model3_main_2023_crop_resize.jpeg";
 import model3_front from
-  "../../assets/images/vehicles/tesla/model3_front_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/tesla/model3_front_2023_crop_resize.jpeg";
 import model3_rear from
-  "../../assets/images/vehicles/tesla/model3_rear_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/tesla/model3_rear_2023_crop_resize.jpeg";
 import model3_interior from
-  "../../assets/images/vehicles/tesla/model3_interior_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/tesla/model3_interior_2023_crop_resize.jpeg";
 import ev6_main from
-  "../../assets/images/vehicles/kia/ev6_main_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/kia/ev6_main_2023_crop_resize.jpeg";
 import ev6_side from
-  "../../assets/images/vehicles/kia/ev6_side_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/kia/ev6_side_2023_crop_resize.jpeg";
 import ev6_rear from
-  "../../assets/images/vehicles/kia/ev6_rear_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/kia/ev6_rear_2023_crop_resize.jpeg";
 import ev6_interior from
-  "../../assets/images/vehicles/kia/ev6_interior_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/kia/ev6_interior_2023_crop_resize.jpeg";
 import etronGT_main from
-"../../assets/images/vehicles/audi/etronGT_main_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/audi/etronGT_main_2023_crop_resize.jpeg";
 import etronGT_front from
-  "../../assets/images/vehicles/audi/etronGT_front_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/audi/etronGT_front_2023_crop_resize.jpeg";
 import etronGT_rear from
-  "../../assets/images/vehicles/audi/etronGT_rear_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/audi/etronGT_rear_2023_crop_resize.jpeg";
 import etronGT_interior from
-  "../../assets/images/vehicles/audi/etronGT_interior_2023_crop_resize.jpeg";
+  "../assets/images/vehicles/audi/etronGT_interior_2023_crop_resize.jpeg";
 
-const VehicleImageMap = {
+const VEHICLE_IMAGE_MAP = {
   "Model 3": [
     {
       id: 0,
@@ -92,4 +92,4 @@ const VehicleImageMap = {
   ],
 };
 
-export default VehicleImageMap;
+export default VEHICLE_IMAGE_MAP;

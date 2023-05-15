@@ -1,7 +1,7 @@
 import React from "@testing-library/user-event";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
-import VehicleImageMap from "../ImageHandling/VehicleImageMap";
+import VEHICLE_IMAGE_MAP from "../../config/VehicleImageMap";
 import { useNavigate } from "react-router-dom";
 import { priceToDollars, formattedNumbers } from "../Common/Utils";
 
@@ -125,13 +125,13 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             {make} {model}
           </ListingHeader>
           <Tooltip
-            title={`IMAGE SOURCE: ${VehicleImageMap[model][0].url}`}
+            title={`IMAGE SOURCE: ${VEHICLE_IMAGE_MAP[model][0].url}`}
             arrow
             placement="right-end"
           >
             <ListingImg
               alt={`${make} ${model}`}
-              src={VehicleImageMap[model][0].filepath}
+              src={VEHICLE_IMAGE_MAP[model][0].filepath}
               // [filteredVehicleSpecs.model] is used to access
               // VehicleThumbnailMap object properties to obtain
               // images imported to images.js, b/c React won't handle
