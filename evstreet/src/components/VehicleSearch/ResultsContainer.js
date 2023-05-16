@@ -1,9 +1,9 @@
 import React from "@testing-library/user-event";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip } from "@mui/material";
-import VEHICLE_IMAGE_MAP from "../../config/VehicleImageMap";
+import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 import { useNavigate } from "react-router-dom";
-import { priceToDollars, formattedNumbers } from "../Common/Utils";
+import { priceToDollars, formattedNumbers } from "../../utils/utils";
 
 const ResultsWrapper = styled(Paper)({
   backgroundColor: "#f9f9f9",

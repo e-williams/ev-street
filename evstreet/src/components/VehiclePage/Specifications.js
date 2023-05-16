@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, Grid } from "@mui/material";
-import LABEL_MAP from "../../config/SpecsLabelMap";
+import LABEL_MAP from "../../config/specs_label_map";
 
 const SpecsWrapper = styled(Grid)({
   padding: 20,

@@ -1,4 +1,4 @@
-import { priceToDollars, formattedNumbers } from "../Components/Common/Utils";
+import { priceToDollars, formattedNumbers } from "../utils/utils";
 
 // Create map of vehicle labels/values for loops used to generate rendered
 // output in Specifications component.

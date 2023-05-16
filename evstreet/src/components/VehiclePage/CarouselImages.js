@@ -1,10 +1,10 @@
 import React from "react";
 import { Tooltip } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import VEHICLE_GALLERY_MAP from "../../config/VehicleImageMap";
+import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 
 function CarouselImages({ vehicleModel }) {
-  const vehicleImages = VEHICLE_GALLERY_MAP[vehicleModel];
+  const vehicleImages = VEHICLE_IMAGE_MAP[vehicleModel];
 
   if (!vehicleImages) {
     return <></>;
@@ -29,7 +29,7 @@ function CarouselImages({ vehicleModel }) {
 
   return (
     <Carousel>
-      {VEHICLE_GALLERY_MAP[vehicleModel].map((item) => (
+      {VEHICLE_IMAGE_MAP[vehicleModel].map((item) => (
         <CarouselItem key={item.id} item={item} />
       ))}
     </Carousel>
