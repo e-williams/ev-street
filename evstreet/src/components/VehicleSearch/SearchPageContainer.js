@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Outlet, useParams } from "react-router-dom";
-import vehicleData from "../../vehicleData.json";
+import vehicleData from "../../config/vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
@@ -23,7 +23,7 @@ const SearchPageWrapper = styled(Grid)({
 
 const FilterWrapper = styled(Grid)({
   marginTop: 10,
-  marginLeft: 23,
+  marginLeft: 22,
   paddingTop: 8,
   paddingRight: 4,
   paddingBottom: 8,
@@ -120,7 +120,7 @@ function SearchPageContainer() {
 
     const vehicleIdsMatchingMultipleFilterTypes = [];
 
-    vehicleData.forEach(({ body_style, base_price, id }) => {
+    vehicleData.forEach(({ trim: {standard: {base_price}}, body_style, id }) => {
       vehicleCheckboxFilters.forEach((filter) => {
         if (
           body_style === filter &&
@@ -209,7 +209,6 @@ function SearchPageContainer() {
         selectedPrice !== "" &&
         findVehicleIdsMatchingMultipleFilterTypes.length === 0)
     ) {
-
       return (
         <NoResultsMessage elevation={2}>
           NO VEHICLES MATCH THE SELECTED FILTERS.
@@ -231,7 +230,9 @@ function SearchPageContainer() {
         />
       </FilterWrapper>
       {!urlParams &&
-        <Grid item sx={{ mt: "10px", width: 850 }}>{handleResultsRender()}</Grid>}
+        <Grid item sx={{ mt: "10px", width: 850 }}>
+          {handleResultsRender()}
+        </Grid>}
         {/* if urlParams is not true (has no vehicle id), render results */}
       <Grid item sx={{width: 670}}>
         <Outlet />

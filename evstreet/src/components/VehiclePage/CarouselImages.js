@@ -1,11 +1,10 @@
 import React from "react";
 import { Tooltip } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import vehicle_gallery_map from "../ImageHandling/VehicleImageMap";
+import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 
 function CarouselImages({ vehicleModel }) {
-
-  const vehicleImages = vehicle_gallery_map[vehicleModel];
+  const vehicleImages = VEHICLE_IMAGE_MAP[vehicleModel];
 
   if (!vehicleImages) {
     return <></>;
@@ -13,24 +12,24 @@ function CarouselImages({ vehicleModel }) {
 
   const CarouselItem = (props) => {
     return (
-        <Tooltip
-          title={`IMAGE SOURCE: ${props.item.url}`}
-          arrow
-          placement="bottom-start"
-        >
-          <img
-            src={props.item.filepath}
-            alt="" // must define alt to avoid compilation warning
-            width="670"
-            height="380"
-          />
-        </Tooltip>
+      <Tooltip
+        title={`IMAGE SOURCE: ${props.item.url}`}
+        arrow
+        placement="bottom-start"
+      >
+        <img
+          src={props.item.filepath}
+          alt="" // must define alt to avoid compilation warning
+          width="670"
+          height="380"
+        />
+      </Tooltip>
     );
   };
 
   return (
     <Carousel>
-      {vehicle_gallery_map[vehicleModel].map((item) => (
+      {VEHICLE_IMAGE_MAP[vehicleModel].map((item) => (
         <CarouselItem key={item.id} item={item} />
       ))}
     </Carousel>
