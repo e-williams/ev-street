@@ -3,7 +3,7 @@ import CarouselImages from "./CarouselImages";
 import { styled } from "@mui/material/styles";
 import { Container, Typography, Grid, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import vehicleData from "../../vehicleData.json";
+import vehicleData from "../../config/vehicleData.json";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "../Common/ArrowBackIcon";
 import VehicleDescription from "./VehicleDescription";
