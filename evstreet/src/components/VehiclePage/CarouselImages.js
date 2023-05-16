@@ -1,47 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Tooltip, CircularProgress, Box } from "@mui/material";
+import { Tooltip, CircularProgress } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-import vehicle_gallery_map from "../ImageHandling/VehicleImageMap";
+import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 import awsDownloadImages from "../../config/aws";
 import styled from "@emotion/styled";
 
-/*
-const SpinnerBox = styled(Box)({
-  width: 380,
-  height: 670,
-  justifyContent: "center",
-});
-*/
-
 const Spinner = styled(CircularProgress)({
   position: "relative",
-  left: "47%",
-  zIndex: 30000,
+  left: "46%",
 });
 
 function CarouselImages({ vehicleModel }) {
   const [AWSImages, setAWSImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const vehicleImages = vehicle_gallery_map[vehicleModel];
 
   useEffect(() => {
     awsVehicleImages();
   }, []);
 
-  if (!vehicleImages) {
+  if (!AWSImages) {
     return <></>;
   }
 
-  // REMOVE THIS FUNCTION just for testing
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-  // Goal: to download all the images before showing the carousel
+  // Download all images before showing carousel for proper spinner function
   const awsVehicleImages = async () => {
-    // REMOVE THIS DELAY
-    await delay(4000);
 
     const AWSResponse = await Promise.all(
-      vehicle_gallery_map[vehicleModel].map((vehicleInfo) => {
+      VEHICLE_IMAGE_MAP[vehicleModel].map((vehicleInfo) => {
         const { aws_key } = vehicleInfo;
 
         return awsDownloadImages(aws_key);
@@ -71,7 +56,6 @@ function CarouselImages({ vehicleModel }) {
     );
   };
 
-  console.log({ isLoading });
   if (isLoading) {
     return <Spinner color="success" size={70} />;
   }

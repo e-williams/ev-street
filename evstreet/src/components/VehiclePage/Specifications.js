@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, Grid } from "@mui/material";
-import { priceToDollars, formattedNumbers } from "../Common/Utils";
+import { priceToDollars, formattedNumbers } from "../Common/utils";
 
 const SpecsWrapper = styled(Grid)({
   padding: 20,

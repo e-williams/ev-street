@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import { Paper, Grid, Typography, Tooltip } from "@mui/material";
-import VehicleImageMap from "../ImageHandling/VehicleImageMap";
+import { Paper, Grid, Typography, Tooltip, CircularProgress, Box }
+  from "@mui/material";
+import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 import { useNavigate } from "react-router-dom";
-import { priceToDollars, formattedNumbers } from "../Common/Utils";
+import { priceToDollars, formattedNumbers } from "../Common/utils";
 import awsDownloadImages from "../../config/aws";
 
 const ResultsWrapper = styled(Paper)({
@@ -22,6 +23,17 @@ const ListingHeader = styled(Typography)({
   pt: 0.4,
   backgroundColor: "#bfffce",
   borderTopLeftRadius: 5,
+});
+
+const SpinnerBox = styled(Box)({
+  width: 236,
+  height: 134,
+})
+
+const Spinner = styled(CircularProgress)({
+  position: "relative",
+  left: "40%",
+  top: "30%",
 });
 
 const ListingImg = styled("img")({
@@ -110,16 +122,27 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     }
   });
 
-  // Get images from aws_key in VehicleImageMap and store in state
-  const [imageData, setImageData] = useState("");
-
+  // Get image from aws_key in VehicleImageMap and store in state
+  // Only show spinner before image is loaded
+  const [AWSImage, setAWSImage] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
   useEffect(() => {
+    awsVehicleImage();
+  }, []);
+
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  const awsVehicleImage = async () => {
+    await delay(4000);
+
     const fetchImage = async () => {
-      const data = await awsDownloadImages(VehicleImageMap[model][0].aws_key);
-      setImageData(data.data);
+      const image = await awsDownloadImages(VEHICLE_IMAGE_MAP[model][0].aws_key);
+      setIsLoading(false);
+      setAWSImage(image);
     };
     fetchImage();
-  }, []);
+  }
 
   const { make, model } = filteredVehicleSpecs;
   const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
@@ -136,20 +159,26 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
           <ListingHeader>
             {make} {model}
           </ListingHeader>
-          <Tooltip
-            title={`IMAGE SOURCE: ${VehicleImageMap[model][0].url}`}
-            arrow
-            placement="right-end"
-          >
-            <ListingImg
-              alt={`${make} ${model}`}
-              src={imageData}
-              // [filteredVehicleSpecs.model] is used to access
-              // VehicleThumbnailMap object properties to obtain
-              // images imported to images.js, b/c React won't handle
-              // relative image reference in src attribute.
-            />
-          </Tooltip>
+          {isLoading ? (
+            <SpinnerBox>
+              <Spinner color="success" size={50} />
+            </SpinnerBox>
+          ) : (
+            <Tooltip
+              title={`IMAGE SOURCE: ${VEHICLE_IMAGE_MAP[model][0].url}`}
+              arrow
+              placement="right-end"
+            >
+              <ListingImg
+                alt={`${make} ${model}`}
+                src={AWSImage}
+                // [filteredVehicleSpecs.model] is used to access
+                // VehicleThumbnailMap object properties to obtain
+                // images imported to images.js, b/c React won't handle
+                // relative image reference in src attribute.
+              />
+            </Tooltip>
+          )}
         </Grid>
 
         <Grid item xs={2.9} sx={{ mt: 2.5, pl: 2 }}>
