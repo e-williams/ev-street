@@ -4,7 +4,7 @@ import { Paper, Grid, Typography, Tooltip, CircularProgress, Box }
   from "@mui/material";
 import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 import { useNavigate } from "react-router-dom";
-import { priceToDollars, formattedNumbers } from "../Common/utils";
+import { priceToDollars, formattedNumbers } from "../../utils/utils";
 import awsDownloadImages from "../../config/aws";
 
 const ResultsWrapper = styled(Paper)({

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Outlet, useParams } from "react-router-dom";
-import vehicleData from "../../vehicleData.json";
+import vehicleData from "../../config/vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
