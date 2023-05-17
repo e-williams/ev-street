@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Tooltip, CircularProgress } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
@@ -14,16 +14,8 @@ function CarouselImages({ vehicleModel }) {
   const [AWSImages, setAWSImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    awsVehicleImages();
-  }, []);
-
-  if (!AWSImages) {
-    return <></>;
-  }
-
   // Download all images before showing carousel for proper spinner function
-  const awsVehicleImages = async () => {
+  const awsVehicleImages = useCallback(async () => {
 
     const AWSResponse = await Promise.all(
       VEHICLE_IMAGE_MAP[vehicleModel].map((vehicleInfo) => {
@@ -35,7 +27,15 @@ function CarouselImages({ vehicleModel }) {
 
     setIsLoading(false);
     setAWSImages(AWSResponse);
-  };
+  }, [vehicleModel]);
+
+  useEffect(() => {
+    awsVehicleImages();
+  }, [awsVehicleImages]);
+
+  if (!AWSImages) {
+    return <></>;
+  }
 
   // Component props passed with CarouselItem component below, in this
   // CarouselImages function.
