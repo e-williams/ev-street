@@ -6,6 +6,7 @@ THE WORK OF THIS PROJECT IS TO BE USED, DISTRIBUTED AND MODIFIED ONLY AMONG DESI
 
 ### TECHNOLOGIES USED:
 React, JavaScript, HTML, CSS <br>
+Material UI <br>
 Node.js, npm, webpack <br>
 Amazon Web Services <br>
 Git <br>
