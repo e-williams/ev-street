@@ -24,7 +24,6 @@ function CarouselImages({ vehicleModel }) {
 
   // Download all images before showing carousel for proper spinner function
   const awsVehicleImages = async () => {
-
     const AWSResponse = await Promise.all(
       VEHICLE_IMAGE_MAP[vehicleModel].map((vehicleInfo) => {
         const { aws_key } = vehicleInfo;
@@ -33,6 +32,7 @@ function CarouselImages({ vehicleModel }) {
       })
     );
 
+    console.log(AWSResponse);
     setIsLoading(false);
     setAWSImages(AWSResponse);
   };
