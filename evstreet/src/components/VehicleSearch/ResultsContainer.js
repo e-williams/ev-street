@@ -155,12 +155,11 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
     return (
       <Tooltip
-      title={`IMAGE SOURCE: ${VEHICLE_IMAGE_MAP[model][0].url}`}
-      arrow
-      placement="right-end"
+        title={`IMAGE SOURCE: ${VEHICLE_IMAGE_MAP[model][0].url}`}
+        arrow
+        placement="right-end"
       >
-        <ListingImg
-          alt={`${make} ${model}`} src={AWSImage} />
+        <ListingImg alt={`${make} ${model}`} src={AWSImage} />
       </Tooltip>
     );
   }

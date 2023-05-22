@@ -1,4 +1,5 @@
 import aws from "aws-sdk";
+import placeholder_img from "../assets/images/logo1_resize.jpeg";
 
 aws.config.update({
   accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -28,6 +29,7 @@ const downloadImageFromS3 = async (key) => {
       "base64"
     )}`;
   } catch (er) {
+    return placeholder_img;
   }
 };
 
