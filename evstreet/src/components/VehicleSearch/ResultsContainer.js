@@ -1,12 +1,19 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
-import { Paper, Grid, Typography, Tooltip, CircularProgress, Box }
-  from "@mui/material";
+import {
+  Paper,
+  Grid,
+  Typography,
+  Tooltip,
+  CircularProgress,
+  Box,
+} from "@mui/material";
 import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 import LABEL_MAP from "../../config/results_label_map";
 import { useNavigate } from "react-router-dom";
 import { priceToDollars, formattedNumbers } from "../../utils/utils";
-import awsDownloadImages from "../../config/aws";
+
+import useFetchVehicleImages from "../../hooks/useFetchImages";
 
 const ResultsWrapper = styled(Paper)({
   backgroundColor: "#f9f9f9",
@@ -29,7 +36,7 @@ const ListingHeader = styled(Typography)({
 const SpinnerBox = styled(Box)({
   width: 236,
   height: 134,
-})
+});
 
 const Spinner = styled(CircularProgress)({
   position: "relative",
@@ -62,6 +69,9 @@ const BoldTypo = styled(Typography)({
 });
 
 function ResultsContainer({ filteredVehicleSpecs, lang }) {
+  const { make, model } = filteredVehicleSpecs;
+
+  const { isLoading, AWSImages } = useFetchVehicleImages(model, 0);
   // Get max or min range, MPGe, 0_60, max_dc_charging of all trims
 
   const { trim = {} } = filteredVehicleSpecs;
@@ -97,8 +107,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       maxDcCharging: null,
     }
   );
-
-  console.log({ maxTrims });
 
   // Get trim labels for max/min values
   let maxRangeLabel = [];
@@ -147,30 +155,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       data: maxDcCharging,
       units: " kW - ",
       maxLabel: maxDcChargingLabel,
-    }
+    },
   ];
-
-  // Get image from aws_key in VehicleImageMap and store in state
-  // Only show spinner before image is loaded
-  const [AWSImage, setAWSImage] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const { make, model } = filteredVehicleSpecs;
-
-  const awsVehicleImage = useCallback(async () => {
-
-    const fetchImage = async () => {
-      const image = await awsDownloadImages(VEHICLE_IMAGE_MAP[model][0].aws_key);
-      setIsLoading(false);
-      setAWSImage(image);
-    };
-
-    fetchImage();
-  }, [model]);
-
-  useEffect(() => {
-    awsVehicleImage();
-  }, [awsVehicleImage]);
 
   const renderVehicleImage = () => {
     if (isLoading) {
@@ -187,16 +173,14 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
         arrow
         placement="right-end"
       >
-        <ListingImg alt={`${make} ${model}`} src={AWSImage} />
+        <ListingImg alt={`${make} ${model}`} src={AWSImages} />
       </Tooltip>
     );
-  }
+  };
 
   const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
 
   const navigate = useNavigate();
-
-  console.log("filtered specs", filteredVehicleSpecs);
 
   return (
     <ResultsWrapper
@@ -213,7 +197,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
         <Grid item xs={2.9} sx={{ mt: 2.5, pl: 2 }}>
           <Grid container direction={"column"}>
-
             <SpecsRows item>
               <BoldTypo>Base Price: </BoldTypo>
               <ListingSpecs>{priceToDollars(base_price)}</ListingSpecs>
@@ -223,9 +206,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
               // Object.entries(filteredVehicleSpecs) returns array of arrays:
               // [ ['id, 0], ['make', 'TESLA'], ...]
               // label and value iterators take on array values
-            
               if (!LABEL_MAP[label]) {
-                return <Grid item key={`${label} ${value}`} />
+                return <Grid item key={`${label} ${value}`} />;
               }
 
               return (
@@ -234,9 +216,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
                     {LABEL_MAP[label].label}
                     {": "}
                   </BoldTypo>
-                  <ListingSpecs>
-                    {LABEL_MAP[label].data(value)}
-                  </ListingSpecs>
+                  <ListingSpecs>{LABEL_MAP[label].data(value)}</ListingSpecs>
                 </SpecsRows>
               );
             })}
@@ -287,7 +267,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
         <Grid item sx={{ mt: 2.5 }}>
           <Grid container direction={"column"}>
-
             {MAX_SPECS_LABEL_MAP.map((specs) => {
               return (
                 <SpecsRows item key={specs.label}>
@@ -302,7 +281,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
               );
             })}
 
-        {/*
+            {/*
         <Grid item sx={{ mt: 2.5 }}>
           <Grid container direction={"column"}>
             <SpecsRows item>
