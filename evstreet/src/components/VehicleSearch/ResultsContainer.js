@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import { Paper, Grid, Typography, Tooltip, CircularProgress, Box }
   from "@mui/material";
 import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
+import LABEL_MAP from "../../config/results_label_map";
 import { useNavigate } from "react-router-dom";
 import { priceToDollars, formattedNumbers } from "../../utils/utils";
 import awsDownloadImages from "../../config/aws";
@@ -122,6 +123,33 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     }
   });
 
+  const MAX_SPECS_LABEL_MAP = [
+    {
+      label: "Range: ",
+      data: maxRange,
+      units: " mi (EPA est.) - ",
+      maxLabel: maxRangeLabel,
+    },
+    {
+      label: "Fuel Economy (MPGe): ",
+      data: maxMPGe,
+      units: " (EPA est.) - ",
+      maxLabel: maxMPGeLabel,
+    },
+    {
+      label: "Acceleration (0-60): ",
+      data: minAcceleration,
+      units: " s - ",
+      maxLabel: minAccelerationLabel,
+    },
+    {
+      label: "Max Charging: ",
+      data: maxDcCharging,
+      units: " kW - ",
+      maxLabel: maxDcChargingLabel,
+    }
+  ];
+
   // Get image from aws_key in VehicleImageMap and store in state
   // Only show spinner before image is loaded
   const [AWSImage, setAWSImage] = useState([]);
@@ -168,6 +196,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
   const navigate = useNavigate();
 
+  console.log("filtered specs", filteredVehicleSpecs);
+
   return (
     <ResultsWrapper
       elevation={2}
@@ -181,6 +211,39 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
           {renderVehicleImage()}
         </Grid>
 
+        <Grid item xs={2.9} sx={{ mt: 2.5, pl: 2 }}>
+          <Grid container direction={"column"}>
+
+            <SpecsRows item>
+              <BoldTypo>Base Price: </BoldTypo>
+              <ListingSpecs>{priceToDollars(base_price)}</ListingSpecs>
+            </SpecsRows>
+
+            {Object.entries(filteredVehicleSpecs).map(([label, value]) => {
+              // Object.entries(filteredVehicleSpecs) returns array of arrays:
+              // [ ['id, 0], ['make', 'TESLA'], ...]
+              // label and value iterators take on array values
+            
+              if (!LABEL_MAP[label]) {
+                return <Grid item key={`${label} ${value}`} />
+              }
+
+              return (
+                <SpecsRows item key={`${label} ${value}`}>
+                  <BoldTypo>
+                    {LABEL_MAP[label].label}
+                    {": "}
+                  </BoldTypo>
+                  <ListingSpecs>
+                    {LABEL_MAP[label].data(value)}
+                  </ListingSpecs>
+                </SpecsRows>
+              );
+            })}
+          </Grid>
+        </Grid>
+
+        {/*}
         <Grid item xs={2.9} sx={{ mt: 2.5, pl: 2 }}>
           <Grid container direction={"column"}>
             <SpecsRows item>
@@ -220,7 +283,26 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             </SpecsRows>
           </Grid>
         </Grid>
+        */}
 
+        <Grid item sx={{ mt: 2.5 }}>
+          <Grid container direction={"column"}>
+
+            {MAX_SPECS_LABEL_MAP.map((specs) => {
+              return (
+                <SpecsRows item key={specs.label}>
+                  <BoldTypo>{specs.label}</BoldTypo>
+                  <ListingSpecs>
+                    {specs.data}
+                    {specs.units}
+                    {specs.maxLabel.join(", ")}
+                    {" trim"}
+                  </ListingSpecs>
+                </SpecsRows>
+              );
+            })}
+
+        {/*
         <Grid item sx={{ mt: 2.5 }}>
           <Grid container direction={"column"}>
             <SpecsRows item>
@@ -259,6 +341,8 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
                 {" trim"}
               </ListingSpecs>
             </SpecsRows>
+            */}
+
             <SpecsRows item>
               <BoldTypo>Driver Assistance System: </BoldTypo>
               <ListingSpecs>

@@ -37,22 +37,23 @@ function CarouselImages({ vehicleModel }) {
     return <></>;
   }
 
+  console.log(VEHICLE_IMAGE_MAP[vehicleModel]);
+
   // Component props passed with CarouselItem component below, in this
   // CarouselImages function.
-  const CarouselItem = ({ url }) => {
+  const CarouselItem = ({ url, item }) => {
     return (
-      <>
-        <Tooltip title={`IMAGE SOURCE: ${url}`} arrow placement="bottom-start">
-          <>
-            <img
-              src={url}
-              alt="" // must define alt to avoid compilation warning
-              width="670"
-              height="380"
-            />
-          </>
-        </Tooltip>
-      </>
+      <Tooltip title={`IMAGE SOURCE: ${item.url}`}
+        arrow
+        placement="bottom-start"
+      >
+        <img
+          src={url}
+          alt="" // must define alt to avoid compilation warning
+          width="670"
+          height="380"
+        />
+      </Tooltip>
     );
   };
 
@@ -63,7 +64,11 @@ function CarouselImages({ vehicleModel }) {
   return (
     <Carousel>
       {AWSImages.map((url, index) => (
-        <CarouselItem key={`${url}-${index}`} url={url} />
+        <CarouselItem
+          key={`${url}-${index}`}
+          url={url}
+          item={VEHICLE_IMAGE_MAP[vehicleModel][index]}
+        />
       ))}
     </Carousel>
   );
