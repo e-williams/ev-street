@@ -1,12 +1,12 @@
 const VEHICLE_IMAGE_MAP = {
   "Model 3": [
     {
-      id: 1,
+      id: 0,
       aws_key: "Tesla/model3/model3_main_2023_crop_resize.jpeg",
       url: "https://tesla-cdn.thron.com/delivery/public/image/tesla/5a7b3001-249f-4065-a330-4ea6a17ccf7b/bvlatuR/std/2560x1708/Model-3-Main-Hero-Desktop-LHD",
     },
     {
-      id: 0,
+      id: 1,
       aws_key: "Tesla/model3/model3_front_2023_crop_resize.jpeg",
       url: "https://tesla-cdn.thron.com/delivery/public/image/tesla/1a5ba4b1-efd8-40bc-8b6d-e81bf8223e37/bvlatuR/std/2560x1440/Model-3-Performance-Hero-Desktop-LHD",
     },

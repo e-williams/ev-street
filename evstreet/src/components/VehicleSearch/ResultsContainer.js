@@ -12,7 +12,6 @@ import VEHICLE_IMAGE_MAP from "../../config/vehicle_image_map";
 import LABEL_MAP from "../../config/results_label_map";
 import { useNavigate } from "react-router-dom";
 import { priceToDollars, formattedNumbers } from "../../utils/utils";
-
 import useFetchVehicleImages from "../../hooks/useFetchImages";
 
 const ResultsWrapper = styled(Paper)({
@@ -72,10 +71,15 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
   const { make, model } = filteredVehicleSpecs;
 
   const { isLoading, AWSImages } = useFetchVehicleImages(model, 0);
+    // destructures isLoading and AWSImages from returned result of
+    // useFetchVehicleImages().
+    // 2nd arguement 0 becomes imagePosition (index) in custom hook
+    // useFetchVehicleImages().
+
   // Get max or min range, MPGe, 0_60, max_dc_charging of all trims
 
   const { trim = {} } = filteredVehicleSpecs;
-  // destructures trim and wraps it in an object
+    // destructures trim and wraps it in an object
 
   const vehicleTrims = Object.values(trim);
 
@@ -223,48 +227,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
           </Grid>
         </Grid>
 
-        {/*}
-        <Grid item xs={2.9} sx={{ mt: 2.5, pl: 2 }}>
-          <Grid container direction={"column"}>
-            <SpecsRows item>
-              <BoldTypo>Base Price: </BoldTypo>
-              <ListingSpecs>{priceToDollars(base_price)}</ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Body Style: </BoldTypo>
-              <ListingSpecs>{filteredVehicleSpecs.body_style}</ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Convertible Option: </BoldTypo>
-              <ListingSpecs>
-                {filteredVehicleSpecs.convertible_option}
-              </ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Seating Capacity: </BoldTypo>
-              <ListingSpecs>
-                {filteredVehicleSpecs.seating_capacity}
-              </ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Cargo Space: </BoldTypo>
-              <ListingSpecs>
-                {filteredVehicleSpecs.cargo_space}
-                {" cu ft"}
-              </ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Luxary Vehicle: </BoldTypo>
-              <ListingSpecs>{filteredVehicleSpecs.luxary_vehicle}</ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Drivetrain: </BoldTypo>
-              <ListingSpecs>{filteredVehicleSpecs.drivetrain}</ListingSpecs>
-            </SpecsRows>
-          </Grid>
-        </Grid>
-        */}
-
         <Grid item sx={{ mt: 2.5 }}>
           <Grid container direction={"column"}>
             {MAX_SPECS_LABEL_MAP.map((specs) => {
@@ -280,47 +242,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
                 </SpecsRows>
               );
             })}
-
-            {/*
-        <Grid item sx={{ mt: 2.5 }}>
-          <Grid container direction={"column"}>
-            <SpecsRows item>
-              <BoldTypo>Range: </BoldTypo>
-              <ListingSpecs>
-                {maxRange}
-                {" mi (EPA est.) - "}
-                {maxRangeLabel.join(", ")}
-                {" trim"}
-              </ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Fuel Economy (MPGe): </BoldTypo>
-              <ListingSpecs>
-                {maxMPGe}
-                {" (EPA est.) - "}
-                {maxMPGeLabel.join(", ")}
-                {" trim"}
-              </ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Acceleration (0-60): </BoldTypo>
-              <ListingSpecs>
-                {minAcceleration}
-                {" s - "}
-                {minAccelerationLabel.join(", ")}
-                {" trim"}
-              </ListingSpecs>
-            </SpecsRows>
-            <SpecsRows item>
-              <BoldTypo>Max Charging: </BoldTypo>
-              <ListingSpecs>
-                {maxDcCharging}
-                {" kW - "}
-                {maxDcChargingLabel.join(", ")}
-                {" trim"}
-              </ListingSpecs>
-            </SpecsRows>
-            */}
 
             <SpecsRows item>
               <BoldTypo>Driver Assistance System: </BoldTypo>

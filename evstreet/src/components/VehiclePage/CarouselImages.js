@@ -12,6 +12,8 @@ const Spinner = styled(CircularProgress)({
 
 function CarouselImages({ vehicleModel }) {
   const { isLoading, AWSImages } = useFetchVehicleImages(vehicleModel);
+  // destructures isLoading and AWSImages from returned result of
+  // custom hook useFetchVehicleImages().
 
   if (!AWSImages) {
     return <></>;
@@ -40,18 +42,15 @@ function CarouselImages({ vehicleModel }) {
     return <Spinner color="success" size={70} />;
   }
 
-  const getImageById = (index) =>
-    VEHICLE_IMAGE_MAP[vehicleModel].find((imageData) => {
-      return imageData.id === index;
-    });
-
   return (
     <Carousel>
       {AWSImages.map((url, index) => (
         <CarouselItem
           key={`${url}-${index}`}
           url={url}
-          item={getImageById(index)}
+          item={VEHICLE_IMAGE_MAP[vehicleModel][index]}
+          // matches index order of AWSImages (which is determined by order of
+          // aws_key data in VEHICLE_IMAGE_MAP) with index of vehicleModel data.
         />
       ))}
     </Carousel>
