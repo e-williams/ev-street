@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import vehicleData from "../../config/vehicleData.json";
 import SearchContainer from "./SearchContainer";
@@ -53,10 +53,6 @@ function SearchPageContainer() {
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
     () => {
-      console.log(
-        "The checkbox filters have changed::: ",
-        vehicleCheckboxFilters
-      );
       // Function that finds all vehicle IDs that match the selected checkbox
       // filters.
       // When a checkbox is checked, vehicleCheckboxFilters is updated and this
@@ -76,7 +72,6 @@ function SearchPageContainer() {
           }
         });
       });
-      console.log({ vehicleIdsMatchingCheckboxFilters });
 
       return vehicleIdsMatchingCheckboxFilters; // [0, 2]
       // () used to invoke function and get returned value, rather than
@@ -88,8 +83,6 @@ function SearchPageContainer() {
   const findVehicleIdsMatchingSelectboxMaxPrice = useMemo(() => {
     // Function finds all the vehicle IDs that match vehicles with a price
     // that is <= selection of max price.
-
-    console.log({ selectedPrice });
 
     const vehicleIdsMatchingSelectedPrice = [];
 
@@ -108,8 +101,6 @@ function SearchPageContainer() {
     //       vehicleIdsMatchingPrice.push(vehicle.id);
     //     }
     //   });
-
-    console.log({ vehicleIdsMatchingSelectedPrice });
 
     return vehicleIdsMatchingSelectedPrice;
   }, [selectedPrice]);
@@ -130,7 +121,6 @@ function SearchPageContainer() {
         }
       });
     });
-    console.log({ vehicleIdsMatchingMultipleFilterTypes });
 
     return vehicleIdsMatchingMultipleFilterTypes;
   }, [vehicleCheckboxFilters, selectedPrice]);

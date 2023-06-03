@@ -1,4 +1,3 @@
-import React from "react";
 import MaxPriceFilter from "../Filters/MaxPriceFilter";
 import BodyStyleFilter from "../Filters/BodyStyleFilter";
 import { styled } from "@mui/material/styles";

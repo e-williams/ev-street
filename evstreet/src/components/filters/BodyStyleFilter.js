@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Grid, Typography, FormGroup } from "@mui/material";
 import CustomCheckbox from "./Checkbox";
@@ -70,8 +70,6 @@ function BodyStyleFilter({
   // Also when checkedFilters changes, hasBeenChecked() is updated to check if
   // checkedFilters array includes the filter value of each checkbox, and is
   // run upon re-render, which happens with a change in state.
-
-  console.log({ checkedFilters });
 
   return (
     <Box>

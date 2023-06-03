@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "favicon_evLogo_192.png",
+      "src": "favicon_evLogo_192_optzil.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "favicon_evLogo_512.png",
+      "src": "favicon_evLogo_512_optzil.png",
       "type": "image/png",
       "sizes": "512x512"
     }

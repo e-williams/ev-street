@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CarouselImages from "./CarouselImages";
 import { styled } from "@mui/material/styles";
 import { Container, Typography, Grid, Box } from "@mui/material";
