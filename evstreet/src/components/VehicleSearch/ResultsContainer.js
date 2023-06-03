@@ -15,7 +15,6 @@ import useFetchVehicleImages from "../../hooks/useFetchImages";
 
 const ResultsWrapper = styled(Paper)({
   backgroundColor: "#f9f9f9",
-  paddingRight: 14,
   marginBottom: 14,
   cursor: "pointer",
   "&:hover": {

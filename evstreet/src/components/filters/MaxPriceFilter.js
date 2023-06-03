@@ -15,8 +15,8 @@ function MaxPriceFilter({ selectedPrice, setSelectedPrice }) {
   );
 
   return (
-    <FormControl size="small" sx={{ minWidth: 160, mt: 1.5, mb: 1.5 }}>
-      <InputLabel id="basePriceLabel" sx={{ fontSize: 16, color: "black" }}>
+    <FormControl size="small" sx={{ minWidth: 140, mt: 2, mb: 1.5 }}>
+      <InputLabel id="basePriceLabel" sx={{ fontSize: 14, color: "black" }}>
         Max Base Price
       </InputLabel>
       <Select
@@ -26,10 +26,7 @@ function MaxPriceFilter({ selectedPrice, setSelectedPrice }) {
         onChange={handleChange}
         sx={{ color: "#2db34a" }}
       >
-        <MenuItem value="unlimited">unlimited</MenuItem>
-        <MenuItem value={300000}>$300,000</MenuItem>
-        <MenuItem value={200000}>$200,000</MenuItem>
-        <MenuItem value={150000}>$150,000</MenuItem>
+        <MenuItem value="unlimited">Unlimited</MenuItem>
         <MenuItem value={100000}>$100,000</MenuItem>
         <MenuItem value={70000}>$70,000</MenuItem>
         <MenuItem value={40000}>$40,000</MenuItem>

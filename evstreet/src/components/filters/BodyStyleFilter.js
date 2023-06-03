@@ -5,7 +5,7 @@ import CustomCheckbox from "./Checkbox";
 
 const FilterHeading = styled(Typography)({
   fontSize: 16,
-  marginTop: 10,
+  marginTop: 8,
   color: "black",
 });
 
@@ -76,32 +76,7 @@ function BodyStyleFilter({
       <FilterHeading>Body Style</FilterHeading>
       <Grid container sx={{ color: "#7e7e7e" }}>
         <Grid item>
-          <FormGroup>
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="mini/subcompact"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="2-door sports car"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="3-door sports car"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="2-door sedan"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="3-door sedan"
-              onChange={handleChange}
-            />
+          <FormGroup sx={{ ml: .6 }}>
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
               id="4-door sedan"
@@ -112,38 +87,9 @@ function BodyStyleFilter({
               id="5-door sedan"
               onChange={handleChange}
             />
-          </FormGroup>
-        </Grid>
-        <Grid item>
-          <FormGroup>
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="wagon"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="3-door crossover"
-              onChange={handleChange}
-            />
             <CustomCheckbox
               hasBeenChecked={hasBeenChecked}
               id="5-door crossover"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="3-door SUV"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="5-door SUV"
-              onChange={handleChange}
-            />
-            <CustomCheckbox
-              hasBeenChecked={hasBeenChecked}
-              id="minivan/van"
               onChange={handleChange}
             />
             <CustomCheckbox

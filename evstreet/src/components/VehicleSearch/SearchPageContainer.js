@@ -25,8 +25,11 @@ const FilterWrapper = styled(Grid)({
   marginTop: 10,
   marginLeft: 22,
   paddingTop: 8,
-  paddingRight: 4,
+  paddingRight: 14,
   paddingBottom: 8,
+  "&.MuiGrid-item": {
+    paddingLeft: 16,
+  },
   border: 1.8,
   borderStyle: "solid",
   borderColor: "#3be15f",
@@ -220,7 +223,7 @@ function SearchPageContainer() {
         />
       </FilterWrapper>
       {!urlParams &&
-        <Grid item sx={{ mt: "10px", width: 850 }}>
+        <Grid item sx={{ mt: "10px", width: 844 }}>
           {handleResultsRender()}
         </Grid>}
         {/* if urlParams is not true (has no vehicle id), render results */}

@@ -6,7 +6,7 @@ const CustomCheckbox = ({ hasBeenChecked, id, onChange }) => {
   const labelColor = hasBeenChecked(id) ? "#2db34a" : "#7e7e7e";
 
   const CheckboxLabels = styled(Typography)({
-    fontSize: 14,
+    fontSize: 13.6,
     color: labelColor,
     "&:hover": {
       color: "#2db34a",
@@ -33,6 +33,6 @@ const CustomCheckbox = ({ hasBeenChecked, id, onChange }) => {
       label={<CheckboxLabels>{id}</CheckboxLabels>}
     />
   );
-};
+}
 
 export default CustomCheckbox;
