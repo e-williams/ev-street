@@ -40,8 +40,6 @@ const useFetchVehicleImages = (model, imagePosition = null) => {
     awsVehicleImage();
   }, [awsVehicleImage]);
 
-  console.log({ AWSImages });
-
   return {
     isLoading,
     AWSImages,

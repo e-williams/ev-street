@@ -1,5 +1,4 @@
-import React from "react";
-import evLogo from "../../assets/images/evLogoSignXXXSm.png";
+import evLogo from "../../assets/images/evLogoSignXXXSm_optzil.png";
 import { styled } from "@mui/material/styles";
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";

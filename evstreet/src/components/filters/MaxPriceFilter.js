@@ -1,4 +1,3 @@
-import React from "react";
 import { FormControl } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";

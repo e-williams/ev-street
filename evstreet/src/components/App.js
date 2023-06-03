@@ -1,4 +1,3 @@
-import React from "react";
 import "../assets/styles/App.css";
 import Header from "./Common/Header";
 import SearchPageContainer from "./VehicleSearch/SearchPageContainer";

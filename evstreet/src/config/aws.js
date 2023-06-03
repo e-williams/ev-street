@@ -1,5 +1,5 @@
 import aws from "aws-sdk";
-import placeholder_img from "../assets/images/logo1_resize.jpeg";
+import placeholder_img from "../assets/images/logo1_optzil.jpeg";
 
 aws.config.update({
   accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -14,7 +14,7 @@ const downloadImageFromS3 = async (key) => {
   const params = {
     Bucket: bucketName,
     Key: key,
-  };
+  }
 
   /*
    * Try/Catch is the way to handle errors when an API Request fails.
@@ -31,6 +31,6 @@ const downloadImageFromS3 = async (key) => {
   } catch (er) {
     return placeholder_img;
   }
-};
+}
 
 export default downloadImageFromS3;

@@ -1,4 +1,3 @@
-import { React } from "react";
 import Header from "../Common/Header";
 import Footer from "../Common/Footer/Footer";
 import ArrowBackIcon from "../Common/ArrowBackIcon";

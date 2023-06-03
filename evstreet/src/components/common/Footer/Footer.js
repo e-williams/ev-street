@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "@mui/material/styles";
 import { Grid, Typography, Divider, Chip } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -43,11 +42,7 @@ function Footer () {
   return (
     <FooterWrapper container>
       <FooterTopBottom item>
-        <Divider
-          sx={{
-            borderBottomWidth: 2,
-          }}
-        />
+        <Divider sx={{ borderBottomWidth: 2 }} />
       </FooterTopBottom>
       <MainSection container columnSpacing={3}>
         <Grid item>
@@ -66,7 +61,7 @@ function Footer () {
                 width: "50%",
                 height: "1px",
                 background: "linear-gradient(to right, #dcdcdc, #00000000)"
-                }}>
+              }}>
         </Chip>
         <CopyrightTypo>Copyright &copy; 2023 Evan Williams</CopyrightTypo>
       </FooterTopBottom>
