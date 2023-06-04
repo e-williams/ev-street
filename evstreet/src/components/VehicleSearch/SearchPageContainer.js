@@ -56,8 +56,7 @@ function SearchPageContainer() {
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
     () => {
-      // Function that finds all vehicle IDs that match the selected checkbox
-      // filters.
+      // Finds all vehicle IDs that match the selected checkbox filters.
       // When a checkbox is checked, vehicleCheckboxFilters is updated and this
       // function is re-invoked, due to the change in the dependency array.
 

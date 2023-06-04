@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CarouselImages from "./CarouselImages";
 import { styled } from "@mui/material/styles";
-import { Container, Typography, Grid, Box } from "@mui/material";
+import { Typography, Grid, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import vehicleData from "../../config/vehicleData.json";
 import { useNavigate } from "react-router-dom";
@@ -48,11 +48,9 @@ function VehiclePageContainer() {
     return (
       <NoVehicleWrapper>
         <Box onClick={() => navigate(-1)}>
-          <ArrowBackIcon />
+          <ArrowBackIcon onClick={() => navigate(-1)}/>
         </Box>
-        <Container maxWidth="xl">
-          <NoVehicleTypo>Oops, that vehicle does not exist.</NoVehicleTypo>
-        </Container>
+        <NoVehicleTypo>Oops, that vehicle does not exist.</NoVehicleTypo>
       </NoVehicleWrapper>
     );
   } else {
