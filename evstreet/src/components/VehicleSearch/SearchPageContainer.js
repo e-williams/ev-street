@@ -4,7 +4,7 @@ import vehicleData from "../../config/vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
-import { Paper, Grid } from "@mui/material";
+import { Paper, Grid, Container } from "@mui/material";
 
 const NoResultsMessage = styled(Paper)({
   fontSize: 18,
@@ -23,7 +23,7 @@ const SearchPageWrapper = styled(Grid)({
 
 const FilterWrapper = styled(Grid)({
   marginTop: 10,
-  marginLeft: 22,
+  marginRight: 22,
   paddingTop: 8,
   paddingRight: 14,
   paddingBottom: 8,
@@ -213,24 +213,26 @@ function SearchPageContainer() {
   }
 
   return (
-    <SearchPageWrapper container columnSpacing={3}>
-      <FilterWrapper item>
-        <SearchContainer
-          setVehicleCheckboxFilters={setVehicleCheckboxFilters}
-          vehicleCheckboxFilters={vehicleCheckboxFilters}
-          selectedPrice={selectedPrice}
-          setSelectedPrice={setSelectedPrice}
-        />
-      </FilterWrapper>
-      {!urlParams &&
-        <Grid item sx={{ mt: "10px", width: 844 }}>
-          {handleResultsRender()}
-        </Grid>}
-        {/* if urlParams is not true (has no vehicle id), render results */}
-      <Grid item sx={{width: 670}}>
-        <Outlet />
-      </Grid>
-    </SearchPageWrapper>
+    <Container>
+      <SearchPageWrapper container>
+        <FilterWrapper item>
+          <SearchContainer
+            setVehicleCheckboxFilters={setVehicleCheckboxFilters}
+            vehicleCheckboxFilters={vehicleCheckboxFilters}
+            selectedPrice={selectedPrice}
+            setSelectedPrice={setSelectedPrice}
+          />
+        </FilterWrapper>
+        {!urlParams &&
+          <Grid item sx={{ mt: "10px", width: 818 }}>
+            {handleResultsRender()}
+          </Grid>}
+          {/* if urlParams is not true (has no vehicle id), render results */}
+        <Grid item sx={{width: 670}}>
+          <Outlet />
+        </Grid>
+      </SearchPageWrapper>
+    </Container>
   );
 }
 
