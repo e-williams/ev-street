@@ -178,7 +178,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
         <ListingImg alt={`${make} ${model}`} src={AWSImages} />
       </Tooltip>
     );
-  };
+  }
 
   const renderDriverAssistanceValue = () => {
     if (filteredVehicleSpecs.driver_assistance_packages === "no") {

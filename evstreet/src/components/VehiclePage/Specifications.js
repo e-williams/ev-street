@@ -90,7 +90,6 @@ function Specifications({ vehicle }) {
     // { level1: {..}, level2: {..}, level3: {..} }
 
   const renderDriverAssistPackages = () => {
-
     if (driver_assistance_packages === "no") {
       return (
         <Grid container>
