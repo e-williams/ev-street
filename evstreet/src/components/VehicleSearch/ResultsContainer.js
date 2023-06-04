@@ -180,6 +180,13 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
     );
   };
 
+  const renderDriverAssistanceValue = () => {
+    if (filteredVehicleSpecs.driver_assistance_packages === "no") {
+      return <ListingSpecs>none</ListingSpecs>
+    }
+    return <ListingSpecs>yes</ListingSpecs>
+  }
+
   const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
 
   const navigate = useNavigate();
@@ -243,9 +250,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
 
             <SpecsRows item>
               <BoldTypo>Driver Assistance System: </BoldTypo>
-              <ListingSpecs>
-                {filteredVehicleSpecs.driver_assistance}
-              </ListingSpecs>
+              {renderDriverAssistanceValue()}
             </SpecsRows>
             <SpecsRows item>
               <BoldTypo>Self-Parking: </BoldTypo>
