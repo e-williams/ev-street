@@ -90,8 +90,16 @@ function Specifications({ vehicle }) {
     // { level1: {..}, level2: {..}, level3: {..} }
 
   const renderDriverAssistPackages = () => {
-    if (driver_assistance_packages === "none") {
-      return <InlineTypo>{"none"}</InlineTypo>;
+
+    if (driver_assistance_packages === "no") {
+      return (
+        <Grid container>
+          <Grid item sx={{ mt: 2.5 }}>
+            <BoldInlineHeader>Driver Assistance System: </BoldInlineHeader>
+            <InlineTypo>none</InlineTypo>
+          </Grid>
+        </Grid>
+      );
     }
 
     return (

@@ -10,7 +10,6 @@
     "luxary_vehicle": "yes",
     "drivetrain": "RWD or AWD",
     "self_parking": "yes - Autopilot, Enhanced Autopilot packages",
-    "driver_assistance": "yes",
     "driver_assistance_packages": {
       "level1": {
         "label": "Autopilot",
@@ -99,7 +98,6 @@
     "luxary_vehicle": "yes",
     "drivetrain": "RWD or AWD",
     "self_parking": "yes - Wind, GT-Line trims",
-    "driver_assistance": "yes",
     "driver_assistance_packages": {
       "level1": {
         "label": "Wind (RWD), Wind (e-AWD) trims",
@@ -224,7 +222,6 @@
     "luxary_vehicle": "yes",
     "drivetrain": "AWD",
     "self_parking": "yes - Prestige trim",
-    "driver_assistance": "yes",
     "driver_assistance_packages": {
       "level1": {
         "label": "Premium Plus trim",
