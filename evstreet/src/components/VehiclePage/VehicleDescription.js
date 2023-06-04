@@ -25,7 +25,7 @@ function VehicleDescription({ vehicle }) {
   // Handle Tab selection
   const handleSelection = (event, newValue) => {
     setValue(newValue);
-  };
+  }
 
   return (
     <Box sx={{ mt: 2.5, backgroundColor: "#f9f9f9" }}>
@@ -47,6 +47,6 @@ function VehicleDescription({ vehicle }) {
 
 VehicleDescription.propTypes = {
   vehicle: PropTypes.object.isRequired,
-};
+}
 
 export default VehicleDescription;

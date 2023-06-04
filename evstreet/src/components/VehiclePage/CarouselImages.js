@@ -35,7 +35,7 @@ function CarouselImages({ vehicleModel }) {
         />
       </Tooltip>
     );
-  };
+  }
 
   if (isLoading) {
     return <Spinner color="success" size={70} />;

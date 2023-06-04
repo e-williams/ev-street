@@ -31,7 +31,7 @@ const useFetchVehicleImages = (model, imagePosition = null) => {
 
       setIsLoading(false); // set back to false when stops loading
       setAWSImages(images);
-    };
+    }
 
     fetchImages();
   }, [model, imagePosition]);
@@ -44,6 +44,6 @@ const useFetchVehicleImages = (model, imagePosition = null) => {
     isLoading,
     AWSImages,
   };
-};
+}
 
 export default useFetchVehicleImages;
