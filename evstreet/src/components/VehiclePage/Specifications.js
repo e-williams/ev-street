@@ -63,7 +63,6 @@ function Specifications({ vehicle }) {
         {Object.entries(vehicle).map(([label, value]) => {
           // Object.entries(vehicle) returns an array of arrays:
           // [ ['id', 0], ['make', 'TESLA'], ...]
-          // label and value iterators take on array values.
       
           if (!LABEL_MAP[label]) {
             return <Grid item key={`${label} ${value}`} />;
@@ -86,7 +85,6 @@ function Specifications({ vehicle }) {
   }
 
   const { driver_assistance_packages = {} } = vehicle;
-    // destructures driver_assistance_packages and wraps it in an object
     // { level1: {..}, level2: {..}, level3: {..} }
 
   const renderDriverAssistPackages = () => {
@@ -143,7 +141,6 @@ function Specifications({ vehicle }) {
   // Render with a loop the information of those trims.
 
   const { trim = {} } = vehicle;
-  // destructures trim and wraps it in an object
   // { standard: {..}, awd: {..}, performance: {..} }
 
   const renderVehicleTrims = () => {
@@ -171,7 +168,6 @@ function Specifications({ vehicle }) {
             // each array with 2 elements representing key & value from data
             // trims, for example:
             // [ [ 'label', 'Rear-Wheel Drive' ], [ 'base_price', 42990 ], ... ]
-            // label and value iterators take on array values.
             
             if (!LABEL_MAP[label]) {
               return <Grid item key={`${label} ${value}`} />;

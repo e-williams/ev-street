@@ -67,10 +67,7 @@ function VehiclePageContainer() {
           </Grid>
         </Grid>
         <CarouselImages vehicleModel={vehicle.model} />
-        {/* Using Destructuring */}
         <VehicleDescription vehicle={vehicle} />
-        {/* Using Spread operator */}
-        {/* <VehicleDescription {...vehicle} /> */}
       </VehiclePageWrapper>
     );
   }

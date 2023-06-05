@@ -16,12 +16,6 @@ const downloadImageFromS3 = async (key) => {
     Key: key,
   }
 
-  /*
-   * Try/Catch is the way to handle errors when an API Request fails.
-   * In this case the API request is the request to AWS to get the images.
-   * If the request fails and there is an error, the error will bubble up all
-   * the way to the browser where is can be seen in the console.
-  */
   try {
     const response = await s3.getObject(params).promise();
 
