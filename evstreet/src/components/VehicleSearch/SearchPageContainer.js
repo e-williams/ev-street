@@ -4,14 +4,16 @@ import vehicleData from "../../config/vehicleData.json";
 import SearchContainer from "./SearchContainer";
 import ResultsContainer from "./ResultsContainer";
 import { styled } from "@mui/material/styles";
-import { Paper, Grid } from "@mui/material";
+import { Paper, Grid, Container } from "@mui/material";
 
 const NoResultsMessage = styled(Paper)({
+  width: 424,
   fontSize: 18,
+  textAlign: "center",
   color: "#536d90",
   backgroundColor: "#f9f9f9",
   lineHeight: 3,
-  padding: 14,
+  padding: 10,
   borderRadius: 4,
 });
 
@@ -23,7 +25,7 @@ const SearchPageWrapper = styled(Grid)({
 
 const FilterWrapper = styled(Grid)({
   marginTop: 10,
-  marginLeft: 22,
+  marginRight: 22,
   paddingTop: 8,
   paddingRight: 14,
   paddingBottom: 8,
@@ -51,13 +53,11 @@ function SearchPageContainer() {
     // useMemo applied so that urlParams is updated when params changes.
 
   const [vehicleCheckboxFilters, setVehicleCheckboxFilters] = useState([]);
-  // [state value variable, function to change state]
   const [selectedPrice, setSelectedPrice] = useState("");
 
   const findVehicleIdsMatchingCheckboxFilters = useMemo(
     () => {
-      // Function that finds all vehicle IDs that match the selected checkbox
-      // filters.
+      // Finds all vehicle IDs that match the selected checkbox filters.
       // When a checkbox is checked, vehicleCheckboxFilters is updated and this
       // function is re-invoked, due to the change in the dependency array.
 
@@ -77,10 +77,8 @@ function SearchPageContainer() {
       });
 
       return vehicleIdsMatchingCheckboxFilters; // [0, 2]
-      // () used to invoke function and get returned value, rather than
-      // just referencing the variable that stores the function.
     },
-    [vehicleCheckboxFilters] // dependency array
+    [vehicleCheckboxFilters]
   );
 
   const findVehicleIdsMatchingSelectboxMaxPrice = useMemo(() => {
@@ -91,20 +89,11 @@ function SearchPageContainer() {
 
     vehicleData.forEach(({ trim: {standard: {base_price}}, id }) => {
       // destructured vehicleData.base_price = parameter for example
-      // creates new variables with values the same as the values of
-      // object keys base_price and id
+
       if (base_price <= selectedPrice || selectedPrice === "unlimited") {
         vehicleIdsMatchingSelectedPrice.push(id);
       }
     });
-    // structured form:
-    //   vehicleData.forEach((vehicle) => {
-    //     const vehiclePrice = vehicle.base_price;
-    //     if (vehiclePrice <= selectedPrice) {
-    //       vehicleIdsMatchingPrice.push(vehicle.id);
-    //     }
-    //   });
-
     return vehicleIdsMatchingSelectedPrice;
   }, [selectedPrice]);
 
@@ -137,9 +126,6 @@ function SearchPageContainer() {
           filteredVehicleSpecs={vehicleSpecs}
         />
       ));
-      // map used to produce ResultsContainer for each iteration of
-      // vehicleId over JSON object list. Each child element in a mapped
-      // list needs a unique key prop.
     }
     // IF ONLY CHECKBOXES SELECTED:
     else if (
@@ -155,10 +141,6 @@ function SearchPageContainer() {
           )}
         />
       ));
-      // filteredVehicleSpecs is property assigned to output of find(),
-      // which returns the 1st element in vehicleData that meets the
-      // condition, in this case the object for a vehicle containing keys
-      // and values.
     }
     // IF ONLY MAX PRICE SELECTED:
     else if (
@@ -213,24 +195,26 @@ function SearchPageContainer() {
   }
 
   return (
-    <SearchPageWrapper container columnSpacing={3}>
-      <FilterWrapper item>
-        <SearchContainer
-          setVehicleCheckboxFilters={setVehicleCheckboxFilters}
-          vehicleCheckboxFilters={vehicleCheckboxFilters}
-          selectedPrice={selectedPrice}
-          setSelectedPrice={setSelectedPrice}
-        />
-      </FilterWrapper>
-      {!urlParams &&
-        <Grid item sx={{ mt: "10px", width: 844 }}>
-          {handleResultsRender()}
-        </Grid>}
-        {/* if urlParams is not true (has no vehicle id), render results */}
-      <Grid item sx={{width: 670}}>
-        <Outlet />
-      </Grid>
-    </SearchPageWrapper>
+    <Container>
+      <SearchPageWrapper container>
+        <FilterWrapper item>
+          <SearchContainer
+            setVehicleCheckboxFilters={setVehicleCheckboxFilters}
+            vehicleCheckboxFilters={vehicleCheckboxFilters}
+            selectedPrice={selectedPrice}
+            setSelectedPrice={setSelectedPrice}
+          />
+        </FilterWrapper>
+        {!urlParams &&
+          <Grid item sx={{ mt: "10px", width: 818 }}>
+            {handleResultsRender()}
+          </Grid>}
+          {/* if urlParams is not true (has no vehicle id), render results */}
+        <Grid item sx={{width: 670}}>
+          <Outlet />
+        </Grid>
+      </SearchPageWrapper>
+    </Container>
   );
 }
 

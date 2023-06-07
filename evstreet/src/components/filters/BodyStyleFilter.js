@@ -28,20 +28,11 @@ function BodyStyleFilter({
 
   const handleChange = useCallback(
     (event) => {
-      // Function is re-invoked whenever user clicks a checkbox an dependency
-      // array checkedFilters changes.
-      // useCallback: upon subsequent renders, if the dependencies haven't
-      // changed, returns the stored fuction; otherwise returns (not invokes)
-      // re-rendered function.
-      // event is parameter name taking on HTML Event() interface.
+
       if (event.target.checked) {
         // if checkbox checked, filter name added to checkedFilters array
         setCheckedFilters([...checkedFilters, event.target.id]);
         // ['4-door sedan', ...]
-        // Spread syntax ... to add element id value to new array state; not
-        // an array pointing to checkedFilters memory.
-        // console.log({checkedFilters}) would initially produce empty array
-        // here because this useCallback function is only stored until called.
       } else {
         setCheckedFilters(
           checkedFilters.filter((check) => check !== event.target.id)

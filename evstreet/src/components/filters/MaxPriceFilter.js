@@ -7,11 +7,10 @@ function MaxPriceFilter({ selectedPrice, setSelectedPrice }) {
 
   const handleChange = (event) => (
     setSelectedPrice(event.target.value)
-          // event parameter passed to setSelectedPrice here rather than in
-          // findVehicleIdsMatchingSelectboxMaxPrice to avoid event being
-          // undefined due to passing of the function without it when it is
-          // stored as part of useMemo.
-          // onChange event sets selectedPrice state to Event target value.
+      // event parameter passed to setSelectedPrice here rather than in
+      // findVehicleIdsMatchingSelectboxMaxPrice to avoid event being undefined
+      // due to passing of the function without it when it is stored by useMemo.
+      // onChange event sets selectedPrice state to Event target value.
   );
 
   return (

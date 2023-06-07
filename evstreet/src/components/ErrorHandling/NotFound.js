@@ -2,7 +2,7 @@ import Header from "../Common/Header";
 import Footer from "../Common/Footer/Footer";
 import ArrowBackIcon from "../Common/ArrowBackIcon";
 import { styled } from "@mui/material/styles";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Typo = styled(Typography)({
@@ -22,10 +22,10 @@ function NotFound() {
   return (
     <>
       <Header />
-      < Container maxWidth="xl" onClick={() => navigate(-1)}>
-        <ArrowBackIcon />
-      </Container >
-      <NotFoundWrapper>
+      <NotFoundWrapper maxWidth="sm">
+        <Box onClick={() => navigate(-1)}>
+          <ArrowBackIcon />
+        </Box>
         <Typo>Oops, it looks like the page does not exist.</Typo>
       </NotFoundWrapper>
       <Footer />

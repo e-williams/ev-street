@@ -69,15 +69,12 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
   const { make, model } = filteredVehicleSpecs;
 
   const { isLoading, AWSImages } = useFetchVehicleImages(model, 0);
-    // destructures isLoading and AWSImages from returned result of
-    // useFetchVehicleImages().
     // 2nd arguement 0 becomes imagePosition (index) in custom hook
     // useFetchVehicleImages().
 
   // Get max or min range, MPGe, 0_60, max_dc_charging of all trims
 
   const { trim = {} } = filteredVehicleSpecs;
-    // destructures trim and wraps it in an object
 
   const vehicleTrims = Object.values(trim);
 
@@ -214,7 +211,6 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
             {Object.entries(filteredVehicleSpecs).map(([label, value]) => {
               // Object.entries(filteredVehicleSpecs) returns array of arrays:
               // [ ['id, 0], ['make', 'TESLA'], ...]
-              // label and value iterators take on array values
               if (!LABEL_MAP[label]) {
                 return <Grid item key={`${label} ${value}`} />;
               }

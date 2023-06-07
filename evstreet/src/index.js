@@ -31,8 +31,6 @@ const router = createBrowserRouter([
 // Render router in div element of index.html w/ id='root', and provide all
 // components with access to it.
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // Use StrictMode to run extra checks for warnings in console;
-  // recommended use in development only.
   //<React.StrictMode>
     <RouterProvider router={router} />
   //</React.StrictMode>
