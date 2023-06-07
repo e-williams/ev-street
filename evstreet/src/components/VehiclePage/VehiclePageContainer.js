@@ -48,7 +48,7 @@ function VehiclePageContainer() {
     return (
       <NoVehicleWrapper>
         <Box onClick={() => navigate(-1)}>
-          <ArrowBackIcon onClick={() => navigate(-1)}/>
+          <ArrowBackIcon />
         </Box>
         <NoVehicleTypo>Oops, that vehicle does not exist.</NoVehicleTypo>
       </NoVehicleWrapper>
