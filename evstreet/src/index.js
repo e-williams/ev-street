@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./Components/App";
+import App from "./Components/App.js";
 import AboutUS from "./Components/Common/Footer/AboutUs";
 import ContactUs from "./Components/Common/Footer/ContactUs";
 import VehiclePageContainer from "./Components/VehiclePage/VehiclePageContainer";
