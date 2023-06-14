@@ -42,7 +42,7 @@ function SearchPageContainer() {
 
   const params = useParams();
     // useParams() returns an object of key/value pairs of the dynamic params
-    // of the current URL.
+    // of current URL.
 
   const urlParams = useMemo(() => !!Object.values(params).length, [params]);
     // Object.values returns an array of an object's keyed propery values, so
