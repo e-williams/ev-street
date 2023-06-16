@@ -2,8 +2,8 @@ import aws from "aws-sdk";
 import placeholder_img from "../assets/images/logo1_optzil.jpeg";
 
 aws.config.update({
-  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+  secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
   region: "us-west-1",
 });
 
