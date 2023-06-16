@@ -2,7 +2,7 @@ import Header from "../Common/Header";
 import Footer from "../Common/Footer/Footer";
 import ArrowBackIcon from "../Common/ArrowBackIcon";
 import { styled } from "@mui/material/styles";
-import { Typography, Container, Box } from "@mui/material";
+import { Typography, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Typo = styled(Typography)({
