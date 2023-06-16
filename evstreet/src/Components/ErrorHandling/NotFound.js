@@ -22,10 +22,10 @@ function NotFound() {
   return (
     <>
       <Header />
+      < Container maxWidth="xl" onClick={() => navigate(-1)}>
+        <ArrowBackIcon />
+      </Container>
       <NotFoundWrapper maxWidth="sm">
-        <Box onClick={() => navigate(-1)}>
-          <ArrowBackIcon />
-        </Box>
         <Typo>Oops, it looks like the page does not exist.</Typo>
       </NotFoundWrapper>
       <Footer />
