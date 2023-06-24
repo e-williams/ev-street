@@ -44,6 +44,6 @@ const useFetchVehicleImages = (model, imagePosition = null) => {
     isLoading,
     AWSImages,
   };
-}
+};
 
 export default useFetchVehicleImages;
