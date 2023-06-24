@@ -93,6 +93,6 @@ const LABEL_MAP = {
     label: "Towing Capacity",
     data: (towing_capacity) => `${formattedNumbers(towing_capacity)} lbs`,
   },
-}
+};
 
 export default LABEL_MAP;

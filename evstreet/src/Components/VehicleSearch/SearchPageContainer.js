@@ -192,7 +192,7 @@ function SearchPageContainer() {
         </NoResultsMessage>
       );
     }
-  }
+  };
 
   return (
     <Container>

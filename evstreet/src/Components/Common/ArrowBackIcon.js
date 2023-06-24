@@ -13,6 +13,6 @@ const BackArrowIcon = () => (
   <StyledNav>
     <ArrowBackIcon />
   </StyledNav>
-)
+);
 
 export default BackArrowIcon;

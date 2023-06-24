@@ -65,6 +65,6 @@ const VEHICLE_IMAGE_MAP = {
       url: "https://www.kia.com/content/dam/kia/us/en/vehicles/ev6/2023/mep/in-page-gallery/kia_EV6_2023_asset-carousel-4.jpg",
     },
   ],
-}
+};
 
 export default VEHICLE_IMAGE_MAP;

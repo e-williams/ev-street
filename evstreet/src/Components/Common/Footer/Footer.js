@@ -29,7 +29,7 @@ const StyledLink = styled(Link)({
     borderBottom: "1px solid #2db34a",
     color: "#2db34a",
   },
-})
+});
 
 const CopyrightTypo = styled(Typography)({
   marginLeft: 23,

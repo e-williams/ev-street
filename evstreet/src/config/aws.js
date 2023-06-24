@@ -14,7 +14,7 @@ const downloadImageFromS3 = async (key) => {
   const params = {
     Bucket: bucketName,
     Key: key,
-  }
+  };
 
   try {
     const response = await s3.getObject(params).promise();
@@ -25,6 +25,6 @@ const downloadImageFromS3 = async (key) => {
   } catch (er) {
     return placeholder_img;
   }
-}
+};
 
 export default downloadImageFromS3;

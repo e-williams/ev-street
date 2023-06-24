@@ -154,7 +154,7 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
       data: maxDcCharging,
       units: " kW - ",
       maxLabel: maxDcChargingLabel,
-    },
+    }
   ];
 
   const renderVehicleImage = () => {
@@ -175,14 +175,14 @@ function ResultsContainer({ filteredVehicleSpecs, lang }) {
         <ListingImg alt={`${make} ${model}`} src={AWSImages} />
       </Tooltip>
     );
-  }
+  };
 
   const renderDriverAssistanceValue = () => {
     if (filteredVehicleSpecs.driver_assistance_packages === "no") {
       return <ListingSpecs>none</ListingSpecs>
     }
     return <ListingSpecs>yes</ListingSpecs>
-  }
+  };
 
   const { base_price, label, weight } = filteredVehicleSpecs.trim.standard;
 

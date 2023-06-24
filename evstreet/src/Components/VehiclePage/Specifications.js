@@ -79,10 +79,10 @@ function Specifications({ vehicle }) {
               </InlineTypo>
             </Grid>
           );
-        })}
+        })};
       </Grid>
     );
-  }
+  };
 
   const { driver_assistance_packages = {} } = vehicle;
     // { level1: {..}, level2: {..}, level3: {..} }
@@ -135,7 +135,7 @@ function Specifications({ vehicle }) {
         </Grid>
       </Grid>                             
     );
-  }
+  };
 
   // Find all the trims for each vehicle.
   // Render with a loop the information of those trims.
@@ -187,8 +187,8 @@ function Specifications({ vehicle }) {
           })}
         </Grid>
       );
-    });
-  }
+    })
+  };
 
   return (
     <SpecsWrapper container columnSpacing={4}>

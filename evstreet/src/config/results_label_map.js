@@ -23,6 +23,6 @@ const RESULTS_LABEL_MAP = {
     label: "Drivetrain",
     data: (drivetrain) => drivetrain,
   },
-}
+};
 
 export default RESULTS_LABEL_MAP;

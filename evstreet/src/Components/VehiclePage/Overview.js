@@ -4,13 +4,13 @@ import styled from "@emotion/styled";
 const OverviewWrapper = styled(Container)({
   marginTop: 20,
   color: "#505050"
-})
+});
 
 const StyledTypo = styled(Typography)({
   fontSize: 15,
   fontWeight: 300,
   marginBottom: 10,
-})
+});
 
 function Overview({ vehicle }) {
 
