@@ -79,7 +79,7 @@ function Specifications({ vehicle }) {
               </InlineTypo>
             </Grid>
           );
-        })};
+        })}
       </Grid>
     );
   };
