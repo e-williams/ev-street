@@ -142,7 +142,7 @@
         "weight": 4255,
         "drivetrain": "RWD",
         "motors": "single motor for rear wheels",
-        "hp": 320,
+        "horsepower": 320,
         "torque": 258,
         "range": 310,
         "fuel_economy": 28,
@@ -161,7 +161,7 @@
         "weight": 4502,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
-        "hp": 320,
+        "horsepower": 320,
         "torque": 446,
         "range": 282,
         "fuel_economy": 31,
@@ -180,7 +180,7 @@
         "weight": 4795,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
-        "hp": 576,
+        "horsepower": 576,
         "torque": 545,
         "range": 206,
         "fuel_economy": 42,
@@ -196,12 +196,12 @@
       "standard_plus": {
         "label": "GT-Line (RWD)",
         "base_price": 52900,
-        "description": "All other specifications same as Wind (RWD) trim."
+        "description": "All other trim-listed specs same as Wind (RWD) trim."
       },
       "awd_plus": {
         "label": "GT-Line (AWD)",
         "base_price": 57600,
-        "description": "All other specifications same as Wind (e-AWD) trim."
+        "description": "All other trim-listed specs same as Wind (e-AWD) trim."
       }
     },
     "overview": {
@@ -242,12 +242,12 @@
     },
     "trim": {
       "standard": {
-        "label": "Premium Plus, Prestige",
+        "label": "Premium Plus",
         "base_price": 104900,
         "weight": 5060,
         "drivetrain": "AWD",
         "motors": "2 total - 1 each for front and rear wheels",
-        "hp": 522,
+        "horsepower": 522,
         "range": 238,
         "fuel_economy": 41,
         "MPGe": 82,
@@ -261,7 +261,7 @@
       "performance": {
         "label": "Prestige",
         "base_price": 111300,
-        "description": "All other specifications same as Premium Plus trim."
+        "description": "All other trim-listed specs same as Premium Plus trim."
       }
     },
     "overview": {
