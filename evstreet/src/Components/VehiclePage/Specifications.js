@@ -175,10 +175,11 @@ function Specifications({ vehicle }) {
 
             return (
               <Grid item key={`${label} ${value}`}>
+                {LABEL_MAP[label].label !== "description" &&
                 <BoldInlineTypoSm>
                   {LABEL_MAP[label].label}
                   {": "}
-                </BoldInlineTypoSm>
+                </BoldInlineTypoSm>}
                 <InlineTypoSm>
                   {LABEL_MAP[label].data(value)}
                 </InlineTypoSm>
