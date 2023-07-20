@@ -22,7 +22,7 @@ function NotFound() {
   return (
     <>
       <Header />
-      < Container maxWidth="xl" onClick={() => navigate(-1)}>
+      < Container maxWidth="false" onClick={() => navigate(-1)}>
         <ArrowBackIcon />
       </Container>
       <NotFoundWrapper maxWidth="sm">
