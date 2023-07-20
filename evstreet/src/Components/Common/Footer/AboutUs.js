@@ -25,7 +25,7 @@ function AboutUs() {
   return (
     <>
       <Header />
-      < Container maxWidth="xl" onClick={() => navigate("/")}>
+      < Container maxWidth="false" onClick={() => navigate("/")}>
         <ArrowBackIcon />
       </Container>
       <AboutUsWrapper maxWidth="sm">

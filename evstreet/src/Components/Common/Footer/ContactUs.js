@@ -21,7 +21,7 @@ function ContactUs() {
   return (
     <>
       <Header />
-      < Container maxWidth="xl" onClick={() => navigate("/")}>
+      < Container maxWidth="false" onClick={() => navigate("/")}>
         <ArrowBackIcon />
       </Container>
       <ContactUsWrapper maxWidth="sm">
